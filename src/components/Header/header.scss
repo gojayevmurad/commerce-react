@@ -1,0 +1,109 @@
+@import "../../mixins";
+.header {
+  margin-top: 10px;
+  &--content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &--logo {
+    font-size: 1.3rem;
+    width: 20px;
+    font-weight: 700;
+    &__text {
+      color: var(--primary-color) !important;
+      color: red;
+    }
+  }
+
+  &--searchbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid #efefef;
+
+    .header--searchbar__text {
+      height: 40px;
+      border: none;
+      outline: none;
+      padding: 7px 9px;
+      border-right: 1px solid #efefef;
+    }
+
+    select {
+      border: none;
+      outline: none;
+      height: 40px;
+      padding: 7px 9px;
+    }
+
+    button {
+      height: 100%;
+      border: none;
+      outline: none;
+      height: 40px;
+      padding: 0 30px;
+      cursor: pointer;
+      background-color: var(--primary-color);
+    }
+  }
+  &--actions {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    & > div {
+      cursor: pointer;
+      position: relative;
+      &::after {
+        content: attr(data-count);
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: -7px;
+        right: -7px;
+        width: 20px;
+        height: 20px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        font-size: 0.8rem;
+        display: none;
+      }
+
+      &.activeCount::after {
+        display: flex;
+      }
+
+      &::before{
+        content: attr(data-title);
+        position: absolute;
+        bottom: -55px;
+        transform: translateX(-50%);
+        left: 50%;
+        width: max-content;
+        padding: 4px 10px;
+        height: 30px;
+        background-color: var(--primary-color);
+        opacity: 0;
+        z-index: -1;
+        transition: .3s;
+        font-size: .9rem;
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        pointer-events: none;
+      }
+
+      &:hover::before{
+        opacity: 1;
+        z-index: 1;
+        bottom: -37px;
+
+      }
+    }
+  }
+}
