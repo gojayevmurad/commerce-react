@@ -5,11 +5,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 15px 0;
   }
 
   &--logo {
     font-size: 1.3rem;
-    width: 20px;
+    width: 150px;
     font-weight: 700;
     &__text {
       color: var(--primary-color) !important;
@@ -50,7 +51,7 @@
     }
   }
   &--actions {
-    width: 20px;
+    width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
