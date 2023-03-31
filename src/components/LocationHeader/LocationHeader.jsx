@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import "./locationheader.scss";
 
@@ -128,22 +129,19 @@ const LocationHeader = () => {
               </ul>
             </li>
             <li className="locationheader--list__items">
-              <a href="#">Əsas Səhifə</a>
+              <NavLink to="/">Əsas Səhifə</NavLink>
             </li>
             <li className="locationheader--list__items">
-              <a href="#">Mağaza</a>
+              <NavLink to="/shop">Mağaza</NavLink>
             </li>
             <li className="locationheader--list__items">
-              <a href="#">Səhifələr</a>
+              <NavLink to="/about">Haqqımızda</NavLink>
             </li>
             <li className="locationheader--list__items">
-              <a href="#">Haqqımızda</a>
+              <NavLink to="/blog">Bloq</NavLink>
             </li>
             <li className="locationheader--list__items">
-              <a href="#">Bloq</a>
-            </li>
-            <li className="locationheader--list__items">
-              <a href="#">Əlaqə</a>
+              <NavLink to="/contact">Əlaqə</NavLink>
             </li>
           </ul>
           <div className="locationheader--seller">
