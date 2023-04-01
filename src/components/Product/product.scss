@@ -94,7 +94,7 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      &::after{
+      &::after {
         content: attr(data-title);
         background-color: var(--primary-color);
         width: max-content;
@@ -103,18 +103,18 @@
         position: absolute;
         right: 160%;
         top: 50%;
-        transform: translate(0,-50%);
+        transform: translate(0, -50%);
         padding: 6px 0;
         z-index: 1;
-        transition: .3s;
+        transition: 0.3s;
         display: flex;
         justify-content: center;
         align-items: center;
-        opacity: 0  ;
+        opacity: 0;
         pointer-events: none;
       }
 
-      &:hover::after{
+      &:hover::after {
         right: 100%;
         opacity: 1;
       }
