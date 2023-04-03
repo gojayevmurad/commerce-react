@@ -1,37 +1,26 @@
 import React from "react";
 
-import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
-
 import "./product.scss";
 import logo from "../../console.png";
+import StarRating from "../StarRating/StarRating";
 
-let emptyStar = <BsStar />;
-let star = <BsStarFill />;
-let halfStar = <BsStarHalf />;
 
 let price = 15.99;
 let offerPrice = 12;
 
-let rating = 4.5;
-
-let countStars = Math.floor(rating);
-let isHalf = rating % 1 >= 0.5;
-let countEmptyStars = 5 - countStars - (isHalf ? 1 : 0);
-
-const stars = [];
-
-for (let i = 0; i < countStars; i++) stars.push(star);
-isHalf && stars.push(halfStar);
-for (let i = 0; i < countEmptyStars; i++) stars.push(emptyStar);
 
 const Product = () => {
+
+  
   return (
     <div className="product">
       <div className="product--img">
         <img src={logo} alt="" />
       </div>
       <div className="product--rating">
-        <div className="product--rating__star">{stars}</div>
+        <div className="product--rating__star">
+          {<StarRating rating={4.5} />}
+        </div>
       </div>
       <div className="product--name">
         <a href="">Lorem ipsum dolor sit amet consectetur.</a>
@@ -85,7 +74,7 @@ const Product = () => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            class="feather feather-maximize"
+            className="feather feather-maximize"
           >
             <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
           </svg>
@@ -101,7 +90,7 @@ const Product = () => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            class="feather feather-heart"
+            className="feather feather-heart"
           >
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
           </svg>
@@ -117,7 +106,7 @@ const Product = () => {
             strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
-            class="feather feather-refresh-cw"
+            className="feather feather-refresh-cw"
           >
             <polyline points="23 4 23 10 17 10" />
             <polyline points="1 20 1 14 7 14" />

@@ -18,10 +18,10 @@ const LocationHeader = () => {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="feather feather-align-left"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="feather feather-align-left"
                 >
                   <line x1="17" y1="10" x2="3" y2="10" />
                   <line x1="21" y1="6" x2="3" y2="6" />
@@ -37,17 +37,17 @@ const LocationHeader = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-chevron-down"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-chevron-down"
               >
                 <polyline points="6 9 12 15 18 9" />
               </svg>
               <ul className="locationheader--list__categories--absolutecategories">
                 <li>
                   <div className="absolutecategories--leftside">
-                    <i class="fa-solid fa-laptop-code"></i>
+                    <i className="fa-solid fa-laptop-code"></i>
                     Mobil və Laptop
                   </div>
 
@@ -58,17 +58,17 @@ const LocationHeader = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-chevron-right"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-chevron-right"
                   >
                     <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </li>
                 <li>
                   <div className="absolutecategories--leftside">
-                    <i class="fa-solid fa-gamepad"></i>
+                    <i className="fa-solid fa-gamepad"></i>
                     Əyləncə
                   </div>
                   <svg
@@ -78,17 +78,17 @@ const LocationHeader = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-chevron-right"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-chevron-right"
                   >
                     <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </li>
                 <li>
                   <div className="absolutecategories--leftside">
-                    <i class="fa-solid fa-photo-film"></i>
+                    <i className="fa-solid fa-photo-film"></i>
                     Şəkil və Video
                   </div>
                   <svg
@@ -98,17 +98,17 @@ const LocationHeader = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-chevron-right"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-chevron-right"
                   >
                     <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </li>
                 <li>
                   <div className="absolutecategories--leftside">
-                    <i class="fa-solid fa-motorcycle"></i>
+                    <i className="fa-solid fa-motorcycle"></i>
                     Nəqliyyat
                   </div>
                   <svg
@@ -118,10 +118,10 @@ const LocationHeader = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-chevron-right"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-chevron-right"
                   >
                     <polyline points="9 18 15 12 9 6" />
                   </svg>
@@ -154,10 +154,10 @@ const LocationHeader = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-chevron-right"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-chevron-right"
               >
                 <polyline points="9 18 15 12 9 6" />
               </svg>

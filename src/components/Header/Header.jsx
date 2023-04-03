@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import "./header.scss";
 
@@ -7,9 +8,9 @@ const Header = () => {
     <div className="header">
       <div className="container">
         <div className="header--content">
-          <div className="header--logo">
+          <NavLink to="/" className="header--logo">
             D<span className="header--logo__text">NP</span>
-          </div>
+          </NavLink>
           <div className="header--searchbar">
             <input
               type="text"
@@ -24,7 +25,11 @@ const Header = () => {
             <button className="header--searchbar__submit">Axtar</button>
           </div>
           <div className="header--actions">
-            <div className="header--actions__compare activeCount" data-count="1" data-title= "Müqayisə">
+            <div
+              className="header--actions__compare activeCount"
+              data-count="1"
+              data-title="Müqayisə"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -43,7 +48,11 @@ const Header = () => {
                 <circle cx="12" cy="12" r="10" />
               </svg>
             </div>
-            <div className="header--actions__wish activeCount" data-count="2" data-title="İstək siyahısı">
+            <div
+              className="header--actions__wish activeCount"
+              data-count="2"
+              data-title="İstək siyahısı"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -59,7 +68,11 @@ const Header = () => {
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
               </svg>
             </div>
-            <div className="header--actions__cart activeCount" data-count="3" data-title="Alış-veriş kartı">
+            <div
+              className="header--actions__cart activeCount"
+              data-count="3"
+              data-title="Alış-veriş kartı"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -77,7 +90,11 @@ const Header = () => {
                 <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
             </div>
-            <div className="header--actions__user activeCount" data-count="4" data-title="İstifadəçi">
+            <div
+              className="header--actions__user activeCount"
+              data-count="4"
+              data-title="İstifadəçi"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

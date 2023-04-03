@@ -9,6 +9,10 @@
   font-family: "Montserrat", sans-serif;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #f8f8f8;
   overflow-x: hidden;
@@ -36,4 +40,9 @@ body {
   @include extra-extra-small {
     max-width: 100%;
   }
+}
+
+
+.product__rating__star{
+  color:#ffa800; ;
 }

@@ -23,7 +23,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/about" element={<About />} />
-        <Route path="/single-product/:id" element={<SingleProduct />} />
+        <Route path="/shop/single-product/:id" element={<SingleProduct />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <SubscribeNews />

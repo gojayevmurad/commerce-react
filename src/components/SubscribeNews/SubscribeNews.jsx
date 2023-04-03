@@ -14,7 +14,7 @@ const SubscribeNews = () => {
         <p>Yalnız Abunə Olmağınız Kifayətdir</p>
         <div className="subscribe_news--inputgroup">
           <label htmlFor="email">
-          <i class="fa-regular fa-envelope"></i>
+          <i className="fa-regular fa-envelope"></i>
             <input  type="email" id="email" placeholder="EMAİL ÜNVANI"/>
           </label>
           <button type="submit">Kupon Al</button>
