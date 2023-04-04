@@ -1,5 +1,5 @@
 import React from "react";
-import { Dna } from "react-loader-spinner";
+import { ColorRing } from "react-loader-spinner";
 import "./loading.scss";
 
 const Loading = (props) => {
@@ -9,7 +9,7 @@ const Loading = (props) => {
         !props.isLoading ? "loading_screen invisible" : "loading_screen"
       }
     >
-      <Dna
+      <ColorRing
         visible={props.isLoading}
         height="100"
         width="100"

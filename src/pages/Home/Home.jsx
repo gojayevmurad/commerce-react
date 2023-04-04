@@ -29,14 +29,23 @@ import Loading from "../../components/Loading/Loading";
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [popularSales, setPopularSales] = useState([]);
+  const [gamerWorldPopularProducts, setGamerWorldPopularProducts] = useState(
+    []
+  );
 
   async function getPopularSales() {
-    const response = await FetchData.getData("products");
+    const response = await FetchData.getData("products?_limit=3");
     setPopularSales(response.data);
+  }
+
+  async function getGamerWorldPopularProducts() {
+    const response = await FetchData.getData("products?category=1&_limit=4");
+    setGamerWorldPopularProducts(response.data);
   }
 
   useEffect(() => {
     getPopularSales();
+    getGamerWorldPopularProducts();
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -107,8 +116,8 @@ const Home = () => {
                 ></path>
               </svg>
               <div>
-                <h3>Free Shipping</h3>
-                <p>When ordering over $100</p>
+                <h3>Pulsuz Kargo</h3>
+                <p>100₼ və yuxarı sifarişlərə</p>
               </div>
             </div>
             <div className="services--content__item">
@@ -134,8 +143,8 @@ const Home = () => {
                 ></path>
               </svg>
               <div>
-                <h3>Free Return</h3>
-                <p>Get Return within 30 days</p>
+                <h3>Pulsuz Qaytarma</h3>
+                <p>30 gün ərzində</p>
               </div>
             </div>
             <div className="services--content__item">
@@ -169,8 +178,8 @@ const Home = () => {
                 ></path>
               </svg>
               <div>
-                <h3>Secure Payment</h3>
-                <p>100% Secure Online Payment</p>
+                <h3>Təhlükasiz Ödəniş</h3>
+                <p>100% təhlükəsiz online ödəniş</p>
               </div>
             </div>
             <div className="services--content__item">
@@ -215,8 +224,8 @@ const Home = () => {
                 ></path>
               </svg>
               <div>
-                <h3>Best Quality</h3>
-                <p>Original Product Guarenteed</p>
+                <h3>Ən Yaxşı Keyfiyyət</h3>
+                <p>Orijinal Məhsul Zəmanəti</p>
               </div>
             </div>
           </div>
@@ -273,9 +282,9 @@ const Home = () => {
         <div className="container">
           <div className="gamer_world--content">
             <p className="gamer_world--head">
-              <span>Gamer</span> World
+              <span>Oyunçu</span> Dünyası
             </p>
-            <ProductsList />
+            <ProductsList data={gamerWorldPopularProducts} />
           </div>
         </div>
       </div>
@@ -285,7 +294,7 @@ const Home = () => {
           <div className="popular_sales--content">
             <div className="popular_sales--head">
               <p>
-                <span>Popular</span> Sales
+                <span>Məhşur</span> Məhsullar
               </p>
               <div className="popular_sales--head__button">
                 <button>View All</button>

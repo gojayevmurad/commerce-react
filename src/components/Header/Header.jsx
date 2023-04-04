@@ -2,8 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import "./header.scss";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const cartLength = useSelector((state) => state.cart.length);
+
   return (
     <div className="header">
       <div className="container">
@@ -70,7 +73,7 @@ const Header = () => {
             </div>
             <div
               className="header--actions__cart activeCount"
-              data-count="3"
+              data-count={cartLength}
               data-title="Alış-veriş kartı"
             >
               <svg

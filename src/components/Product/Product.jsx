@@ -1,29 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import "./product.scss";
-import logo from "../../console.png";
 import StarRating from "../StarRating/StarRating";
+import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
+const Product = (props) => {
+  const { product } = props;
 
-let price = 15.99;
-let offerPrice = 12;
+  const { name, price, offer: offerPrice, rating, img, id } = product;
 
-
-const Product = () => {
-
-  
   return (
     <div className="product">
       <div className="product--img">
-        <img src={logo} alt="" />
+        <img src={img[0]} alt={name} />
+        <img src={img[1]} alt={name} />
       </div>
       <div className="product--rating">
         <div className="product--rating__star">
-          {<StarRating rating={4.5} />}
+          {<StarRating rating={rating} />}
         </div>
       </div>
       <div className="product--name">
-        <a href="">Lorem ipsum dolor sit amet consectetur.</a>
+        <NavLink to={`shop/single-product/${id}`}>{product.name}</NavLink>
       </div>
       <div className="product--price">
         <div
@@ -42,25 +42,7 @@ const Product = () => {
         )}
       </div>
       <div className="product--addToCart">
-        <button>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1px"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="feather feather-shopping-bag"
-          >
-            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <path d="M16 10a4 4 0 0 1-8 0" />
-          </svg>
-          Əlavə Et
-        </button>
+        <AddToCartBtn id={product.id} />
       </div>
       <div className="product--actions">
         <div className="product--actions__maximize" data-title="Böyüt">

@@ -10,8 +10,18 @@
   &--img {
     width: 260px;
     overflow: hidden;
+    position: relative;
     img {
       width: 260px;
+      transition: .5s;
+
+
+      &:nth-child(2) {
+        opacity: 0;
+        position: absolute;
+        z-index: 1;
+        left: 0;
+      }
     }
   }
 
@@ -52,22 +62,43 @@
   }
 
   &--addToCart {
+    width: 90%;
+    position: absolute;
+    transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    bottom: -35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input {
+      width: 40%;
+      height: 26px;
+      border: none;
+      outline: none;
+      text-align: center;
+      border: 1px solid #eaeaea;
+    }
     button {
+      cursor: pointer;
       background-color: var(--primary-color);
       border: none;
       outline: none;
-      width: 90%;
+      bottom: -35px;
       padding: 5px 0;
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
       gap: 10px;
       font-weight: 400;
-      position: absolute;
       left: 5%;
-      bottom: -35px;
-      transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
-      cursor: pointer;
+      &.decrease_quantity_btn,
+      &.increase_quantity_btn {
+        width: 30%;
+        transition: 0.3s;
+        &:hover {
+          background-color: #eaeaea;
+        }
+      }
     }
   }
   &--actions {
@@ -81,6 +112,7 @@
     flex-direction: column;
     gap: 20px;
     transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    z-index: 2;
     & > div {
       background-color: #f8f8f8;
       cursor: pointer;
@@ -117,8 +149,15 @@
   }
   &:hover {
     .product--addToCart {
-      button {
-        bottom: 10px;
+      bottom: 11px;
+    }
+    .product--img{
+      img:nth-child(1){
+        opacity: 0;
+      }
+      img:nth-child(2){
+        z-index: 1;
+        opacity: 1;
       }
     }
     .product--actions {
