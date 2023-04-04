@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const cartLength = useSelector((state) => state.cart.length);
+  const wishLength = useSelector((state) => state.wish.length);
 
   return (
     <div className="header">
@@ -53,7 +54,7 @@ const Header = () => {
             </div>
             <div
               className="header--actions__wish activeCount"
-              data-count="2"
+              data-count={wishLength}
               data-title="İstək siyahısı"
             >
               <svg

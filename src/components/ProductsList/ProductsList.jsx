@@ -4,7 +4,6 @@ import Product from "../Product/Product";
 
 const ProductsList = (props) => {
   const { data } = props;
-  console.log(data);
   return (
     <div className="productsList">
       {data.map((product) => {

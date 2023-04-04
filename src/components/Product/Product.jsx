@@ -5,6 +5,7 @@ import StarRating from "../StarRating/StarRating";
 import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import AddToWishListBtn from "../AddToWishListBtn/AddToWishListBtn";
 
 const Product = (props) => {
   const { product } = props;
@@ -61,7 +62,8 @@ const Product = (props) => {
             <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
           </svg>
         </div>
-        <div className="product--actions__wish" data-title="İstək Siyahısı">
+        <AddToWishListBtn id={id}/>
+        {/* <div className="product--actions__wish" data-title="İstək Siyahısı">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -76,7 +78,7 @@ const Product = (props) => {
           >
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
           </svg>
-        </div>
+        </div> */}
         <div className="product--actions__compare" data-title="Müqayisə">
           <svg
             xmlns="http://www.w3.org/2000/svg"

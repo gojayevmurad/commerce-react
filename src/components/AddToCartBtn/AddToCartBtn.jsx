@@ -14,15 +14,14 @@ const AddToCartBtn = (props) => {
   );
 
   useEffect(() => {
-    if (cartItem) {
-      setAdded(true);
-    }
+    cartItem && setAdded(true);
+    
   }, []);
 
   const addToCartReducer = () => {
     dispatch(addToCart({ id: +id }));
     !added && setAdded(true);
-  };gti 
+  };
 
   const decreaseQuanityReducer = () => {
     cartItem.quantity == 1 && setAdded(false);
