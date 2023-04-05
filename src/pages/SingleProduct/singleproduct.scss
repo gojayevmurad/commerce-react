@@ -42,6 +42,13 @@
       &__item {
         padding: 5px;
         width: 110px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border-right: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        margin-right: 3px;
         img {
           width: 100%;
         }

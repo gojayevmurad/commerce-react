@@ -15,8 +15,11 @@ const AddToCartBtn = (props) => {
 
   useEffect(() => {
     cartItem && setAdded(true);
-    
   }, []);
+
+  useEffect(() => {
+    !cartItem ? setAdded(false) : setAdded(true);
+  }, [cartItem]);
 
   const addToCartReducer = () => {
     dispatch(addToCart({ id: +id }));
@@ -37,7 +40,12 @@ const AddToCartBtn = (props) => {
         >
           -
         </button>
-        <input readOnly type="text" value={cartItem.quantity} />
+        <input
+          className={id}
+          readOnly
+          type="text"
+          value={cartItem && cartItem.quantity ? cartItem.quantity : ""}
+        />
         <button
           className="increase_quantity_btn"
           onClick={() => addToCartReducer()}

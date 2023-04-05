@@ -34,12 +34,16 @@ const Home = () => {
   );
 
   async function getPopularSales() {
-    const response = await FetchData.getData("products?_limit=3");
+    const response = await FetchData.getData(
+      "products?_sort=rating&_order=desc&_limit=3"
+    );
     setPopularSales(response.data);
   }
 
   async function getGamerWorldPopularProducts() {
-    const response = await FetchData.getData("products?category=1&_limit=4");
+    const response = await FetchData.getData(
+      "products?_sort=rating&_order=desc&_limit=4&category=2"
+    );
     setGamerWorldPopularProducts(response.data);
   }
 
@@ -282,7 +286,7 @@ const Home = () => {
         <div className="container">
           <div className="gamer_world--content">
             <p className="gamer_world--head">
-              <span>Oyunçu</span> Dünyası
+              <span>Əyləncə</span> və <span>Hobbi</span> Dünyası
             </p>
             <ProductsList data={gamerWorldPopularProducts} />
           </div>
@@ -297,7 +301,9 @@ const Home = () => {
                 <span>Məhşur</span> Məhsullar
               </p>
               <div className="popular_sales--head__button">
-                <button>View All</button>
+                <button>
+                  <NavLink to="/shop">Hamısına bax</NavLink>
+                </button>
               </div>
             </div>
             <div className="popular_sales--products">
@@ -309,7 +315,7 @@ const Home = () => {
                         <img src={item.img[0]} alt={index} />
                       </div>
                       <div className="popular_sales--products__item--desc">
-                        <NavLink to={"shop/single-product/" + item.id}>
+                        <NavLink to={"/single-product/" + item.id}>
                           {item.name}
                         </NavLink>
                         <div className="popular_sales--products__item--desc--prices">

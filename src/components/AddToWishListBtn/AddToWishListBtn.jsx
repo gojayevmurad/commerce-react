@@ -28,7 +28,6 @@ const AddToWishListBtn = (props) => {
 
   useEffect(() => {
     wishItem && setIsAdded(true);
-    console.log(wishItem);
   }, []);
 
   return (

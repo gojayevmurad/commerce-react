@@ -41,12 +41,11 @@ const SingleProduct = () => {
   const changeImage = (item) => {
     if (item === currentImage) return;
     setCurrentImage(item);
-    console.log("first");
   };
 
   return (
     <>
-      <Loading isLoading={isLoading}/>
+      <Loading isLoading={isLoading} />
       <div className="single_product_location">
         <div className="container">
           <div className="single_product_location--content">
