@@ -12,9 +12,18 @@ import SubscribeNews from "./components/SubscribeNews/SubscribeNews";
 import Footer from "./components/footer/Footer";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import Compare from "./pages/Compare/Compare";
+import { useEffect } from "react";
 
 
 function App() {
+
+
+  useEffect(()=>{
+    
+  },[])
+  
+  
+  
   return (
     <div className="commerce">
       <Header />

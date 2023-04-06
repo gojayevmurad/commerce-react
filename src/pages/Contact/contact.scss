@@ -1,0 +1,146 @@
+.contact_main {
+  &--content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &--left {
+    padding: 0 20px;
+    & > h3 {
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    & > p {
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .boxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    &__box {
+      padding: 20px 10px;
+      background-color: #555;
+
+      &:nth-child(1) {
+        background-color: #ffeae5;
+      }
+      &:nth-child(2) {
+        background-color: #d3efff;
+      }
+
+      .contact_main--logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i {
+          font-size: 2rem;
+          border: 1px solid var(--primary-color);
+          color: var(--primary-color);
+          padding: 10px;
+          border-radius: 50%;
+        }
+      }
+
+      & > p {
+        text-align: center;
+        margin: 10px 0;
+        font-weight: 600;
+      }
+
+      & > span {
+        display: block;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+    }
+
+    &__address {
+      background-color: #e7f2ec;
+      padding: 30px;
+      .address_header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+
+        i {
+          font-size: 1.5rem;
+          color: var(--primary-color);
+          margin-right: 10px;
+        }
+      }
+      & > p {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &--form {
+    padding: 20px;
+    background-color: #fff;
+    h4 {
+      font-size: 2rem;
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    form {
+      width: 500px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      input,
+      textarea,
+      button {
+        width: 500px;
+        border: 1px solid var(--line-color);
+        padding: 10px;
+        outline: none;
+      }
+      label {
+        align-self: flex-start;
+        color: #555;
+      }
+      textarea {
+        resize: vertical;
+      }
+      input {
+        margin-bottom: 20px;
+      }
+
+      button {
+        margin: 20px 0;
+        height: 40px;
+        background-color: #000;
+        color: #fff;
+        cursor: pointer;
+        transition: .3s;
+        &:hover{
+            border: 1px solid #000;
+            color: #000;
+            background-color: #fff;
+
+        }
+      }
+    }
+  }
+}
+
+
+
+.preview{
+    width: 400px;
+    height: 350px;
+    object-fit: contain;
+}

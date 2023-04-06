@@ -14,6 +14,10 @@ export const cartSlice = createSlice({
           }
         });
       }
+
+      
+
+      
     },
     decreaseQuanity: (state, action) => {
       state.map((item) => {

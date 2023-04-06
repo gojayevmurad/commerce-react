@@ -34,7 +34,7 @@ const Shop = () => {
   //! pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([]);
-  const [countItems, setcountItems] = useState(10);
+  const [countItems, setcountItems] = useState(3);
 
   //! pagination
   useEffect(() => {
@@ -50,7 +50,6 @@ const Shop = () => {
     setPages(Math.ceil(+res.headers.get("x-total-count") / countItems));
   }
 
-  
   useEffect(() => {
     getProducts();
   }, []);
@@ -193,7 +192,9 @@ const Shop = () => {
                   <li className="pagination_prev_btn">
                     <button
                       onClick={() => {
-                        currentPage > 1 && setCurrentPage(currentPage - 1);
+                        currentPage > 1 &&
+                          (setCurrentPage(currentPage - 1) ||
+                            window.scrollTo(0, 0));
                       }}
                       className={currentPage === 1 ? "disabled" : ""}
                     >
@@ -202,17 +203,29 @@ const Shop = () => {
                   </li>
                   {currentPage > 1 && (
                     <li className="pagination_prev_page">
-                      <button onClick={() => setCurrentPage(currentPage - 1)}>
+                      <button
+                        onClick={() => {
+                          window.scrollTo(0, 0);
+                          setCurrentPage(currentPage - 1);
+                        }}
+                      >
                         {currentPage - 1}
                       </button>
                     </li>
                   )}
-                  <li >
-                    <button className="pagination_current_page">{currentPage}</button>
+                  <li>
+                    <button className="pagination_current_page">
+                      {currentPage}
+                    </button>
                   </li>
                   {currentPage < pages && (
                     <li className="pagination_next_page">
-                      <button onClick={() => setCurrentPage(currentPage + 1)}>
+                      <button
+                        onClick={() => {
+                          window.scrollTo(0, 0);
+                          setCurrentPage(currentPage + 1);
+                        }}
+                      >
                         {currentPage + 1}
                       </button>
                     </li>
@@ -220,7 +233,9 @@ const Shop = () => {
                   <li className="pagination_next_btn">
                     <button
                       onClick={() => {
-                        currentPage < pages && setCurrentPage(currentPage + 1);
+                        currentPage < pages &&
+                          (setCurrentPage(currentPage + 1) ||
+                            window.scrollTo(0, 0));
                       }}
                       className={currentPage == pages ? "disabled" : ""}
                     >
