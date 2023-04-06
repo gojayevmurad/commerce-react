@@ -22,37 +22,55 @@ function valuetext(value) {
 }
 
 const Shop = () => {
+  const [parameterSortBy, setParameterSortBy] = useState("");
+
+  const [productsCount, setProductsCount] = useState(0);
+
   //! filter states
   const [priceValue, setPriceValue] = useState([0, 400]);
   const [sortBy, setSortBY] = useState("");
 
   //! products states
   const [products, setProducts] = useState([]);
-
   const [ratingValue, setRatingValue] = useState(1.5);
 
   //! pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([]);
-  const [countItems, setcountItems] = useState(3);
+  const [countItems, setcountItems] = useState(6);
 
   //! pagination
   useEffect(() => {
     getProducts();
   }, [currentPage]);
 
+  //! sort by
+
+  useEffect(() => {
+    if (sortBy === "rating") {
+      setParameterSortBy("&_sort=rating&_order=desc");
+    } else if (sortBy === "price") {
+      setParameterSortBy("&_sort=price&_order=desc");
+    } else {
+      setParameterSortBy("&_sort=order_count&_order=desc");
+    }
+  }, [sortBy]);
+
   //! get products
   async function getProducts() {
-    const res = await FetchData.getData(
-      `products?_page=${currentPage}&_limit=${countItems}`
-    );
+    let valuableUrl = `products?_page=${currentPage}&_limit=${countItems}`;
+
+    parameterSortBy && (valuableUrl += parameterSortBy);
+
+    const res = await FetchData.getData(valuableUrl);
     setProducts(res.data);
+    setProductsCount(res.headers.get("x-total-count"));
     setPages(Math.ceil(+res.headers.get("x-total-count") / countItems));
   }
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [parameterSortBy]);
   //! categories
   const categoryList = [
     "Mobil və Laptoplar",
@@ -158,7 +176,13 @@ const Shop = () => {
             </div>
             <div className="shop_products--list">
               <div className="shop_products--list--title">
-                <div className="left_side">Showing 1-16 of 66 results</div>
+                <div className="left_side">
+                  Göstərilir {productsCount} -dən{" "}
+                  {currentPage > 1 ? (currentPage - 1) * countItems + 1 : 1}-
+                  {currentPage * countItems > productsCount
+                    ? productsCount
+                    : currentPage * countItems}
+                </div>
                 <div className="right_side">
                   <div className="sort_by">
                     <Box sx={{ width: 200 }}>
@@ -201,6 +225,21 @@ const Shop = () => {
                       <i className="fas fa-angle-left"></i>
                     </button>
                   </li>
+                  {currentPage > 2 && (
+                    <>
+                      <li className="pagination_first_page">
+                        <button
+                          onClick={() => {
+                            window.scrollTo(0, 0);
+                            setCurrentPage(1);
+                          }}
+                        >
+                          1
+                        </button>
+                      </li>
+                      <p style={{ alignSelf: "flex-end" }}>...</p>
+                    </>
+                  )}
                   {currentPage > 1 && (
                     <li className="pagination_prev_page">
                       <button
@@ -230,6 +269,23 @@ const Shop = () => {
                       </button>
                     </li>
                   )}
+
+                  {currentPage < pages - 1 && (
+                    <>
+                      <p style={{ alignSelf: "end" }}>...</p>
+                      <li className="pagination_last_page">
+                        <button
+                          onClick={() => {
+                            window.scrollTo(0, 0);
+                            setCurrentPage(pages);
+                          }}
+                        >
+                          {pages}
+                        </button>
+                      </li>
+                    </>
+                  )}
+
                   <li className="pagination_next_btn">
                     <button
                       onClick={() => {

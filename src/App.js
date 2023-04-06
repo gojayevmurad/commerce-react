@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./app.scss";
 import Header from "./components/Header/Header";
 import LocationHeader from "./components/LocationHeader/LocationHeader";
@@ -12,18 +12,30 @@ import SubscribeNews from "./components/SubscribeNews/SubscribeNews";
 import Footer from "./components/footer/Footer";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import Compare from "./pages/Compare/Compare";
-import { useEffect } from "react";
+import { useEffect  } from "react";
+import { useDispatch } from "react-redux";
+import { setCartFromLocalStorage } from "./features/cart/cartSlice";
+import { setWishFromLocalStorage } from "./features/wish/wishSlice";
 
 
 function App() {
+  const dispatch = useDispatch();
+  const location = useLocation();
 
+  useEffect(() => {
+    if (localStorage.getItem("cart")) {
+      dispatch(
+        setCartFromLocalStorage(JSON.parse(localStorage.getItem("cart")))
+      );
+    }
 
-  useEffect(()=>{
-    
-  },[])
-  
-  
-  
+    if(localStorage.getItem("wish")){
+      dispatch(
+        setWishFromLocalStorage(JSON.parse(localStorage.getItem("wish")))
+      );
+    }
+  }, []);
+
   return (
     <div className="commerce">
       <Header />

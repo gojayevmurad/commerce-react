@@ -14,16 +14,14 @@ export const cartSlice = createSlice({
           }
         });
       }
-
-      
-
-      
+      localStorage.setItem("cart", JSON.stringify(state));
     },
     decreaseQuanity: (state, action) => {
       state.map((item) => {
         if (item.id == action.payload.id) {
           if (!(item.quantity == 1)) {
             item.quantity--;
+            localStorage.setItem("cart", JSON.stringify(state));
           } else {
             state.splice(
               state.findIndex((item) => item.id == action.payload.id),
@@ -32,10 +30,14 @@ export const cartSlice = createSlice({
           }
         }
       });
+      localStorage.setItem("cart", JSON.stringify(state));
+    },
+    setCartFromLocalStorage: (state, action) => {
+      return action.payload;
     },
   },
 });
 
-export const { addToCart, decreaseQuanity } = cartSlice.actions;
+export const { addToCart, decreaseQuanity, setCartFromLocalStorage } = cartSlice.actions;
 
 export default cartSlice.reducer;
