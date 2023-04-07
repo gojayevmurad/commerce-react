@@ -21,17 +21,18 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
+//! categories
+const categoryList = [
+  "Mobil və Laptoplar",
+  "Əyləncə",
+  "Şəkil və Video",
+  "Məişət",
+];
+
 const Shop = () => {
-  const [parameterSortBy, setParameterSortBy] = useState("");
-
-  const [productsCount, setProductsCount] = useState(0);
-
-  //! filter states
-  const [priceValue, setPriceValue] = useState([0, 400]);
-  const [sortBy, setSortBY] = useState("");
-
   //! products states
   const [products, setProducts] = useState([]);
+  const [productsCount, setProductsCount] = useState(0);
   const [ratingValue, setRatingValue] = useState(1.5);
 
   //! pagination states
@@ -39,12 +40,18 @@ const Shop = () => {
   const [pages, setPages] = useState([]);
   const [countItems, setcountItems] = useState(6);
 
-  //! pagination
-  useEffect(() => {
-    getProducts();
-  }, [currentPage]);
+  //! filter states
+  const [priceValue, setPriceValue] = useState([0, 18000]);
+  const [sortBy, setSortBY] = useState("");
+  const [category, setCategory] = useState("");
 
-  //! sort by
+  //? parameters
+  const [parameterSortBy, setParameterSortBy] = useState("");
+  const [parameterRating, setParameterRating] = useState("");
+  const [parameterCategory, setParameterCategory] = useState("");
+  const [parameterPrice, setParameterPrice] = useState("");
+
+  //! filters
 
   useEffect(() => {
     if (sortBy === "rating") {
@@ -56,11 +63,38 @@ const Shop = () => {
     }
   }, [sortBy]);
 
+  useEffect(() => {
+    setParameterPrice(`&price_gte=${priceValue[0]}&price_lte=${priceValue[1]}`);
+  }, [priceValue]);
+
+  useEffect(() => {
+    ratingValue && setParameterRating(`&rating_gte=${ratingValue}`);
+  }, [ratingValue]);
+
+  useEffect(() => {
+    category && setParameterCategory(`&category=${category}`);
+  }, [category]);
+
+  //! pagination
+  useEffect(() => {
+    getProducts();
+  }, [
+    currentPage,
+    parameterSortBy,
+    parameterRating,
+    parameterCategory,
+    parameterPrice,
+  ]);
+
   //! get products
   async function getProducts() {
     let valuableUrl = `products?_page=${currentPage}&_limit=${countItems}`;
 
     parameterSortBy && (valuableUrl += parameterSortBy);
+    parameterRating && (valuableUrl += parameterRating);
+    parameterCategory && (valuableUrl += parameterCategory);
+    parameterPrice && (valuableUrl += parameterPrice);
+
 
     const res = await FetchData.getData(valuableUrl);
     setProducts(res.data);
@@ -68,16 +102,6 @@ const Shop = () => {
     setPages(Math.ceil(+res.headers.get("x-total-count") / countItems));
   }
 
-  useEffect(() => {
-    getProducts();
-  }, [parameterSortBy]);
-  //! categories
-  const categoryList = [
-    "Mobil və Laptoplar",
-    "Əyləncə",
-    "Şəkil və Video",
-    "Məişət",
-  ];
   //! rating
   const ratingList = [1.5, 2.5, 3.5, 4.5, 5];
 
@@ -93,6 +117,9 @@ const Shop = () => {
 
   const handleChangeRadio = (event) => {
     setRatingValue(event.target.value);
+  };
+  const handleChangeCategory = (event) => {
+    setCategory(event.target.value);
   };
 
   const changeActive = (e) => {
@@ -112,17 +139,26 @@ const Shop = () => {
               <div className="filter--categories">
                 <h4>Məhsul kateqoriyaları</h4>
                 <ul>
-                  {categoryList.map((item, index) => {
-                    return (
-                      <li
-                        data-value={item}
-                        onClick={(e) => changeActive(e)}
-                        key={index}
-                      >
-                        {item}
-                      </li>
-                    );
-                  })}
+                  <FormControl>
+                    <h4 id="demo-controlled-radio-buttons-group">Reytinq</h4>
+                    <RadioGroup
+                      aria-labelledby="demo-controlled-radio-buttons-group"
+                      name="controlled-radio-buttons-group"
+                      value={category}
+                      onChange={handleChangeCategory}
+                    >
+                      {categoryList.map((item, index) => {
+                        return (
+                          <FormControlLabel
+                            key={index}
+                            value={index + 1}
+                            control={<Radio />}
+                            label={<p>{item}</p>}
+                          />
+                        );
+                      })}
+                    </RadioGroup>
+                  </FormControl>
                 </ul>
               </div>
               <div className="filter--price_range">
@@ -134,7 +170,7 @@ const Shop = () => {
                   valueLabelDisplay="auto"
                   getAriaValueText={valuetext}
                   min={0}
-                  max={400}
+                  max={18000}
                   step={10}
                 />
               </div>
@@ -208,7 +244,7 @@ const Shop = () => {
               </div>
               <div className="shop_products--list--content">
                 {products.map((item, index) => {
-                  return <Product key={index} product={item} />;
+                  return <Product key={index} product={item}/>;
                 })}
               </div>
               <div className="shop_products--list--pagination">

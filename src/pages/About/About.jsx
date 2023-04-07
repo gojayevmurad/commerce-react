@@ -241,8 +241,8 @@ const About = () => {
             className="about_slider"
             spaceBetween={50}
             slidesPerView={3}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
+            onSlideChange={() => {}}
+            onSwiper={(swiper) => {}}
           >
             {comments.map((comment, index) => {
               return (

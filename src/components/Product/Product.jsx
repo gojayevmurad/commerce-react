@@ -6,14 +6,20 @@ import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import AddToWishListBtn from "../AddToWishListBtn/AddToWishListBtn";
+import QuickView from "../QuickView/QuickView";
 
 const Product = (props) => {
-  const { product } = props;
+  const [maximize, setMaximize] = useState(false);
 
+  const { product } = props;
   const { name, price, offer: offerPrice, rating, img, id } = product;
+
+
+
 
   return (
     <div className="product">
+      {maximize && <QuickView product={product} setMaximize={setMaximize} />}
       <div className="product--img">
         <img src={img[0]} alt={name} />
         <img src={img[1]} alt={name} />
@@ -43,10 +49,14 @@ const Product = (props) => {
         )}
       </div>
       <div className="product--addToCart">
-        <AddToCartBtn id={product.id} />
+        <AddToCartBtn id={product.id} inStock={product.in_stock} />
       </div>
       <div className="product--actions">
-        <div className="product--actions__maximize" data-title="Böyüt">
+        <div
+          className="product--actions__maximize"
+          data-title="Böyüt"
+          onMouseDown={() => setMaximize(true)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -62,7 +72,7 @@ const Product = (props) => {
             <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
           </svg>
         </div>
-        <AddToWishListBtn id={id}/>
+        <AddToWishListBtn id={id} />
         <div className="product--actions__compare" data-title="Müqayisə">
           <svg
             xmlns="http://www.w3.org/2000/svg"

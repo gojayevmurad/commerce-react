@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decreaseQuanity } from "../../features/cart/cartSlice";
 
 const AddToCartBtn = (props) => {
-  const { id } = props;
+  const { id , inStock} = props;
   const [added, setAdded] = useState(false);
   const dispatch = useDispatch();
+  
+  
 
   const cartItem = useSelector((state) =>
     state.cart.find((item) => {
@@ -31,6 +33,8 @@ const AddToCartBtn = (props) => {
     dispatch(decreaseQuanity({ id: +id }));
   };
 
+  if(!inStock) return <button className="add_to_cart_btn_out_stock" disabled>Stokda Yoxdur</button>
+
   if (added)
     return (
       <>
@@ -54,6 +58,8 @@ const AddToCartBtn = (props) => {
         </button>
       </>
     );
+
+  
 
   return (
     <button className="add_to_cart_btn" onClick={() => addToCartReducer()}>

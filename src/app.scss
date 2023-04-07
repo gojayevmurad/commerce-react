@@ -9,13 +9,16 @@
   font-family: "Montserrat", sans-serif;
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
 body {
   background-color: #f8f8f8;
   overflow-x: hidden;
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
 
 .container {
@@ -42,7 +45,6 @@ body {
   }
 }
 
-
-.product__rating__star{
-  color:#ffa800; ;
+.product__rating__star {
+  color: #ffa800;
 }

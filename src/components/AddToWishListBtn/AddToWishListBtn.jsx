@@ -33,7 +33,9 @@ const AddToWishListBtn = (props) => {
   return (
     <div
       onClick={() => WishListReducer()}
-      className="product--actions__wish"
+      className={
+        isAdded ? "product--actions__wish added" : "product--actions__wish"
+      }
       data-title="İstək Siyahısı"
     >
       <svg

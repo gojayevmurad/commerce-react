@@ -36,6 +36,8 @@ function App() {
     }
   }, []);
 
+  
+
   return (
     <div className="commerce">
       <Header />
