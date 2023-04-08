@@ -56,7 +56,7 @@ const CartView = ({ setVisibleCart }) => {
         }
       >
         {productsList.map((product) => (
-          <div className="cart_view--products__product">
+          <div key={product.id} className="cart_view--products__product">
             <div className="cart_view--products__product__image">
               <img src={product.img[0]} alt={product.name} />
             </div>
@@ -65,7 +65,7 @@ const CartView = ({ setVisibleCart }) => {
               <span>₼ {product.offer ? product.offer : product.price}</span>
             </div>
             <button onClick={() => dispatch(deleteItem(product.id))}>
-              <i class="fa-solid fa-xmark"></i>
+              <i className="fa-solid fa-xmark"></i>
             </button>
           </div>
         ))}

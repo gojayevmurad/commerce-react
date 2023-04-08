@@ -12,11 +12,10 @@ import SubscribeNews from "./components/SubscribeNews/SubscribeNews";
 import Footer from "./components/footer/Footer";
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
 import Compare from "./pages/Compare/Compare";
-import { useEffect  } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCartFromLocalStorage } from "./features/cart/cartSlice";
 import { setWishFromLocalStorage } from "./features/wish/wishSlice";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -29,14 +28,12 @@ function App() {
       );
     }
 
-    if(localStorage.getItem("wish")){
+    if (localStorage.getItem("wish")) {
       dispatch(
         setWishFromLocalStorage(JSON.parse(localStorage.getItem("wish")))
       );
     }
   }, []);
-
-  
 
   return (
     <div className="commerce">
