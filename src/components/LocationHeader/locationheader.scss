@@ -42,11 +42,13 @@
         pointer-events: none;
         z-index: 2;
         li {
+          backdrop-filter: blur(10px) ;
           padding: 20px 0 20px 10px;
           margin-bottom: 5px;
           border-right: 1px solid #ddd;
           border-top: 1px solid #ddd;
           transition: 0.3s;
+          color: #fff;
           &:not(:last-child) {
             border-bottom: 1px solid #ddd;
           }
@@ -85,6 +87,14 @@
       a {
         font-weight: 500;
         color: #000;
+        transition: .3s;
+        &.active{
+          color: #fff;
+        }
+
+        &:hover:not(&.active){
+          color: rgb(251, 50, 50);
+        }
       }
     }
   }

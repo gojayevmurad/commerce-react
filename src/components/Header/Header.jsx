@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import "./header.scss";
 import { useSelector } from "react-redux";
+import CartView from "../CartView/CartView";
+
+
 
 const Header = () => {
+  const [visibleCart, setVisibleCart] = useState(false);
   const cartLength = useSelector((state) => state.cart.length);
   const wishLength = useSelector((state) => state.wish.length);
 
@@ -21,11 +25,6 @@ const Header = () => {
               className="header--searchbar__text"
               placeholder="Məhsul Axtar..."
             />
-            <select name="category" id="category">
-              <option defaultValue="asdf" value="s" disabled selected>
-                All Categories
-              </option>
-            </select>
             <button className="header--searchbar__submit">Axtar</button>
           </div>
           <div className="header--actions">
@@ -73,10 +72,15 @@ const Header = () => {
               </svg>
             </div>
             <div
-              className="header--actions__cart activeCount"
+              className={`header--actions__cart activeCount ${
+                visibleCart && "visible_cart"
+              }`}
               data-count={cartLength}
               data-title="Alış-veriş kartı"
+              onMouseEnter={() => cartLength > 0 && setVisibleCart(true)}
+              onMouseLeave={() => cartLength > 0 && setVisibleCart(false)}
             >
+              <CartView setVisibleCart={setVisibleCart}/>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

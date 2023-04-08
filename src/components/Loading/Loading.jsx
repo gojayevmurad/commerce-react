@@ -3,7 +3,6 @@ import { ColorRing } from "react-loader-spinner";
 import "./loading.scss";
 
 const Loading = (props) => {
-  if(true) return<></>
   return (
     <div
       className={

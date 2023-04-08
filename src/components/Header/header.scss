@@ -79,7 +79,7 @@
         display: flex;
       }
 
-      &::before{
+      &::before {
         content: attr(data-title);
         position: absolute;
         bottom: -55px;
@@ -91,19 +91,32 @@
         background-color: var(--primary-color);
         opacity: 0;
         z-index: -1;
-        transition: .3s;
-        font-size: .9rem;
+        transition: 0.3s;
+        font-size: 0.9rem;
         display: flex;
-        justify-content: center; 
+        justify-content: center;
         align-items: center;
         pointer-events: none;
       }
 
-      &:hover::before{
+      &:hover::before {
         opacity: 1;
         z-index: 1;
         bottom: -37px;
+      }
+    }
 
+    &__cart {
+      position: relative;
+
+      .cart_view {
+        display: none;
+      }
+
+      &.visible_cart {
+        .cart_view {
+          display: block;
+        }
       }
     }
   }

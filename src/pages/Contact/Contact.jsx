@@ -25,13 +25,13 @@ const Contact = () => {
               <p>Mümkün olduğu qədər tez sizə cavab verəcəyik</p>
               <div className="boxes">
                 <div className="contact_main--left__box">
-                  <div className="contact_main--logo"><i class="fa-solid fa-phone"></i></div>
+                  <div className="contact_main--logo"><i className="fa-solid fa-phone"></i></div>
                   <p>Telefon</p>
                   <span>+(994) 55 555 55 55</span>
                   <span>+(994) 77 777 77 77</span>
                 </div>
                 <div className="contact_main--left__box">
-                  <div className="contact_main--logo"><i class="fa-solid fa-envelope"></i></div>
+                  <div className="contact_main--logo"><i className="fa-solid fa-envelope"></i></div>
                   <p>Email</p>
                   <span>admin@admin.com</span>
                   <span>admin@admin.com</span>
@@ -39,7 +39,7 @@ const Contact = () => {
               </div>
               <div className="contact_main--left__address">
                 <div className="address_header">
-                  <i class="fa-solid fa-map-location-dot"></i>
+                  <i className="fa-solid fa-map-location-dot"></i>
                   <p>Ünvan</p>
                 </div>
                 <p>

@@ -115,7 +115,7 @@
         border: 1px solid var(--line-color);
         outline: none;
         text-align: center;
-        transition: .4s;
+        transition: 0.4s;
       }
 
       .decrease_quantity_btn {
@@ -140,7 +140,7 @@
       }
 
       .add_to_cart_btn {
-        transition: .3s;
+        transition: 0.3s;
         width: 120px;
         display: flex;
         justify-content: center;
@@ -150,7 +150,7 @@
         border: 1px solid transparent;
         outline: none;
         cursor: pointer;
-        &:hover{
+        &:hover {
           border: 1px solid var(--primary-color);
           background-color: #fff;
           color: var(--primary-color);

@@ -96,16 +96,30 @@
           display: none;
         }
 
-        &.pagination_current_page{
-            background-color: #fff;
-            color: #000;
+        &.pagination_current_page {
+          background-color: #fff;
+          color: #000;
         }
-
       }
       ul {
         display: flex;
         gap: 10px;
       }
+    }
+  }
+
+  .reset_filter {
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #555;
+    transition: 0.3s;
+    &:hover {
+      background-color: #ddd;
     }
   }
 }

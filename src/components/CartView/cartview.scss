@@ -1,0 +1,142 @@
+.cart_view {
+  position: absolute;
+  background-color: #fff;
+  top: 96%;
+  width: 350px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.1);
+  cursor: default;
+  padding: 20px 10px;
+  border-top: 2px solid var(--primary-color);
+  overflow: hidden;
+  animation: cartView 0.3s linear;
+
+  &.fadeOut {
+    animation: cartViewFadeOut 0.3s linear;
+  }
+
+  &--products {
+    height: 250px;
+    overflow-y: scroll;
+    padding-right: 5px;
+    &.scrollbar {
+      padding-right: 0;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      outline: none;
+    }
+
+    &__product {
+      height: 70px;
+      margin-bottom: 8px;
+      overflow: hidden;
+      display: flex;
+      gap: 3px;
+
+      &__image {
+        height: 100%;
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &__description {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p {
+          font-size: 14px;
+        }
+      }
+      button {
+        border: none;
+        outline: none;
+        background-color: #fff;
+        i {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &--total_price {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 4px;
+  }
+
+  &--cart_page {
+    button {
+      width: 100%;
+      margin: 10px 0;
+      height: 35px;
+      border: 1px solid #000;
+      cursor: pointer;
+      outline: none;
+      background-color: #000;
+      color: #fff;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+
+  &--checkout {
+    button {
+      width: 100%;
+      height: 35px;
+      margin-bottom: 10px;
+      border: 1px solid var(--primary-color);
+      outline: none;
+      cursor: pointer;
+      background-color: var(--primary-color);
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background-color: #fff;
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  &--return {
+    text-align: center;
+  }
+}
+
+@keyframes cartView {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes cartViewFadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

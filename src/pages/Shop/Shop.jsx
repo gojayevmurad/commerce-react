@@ -4,6 +4,7 @@ import "./shop.scss";
 //! components
 import StarRating from "../../components/StarRating/StarRating";
 import Product from "../../components/Product/Product";
+import Loading from "../../components/Loading/Loading";
 
 //! material ui
 import Box from "@mui/material/Box";
@@ -30,6 +31,8 @@ const categoryList = [
 ];
 
 const Shop = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   //! products states
   const [products, setProducts] = useState([]);
   const [productsCount, setProductsCount] = useState(0);
@@ -68,23 +71,32 @@ const Shop = () => {
   }, [priceValue]);
 
   useEffect(() => {
-    ratingValue && setParameterRating(`&rating_gte=${ratingValue}`);
+    ratingValue
+      ? setParameterRating(`&rating_gte=${ratingValue}`)
+      : setParameterRating("");
   }, [ratingValue]);
 
   useEffect(() => {
-    category && setParameterCategory(`&category=${category}`);
+    category
+      ? setParameterCategory(`&category=${category}`)
+      : setParameterCategory("");
   }, [category]);
 
   //! pagination
   useEffect(() => {
     getProducts();
-  }, [
-    currentPage,
-    parameterSortBy,
-    parameterRating,
-    parameterCategory,
-    parameterPrice,
-  ]);
+    setCurrentPage(1);
+  }, [parameterSortBy, parameterRating, parameterCategory, parameterPrice]);
+
+  useEffect(() => {
+    getProducts();
+  }, [currentPage]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
   //! get products
   async function getProducts() {
@@ -94,7 +106,6 @@ const Shop = () => {
     parameterRating && (valuableUrl += parameterRating);
     parameterCategory && (valuableUrl += parameterCategory);
     parameterPrice && (valuableUrl += parameterPrice);
-
 
     const res = await FetchData.getData(valuableUrl);
     setProducts(res.data);
@@ -122,16 +133,16 @@ const Shop = () => {
     setCategory(event.target.value);
   };
 
-  const changeActive = (e) => {
-    const active = document.querySelector(".active");
-    if (active) {
-      active.classList.remove("active");
-    }
-    e.target.classList.add("active");
+  const resetFilter = () => {
+    setPriceValue([0, 18000]);
+    setSortBY("");
+    setCategory("");
+    setRatingValue(1.5);
   };
 
   return (
     <>
+      {isLoading && <Loading isLoading={isLoading} />}
       <div className="shop_products">
         <div className="container">
           <div className="shop_products--content">
@@ -209,6 +220,9 @@ const Shop = () => {
                   </FormControl>
                 </ul>
               </div>
+              <button className="reset_filter" onClick={() => resetFilter()}>
+                Sıfırla
+              </button>
             </div>
             <div className="shop_products--list">
               <div className="shop_products--list--title">
@@ -244,7 +258,7 @@ const Shop = () => {
               </div>
               <div className="shop_products--list--content">
                 {products.map((item, index) => {
-                  return <Product key={index} product={item}/>;
+                  return <Product key={index} product={item} />;
                 })}
               </div>
               <div className="shop_products--list--pagination">
