@@ -38,6 +38,7 @@ const Shop = () => {
   const [productsCount, setProductsCount] = useState(0);
   const [ratingValue, setRatingValue] = useState(1.5);
 
+
   //! pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([]);
@@ -111,6 +112,7 @@ const Shop = () => {
     setProducts(res.data);
     setProductsCount(res.headers.get("x-total-count"));
     setPages(Math.ceil(+res.headers.get("x-total-count") / countItems));
+    window.scrollTo(0, 0);
   }
 
   //! rating
@@ -256,100 +258,108 @@ const Shop = () => {
                   </div>
                 </div>
               </div>
-              <div className="shop_products--list--content">
-                {products.map((item, index) => {
-                  return <Product key={index} product={item} />;
-                })}
-              </div>
-              <div className="shop_products--list--pagination">
-                <ul>
-                  <li className="pagination_prev_btn">
-                    <button
-                      onClick={() => {
-                        currentPage > 1 &&
-                          (setCurrentPage(currentPage - 1) ||
-                            window.scrollTo(0, 0));
-                      }}
-                      className={currentPage === 1 ? "disabled" : ""}
-                    >
-                      <i className="fas fa-angle-left"></i>
-                    </button>
-                  </li>
-                  {currentPage > 2 && (
-                    <>
-                      <li className="pagination_first_page">
+              {products.length ? (
+                <div className="shop_products--list--content">
+                  {products.map((item, index) => {
+                    return <Product key={index} product={item} />;
+                  })}
+                </div>
+              ) : (
+                <p className="products_not_found">
+                  Təəssüf ki, məhsul tapılmadı :(
+                </p>
+              )}
+              {countItems < productsCount && (
+                <div className="shop_products--list--pagination">
+                  <ul>
+                    <li className="pagination_prev_btn">
+                      <button
+                        onClick={() => {
+                          currentPage > 1 &&
+                            (setCurrentPage(currentPage - 1) ||
+                              window.scrollTo(0, 0));
+                        }}
+                        className={currentPage === 1 ? "disabled" : ""}
+                      >
+                        <i className="fas fa-angle-left"></i>
+                      </button>
+                    </li>
+                    {currentPage > 2 && (
+                      <>
+                        <li className="pagination_first_page">
+                          <button
+                            onClick={() => {
+                              window.scrollTo(0, 0);
+                              setCurrentPage(1);
+                            }}
+                          >
+                            1
+                          </button>
+                        </li>
+                        <p style={{ alignSelf: "flex-end" }}>...</p>
+                      </>
+                    )}
+                    {currentPage > 1 && (
+                      <li className="pagination_prev_page">
                         <button
                           onClick={() => {
                             window.scrollTo(0, 0);
-                            setCurrentPage(1);
+                            setCurrentPage(currentPage - 1);
                           }}
                         >
-                          1
+                          {currentPage - 1}
                         </button>
                       </li>
-                      <p style={{ alignSelf: "flex-end" }}>...</p>
-                    </>
-                  )}
-                  {currentPage > 1 && (
-                    <li className="pagination_prev_page">
-                      <button
-                        onClick={() => {
-                          window.scrollTo(0, 0);
-                          setCurrentPage(currentPage - 1);
-                        }}
-                      >
-                        {currentPage - 1}
+                    )}
+                    <li>
+                      <button className="pagination_current_page">
+                        {currentPage}
                       </button>
                     </li>
-                  )}
-                  <li>
-                    <button className="pagination_current_page">
-                      {currentPage}
-                    </button>
-                  </li>
-                  {currentPage < pages && (
-                    <li className="pagination_next_page">
-                      <button
-                        onClick={() => {
-                          window.scrollTo(0, 0);
-                          setCurrentPage(currentPage + 1);
-                        }}
-                      >
-                        {currentPage + 1}
-                      </button>
-                    </li>
-                  )}
-
-                  {currentPage < pages - 1 && (
-                    <>
-                      <p style={{ alignSelf: "end" }}>...</p>
-                      <li className="pagination_last_page">
+                    {currentPage < pages && (
+                      <li className="pagination_next_page">
                         <button
                           onClick={() => {
                             window.scrollTo(0, 0);
-                            setCurrentPage(pages);
+                            setCurrentPage(currentPage + 1);
                           }}
                         >
-                          {pages}
+                          {currentPage + 1}
                         </button>
                       </li>
-                    </>
-                  )}
+                    )}
 
-                  <li className="pagination_next_btn">
-                    <button
-                      onClick={() => {
-                        currentPage < pages &&
-                          (setCurrentPage(currentPage + 1) ||
-                            window.scrollTo(0, 0));
-                      }}
-                      className={currentPage == pages ? "disabled" : ""}
-                    >
-                      <i className="fas fa-angle-right"></i>
-                    </button>
-                  </li>
-                </ul>
-              </div>
+                    {currentPage < pages - 1 && (
+                      <>
+                        <p style={{ alignSelf: "end" }}>...</p>
+                        <li className="pagination_last_page">
+                          <button
+                            onClick={() => {
+                              window.scrollTo(0, 0);
+                              setCurrentPage(pages);
+                            }}
+                          >
+                            {pages}
+                          </button>
+                        </li>
+                      </>
+                    )}
+
+                    <li className="pagination_next_btn">
+                      <button
+                        onClick={() => {
+                          currentPage < pages &&
+                            (setCurrentPage(currentPage + 1) ||
+                              window.scrollTo(0, 0));
+                        }}
+                        className={currentPage == pages ? "disabled" : ""}
+                      >
+                        <i className="fas fa-angle-right"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>

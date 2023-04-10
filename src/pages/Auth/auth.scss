@@ -1,0 +1,108 @@
+
+.auth_main {
+  &--content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 80px 0;
+  }
+
+  .signup--form {
+    box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+    width: 500px;
+    border-radius: 25px;
+    display: flex;
+    transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 50px 0;
+    h2 {
+      font-size: 2rem;
+      color: #3ab19b;
+    }
+    &__sociall {
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      i {
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 50%;
+        height: 50px;
+        display: grid;
+        place-items: center;
+        color: #555;
+        width: 50px;
+        cursor: pointer;
+        transition: 0.4s linear;
+
+        &:hover {
+          background-color: #555;
+          color: #ddd;
+        }
+      }
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      .input--group {
+        height: 3rem;
+        margin-bottom: 1rem;
+        position: relative;
+        width: 80%;
+
+        input {
+          width: 100%;
+          height: 100%;
+          border: none;
+          outline: none;
+          background-color: #ddd;
+          padding: 1rem 1rem 1rem 3rem;
+          color: #000;
+        }
+
+        i {
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 9;
+          text-align: center;
+          font-size: 1.3rem;
+          color: #555;
+        }
+      }
+
+      button {
+        width: 150px;
+        border-radius: 30px;
+        border: 1px solid #3ab19b;
+        background-color: #3ab19b;
+        color: #fff;
+        cursor: pointer;
+        height: 50px;
+        transition: cubic-bezier(0.39, 0.575, 0.565, 1) 0.5s;
+
+        &:hover {
+          background-color: #fff;
+          color: #3ab19b;
+        }
+      }
+    }
+  }
+}

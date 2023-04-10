@@ -5,7 +5,7 @@ import LocationHeader from "./components/LocationHeader/LocationHeader";
 import Contact from "./pages/Contact/Contact";
 import Home from "./pages/Home/Home";
 import Shop from "./pages/Shop/Shop";
-import Blog from "./pages/Blog/Blog";
+import Blogs from "./pages/Blogs/Blogs";
 import About from "./pages/About/About";
 import NotFound from "./pages/NotFound/NotFound";
 import SubscribeNews from "./components/SubscribeNews/SubscribeNews";
@@ -16,6 +16,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCartFromLocalStorage } from "./features/cart/cartSlice";
 import { setWishFromLocalStorage } from "./features/wish/wishSlice";
+import SingleBlog from "./pages/SingleBlog/SingleBlog";
+import Auth from "./pages/Auth/Auth";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,10 +45,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog" element={<Blogs />} />
+        <Route path="/single-blog/:id" element={<SingleBlog />} />
         <Route path="/about" element={<About />} />
         <Route path="/single-product/:id" element={<SingleProduct />} />
         <Route path="/compare" element={<Compare />} />
+        <Route path="/signup" element={<Auth />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <SubscribeNews />

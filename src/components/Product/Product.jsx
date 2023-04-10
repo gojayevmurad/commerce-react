@@ -14,9 +14,6 @@ const Product = (props) => {
   const { product } = props;
   const { name, price, offer: offerPrice, rating, img, id } = product;
 
-
-
-
   return (
     <div className="product">
       {maximize && <QuickView product={product} setMaximize={setMaximize} />}
@@ -30,7 +27,9 @@ const Product = (props) => {
         </div>
       </div>
       <div className="product--name">
-        <NavLink to={`/single-product/${id}`}>{product.name}</NavLink>
+        <NavLink to={`/single-product/${id}`}>
+          {name.length > 22 ? name.slice(0, 22) + "..." : name}
+        </NavLink>
       </div>
       <div className="product--price">
         <div

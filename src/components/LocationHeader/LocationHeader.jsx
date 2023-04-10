@@ -164,7 +164,7 @@ const LocationHeader = () => {
               <NavLink to="/about">Haqqımızda</NavLink>
             </li>
             <li className="locationheader--list__items">
-              <NavLink to="/blog">Bloq</NavLink>
+              <NavLink to="/blog">Bloqlar</NavLink>
             </li>
             <li className="locationheader--list__items">
               <NavLink to="/contact">Əlaqə</NavLink>

@@ -59,6 +59,40 @@
     & > div {
       cursor: pointer;
       position: relative;
+
+      &.header--actions__user {
+        position: relative;
+
+        &:hover{
+          .user_popup{
+            opacity: 1;
+            z-index: 99;
+            pointer-events: all;
+          }
+        }
+
+        .user_popup {
+          position: absolute;
+          width: 250px;
+          height: 300px;
+          background-color: #fff;
+          left: 50%;
+          transform: translateX(-50%);
+          cursor: default;
+          top: 97%;
+          box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+          border-radius: 10px;
+          padding: 10px;
+          justify-content: center;
+          align-items: center;
+          gap:15px;
+          opacity: 0;
+          z-index: -1;
+          pointer-events: none;
+          transition: 0.3s;
+        }
+      }
+
       &::after {
         content: attr(data-count);
         position: absolute;
@@ -79,6 +113,10 @@
         display: flex;
       }
 
+      &.activeCount::before {
+        display: flex;
+      }
+
       &::before {
         content: attr(data-title);
         position: absolute;
@@ -93,7 +131,7 @@
         z-index: -1;
         transition: 0.3s;
         font-size: 0.9rem;
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
         pointer-events: none;
@@ -120,4 +158,16 @@
       }
     }
   }
+}
+
+.signin-btn {
+  color: #fff;
+  margin: 0 5px;
+  border: 1px solid #000;
+  padding: 5px 10px;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }

@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-
 import "./header.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartView from "../CartView/CartView";
-
-
+import { exitUser } from "../../features/user/userSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const [visibleCart, setVisibleCart] = useState(false);
   const cartLength = useSelector((state) => state.cart.length);
   const wishLength = useSelector((state) => state.wish.length);
+
+  //user data
+
+  const user = useSelector((state) => state.user);
 
   return (
     <div className="header">
@@ -80,7 +83,7 @@ const Header = () => {
               onMouseEnter={() => cartLength > 0 && setVisibleCart(true)}
               onMouseLeave={() => cartLength > 0 && setVisibleCart(false)}
             >
-              <CartView setVisibleCart={setVisibleCart}/>
+              <CartView setVisibleCart={setVisibleCart} />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -99,25 +102,44 @@ const Header = () => {
               </svg>
             </div>
             <div
-              className="header--actions__user activeCount"
+              className={
+                !user.fullname
+                  ? "header--actions__user"
+                  : "header--actions__user activeCount"
+              }
               data-count="4"
               data-title="İstifadəçi"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-user"
-              >
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
+              {user.fullname ? (
+                <>
+                  <NavLink to="/profile" style={{ color: "black" }}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-user"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </NavLink>
+                  <div className="user_popup">
+                    <p>{user.fullname}</p>
+                    <button onClick={() => dispatch(exitUser())}>çıxış</button>
+                  </div>
+                </>
+              ) : (
+                <NavLink to="/signup" className="signin-btn">
+                  Giriş
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                </NavLink>
+              )}
             </div>
           </div>
         </div>

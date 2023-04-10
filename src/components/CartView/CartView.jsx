@@ -9,6 +9,8 @@ const CartView = ({ setVisibleCart }) => {
   const [productsList, setProductsList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
+  let itemQuantity = 0;
+
   const dispatch = useDispatch();
 
   let cart = [];
@@ -55,20 +57,29 @@ const CartView = ({ setVisibleCart }) => {
             : "cart_view--products"
         }
       >
-        {productsList.map((product) => (
-          <div key={product.id} className="cart_view--products__product">
-            <div className="cart_view--products__product__image">
-              <img src={product.img[0]} alt={product.name} />
+        {productsList.map((product) => {
+          cart.forEach((item) => {
+            if (item.id == product.id) {
+              itemQuantity = item.quantity;
+            }
+          });
+          return (
+            <div key={product.id} className="cart_view--products__product">
+              <div className="cart_view--products__product__image">
+                <img src={product.img[0]} alt={product.name} />
+              </div>
+              <div className="cart_view--products__product__description">
+                <p>{product.name}</p>
+                <span>
+                  ₼ {product.offer ? product.offer : product.price} x {itemQuantity}
+                </span>
+              </div>
+              <button onClick={() => dispatch(deleteItem(product.id))}>
+                <i className="fa-solid fa-xmark"></i>
+              </button>
             </div>
-            <div className="cart_view--products__product__description">
-              <p>{product.name}</p>
-              <span>₼ {product.offer ? product.offer : product.price}</span>
-            </div>
-            <button onClick={() => dispatch(deleteItem(product.id))}>
-              <i className="fa-solid fa-xmark"></i>
-            </button>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className="cart_view--total_price">
         <div className="cart_view--total_price__title">Ümumi məbləğ</div>
