@@ -18,128 +18,68 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-function valuetext(value) {
-  return `${value}°C`;
+function convertObjectToUrlParams(obj) {
+  const params = new URLSearchParams();
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key) && obj[key] && !Array.isArray(obj[key])) {
+      params.append(key, obj[key]);
+    }
+    if (key == "price") {
+      params.append("min_price", obj[key][0]);
+      params.append("max_price", obj[key][1]);
+    }
+  }
+
+  return params.toString();
 }
 
-//! categories
+const initialState = {
+  _limit: 6,
+  _sort: "",
+  _order: "desc",
+  price: [0, 18000],
+  rating: 1.5,
+  category: null,
+  _page: 1,
+};
+
 const categoryList = [
   "Mobil və Laptoplar",
   "Əyləncə",
   "Şəkil və Video",
   "Məişət",
 ];
+const ratingList = [1.5, 2.5, 3.5, 4.5, 5];
 
 const Shop = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   //! products states
   const [products, setProducts] = useState([]);
   const [productsCount, setProductsCount] = useState(0);
-  const [ratingValue, setRatingValue] = useState(1.5);
-
 
   //! pagination states
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState();
   const [countItems, setcountItems] = useState(6);
 
-  //! filter states
-  const [priceValue, setPriceValue] = useState([0, 18000]);
-  const [sortBy, setSortBY] = useState("");
-  const [category, setCategory] = useState("");
+  //! params
 
-  //? parameters
-  const [parameterSortBy, setParameterSortBy] = useState("");
-  const [parameterRating, setParameterRating] = useState("");
-  const [parameterCategory, setParameterCategory] = useState("");
-  const [parameterPrice, setParameterPrice] = useState("");
+  const [searchParams, setSearchParams] = useState(initialState);
 
-  //! filters
+  const paramsChange = (name, value) =>
+    setSearchParams({ ...searchParams, [name]: value });
 
-  useEffect(() => {
-    if (sortBy === "rating") {
-      setParameterSortBy("&_sort=rating&_order=desc");
-    } else if (sortBy === "price") {
-      setParameterSortBy("&_sort=price&_order=desc");
-    } else {
-      setParameterSortBy("&_sort=order_count&_order=desc");
-    }
-  }, [sortBy]);
-
-  useEffect(() => {
-    setParameterPrice(`&price_gte=${priceValue[0]}&price_lte=${priceValue[1]}`);
-  }, [priceValue]);
-
-  useEffect(() => {
-    ratingValue
-      ? setParameterRating(`&rating_gte=${ratingValue}`)
-      : setParameterRating("");
-  }, [ratingValue]);
-
-  useEffect(() => {
-    category
-      ? setParameterCategory(`&category=${category}`)
-      : setParameterCategory("");
-  }, [category]);
-
-  //! pagination
-  useEffect(() => {
-    getProducts();
-    setCurrentPage(1);
-  }, [parameterSortBy, parameterRating, parameterCategory, parameterPrice]);
-
-  useEffect(() => {
-    getProducts();
-  }, [currentPage]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-
-  //! get products
-  async function getProducts() {
-    let valuableUrl = `products?_page=${currentPage}&_limit=${countItems}`;
-
-    parameterSortBy && (valuableUrl += parameterSortBy);
-    parameterRating && (valuableUrl += parameterRating);
-    parameterCategory && (valuableUrl += parameterCategory);
-    parameterPrice && (valuableUrl += parameterPrice);
-
-    const res = await FetchData.getData(valuableUrl);
-    setProducts(res.data);
-    setProductsCount(res.headers.get("x-total-count"));
-    setPages(Math.ceil(+res.headers.get("x-total-count") / countItems));
-    window.scrollTo(0, 0);
-  }
-
-  //! rating
-  const ratingList = [1.5, 2.5, 3.5, 4.5, 5];
-
-  //! price range
-  const setPriceValueHandler = (event, newValue) => {
-    setPriceValue(newValue);
-  };
-
-  //! sort by
-  const setSortByHandler = (event) => {
-    setSortBY(event.target.value);
-  };
-
-  const handleChangeRadio = (event) => {
-    setRatingValue(event.target.value);
-  };
-  const handleChangeCategory = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const resetFilter = () => {
-    setPriceValue([0, 18000]);
-    setSortBY("");
-    setCategory("");
-    setRatingValue(1.5);
+  const getProducts = async () => {
+    let params =
+      convertObjectToUrlParams(searchParams) + `&_page=${currentPage}`;
+    await FetchData.getData("?" + params).then((res) => {
+      setProducts(res.data.products);
+      setProductsCount(res.data.totalCount);
+      setPages(Math.ceil(res.data.totalCount / countItems));
+    });
   };
 
   return (
@@ -157,8 +97,8 @@ const Shop = () => {
                     <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
                       name="controlled-radio-buttons-group"
-                      value={category}
-                      onChange={handleChangeCategory}
+                      value={searchParams.category}
+                      onChange={(e) => paramsChange("category", e.target.value)}
                     >
                       {categoryList.map((item, index) => {
                         return (
@@ -177,11 +117,13 @@ const Shop = () => {
               <div className="filter--price_range">
                 <h4>Qiymət aralığı</h4>
                 <Slider
-                  getAriaLabel={() => "Temperature range"}
-                  value={priceValue}
-                  onChange={setPriceValueHandler}
+                  getAriaLabel={() => "Price range"}
+                  value={searchParams.price}
+                  onChange={(event, newValue) =>
+                    paramsChange("price", event.target.value)
+                  }
                   valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
+                  // getAriaValueText={valuetext}
                   min={0}
                   max={18000}
                   step={10}
@@ -194,8 +136,8 @@ const Shop = () => {
                     <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
                       name="controlled-radio-buttons-group"
-                      value={ratingValue}
-                      onChange={handleChangeRadio}
+                      value={searchParams.rating}
+                      onChange={(e) => paramsChange("rating", e.target.value)}
                     >
                       {ratingList.map((item, index) => {
                         return (
@@ -222,7 +164,10 @@ const Shop = () => {
                   </FormControl>
                 </ul>
               </div>
-              <button className="reset_filter" onClick={() => resetFilter()}>
+              <button
+                className="reset_filter"
+                onClick={() => setSearchParams(initialState)}
+              >
                 Sıfırla
               </button>
             </div>
@@ -245,11 +190,13 @@ const Shop = () => {
                         <Select
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
-                          value={sortBy}
+                          value={searchParams._sort}
                           label="Age"
-                          onChange={(e) => setSortByHandler(e)}
+                          onChange={(e) =>
+                            paramsChange("_sort", e.target.value)
+                          }
                         >
-                          <MenuItem value="popularity">Populyarlıq</MenuItem>
+                          <MenuItem value="order_count">Sifariş Sayı</MenuItem>
                           <MenuItem value="rating">Reytinq</MenuItem>
                           <MenuItem value="price">Qiymət</MenuItem>
                         </Select>

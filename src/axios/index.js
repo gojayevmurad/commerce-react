@@ -6,4 +6,3 @@ const HTTP = axios.create({
 
 export const Login = async (formData) =>
   await HTTP.post("/users/signin", formData);
-

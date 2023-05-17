@@ -5,6 +5,7 @@ import StarRating from "../../components/StarRating/StarRating";
 import "./singleproduct.scss";
 import AddToCartBtn from "../../components/AddToCartBtn/AddToCartBtn";
 import Loading from "../../components/Loading/Loading";
+import FetchData from "../../api/api";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -25,17 +26,15 @@ const SingleProduct = () => {
       break;
   }
   useEffect(() => {
-    fetch(`http://localhost:3000/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
-        setCurrentImage(data.img[0]);
-      });
+    FetchData.getSingleProduct(id).then((res) => {
+      setProduct(res.data);
+      setCurrentImage(res.data.image[0]);
+    });
 
     window.scrollTo(0, 0);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
+    // setTimeout(() => {
+    setIsLoading(false);
+    // }, 1500);
   }, []);
 
   const changeImage = (item) => {
@@ -97,7 +96,7 @@ const SingleProduct = () => {
                 )}
               </div>
               <div className="single_product_main--info__add_to_cart">
-                <AddToCartBtn id={id} inStock={product.in_stock}/>
+                <AddToCartBtn id={id} inStock={product.in_stock} />
               </div>
               <div className="single_product_main--info__description">
                 <p>Category : {category}</p>

@@ -8,7 +8,7 @@ const categoryBackImage = [
   "https://c4.wallpaperflare.com/wallpaper/486/1022/515/funny-thinking-brain-slogan-useful-1600x1200-entertainment-funny-hd-art-wallpaper-preview.jpg",
   "https://c0.wallpaperflare.com/preview/487/39/826/person-holding-black-fujica-camera.jpg",
   "https://c4.wallpaperflare.com/wallpaper/57/340/874/motherboard-black-and-white-technology-wallpaper-thumb.jpg",
-  "https://media.istockphoto.com/id/1132606352/photo/blackboard-with-chalk-border.jpg?b=1&s=170667a&w=0&k=20&c=R1i7MzTAWrlkmuC5vuCRUuZX-w337Kphjp2sv6r_frI="
+  "https://media.istockphoto.com/id/1132606352/photo/blackboard-with-chalk-border.jpg?b=1&s=170667a&w=0&k=20&c=R1i7MzTAWrlkmuC5vuCRUuZX-w337Kphjp2sv6r_frI=",
 ];
 
 const LocationHeader = () => {
@@ -164,7 +164,7 @@ const LocationHeader = () => {
               <NavLink to="/about">Haqqımızda</NavLink>
             </li>
             <li className="locationheader--list__items">
-              <NavLink to="/blog">Bloqlar</NavLink>
+              <NavLink to="/blogs">Bloqlar</NavLink>
             </li>
             <li className="locationheader--list__items">
               <NavLink to="/contact">Əlaqə</NavLink>

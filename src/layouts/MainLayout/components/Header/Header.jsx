@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./header.scss";
 import { useDispatch, useSelector } from "react-redux";
-import CartView from "../CartView/CartView";
-import { exitUser } from "../../features/user/userSlice";
+import CartView from "./CartView/CartView";
+import { exitUser } from "../../../../features/user/userSlice";
 
-const Header = () => {
+const Header = ({ auth }) => {
   const dispatch = useDispatch();
   const [visibleCart, setVisibleCart] = useState(false);
   const cartLength = useSelector((state) => state.cart.length);
   const wishLength = useSelector((state) => state.wish.length);
-
-  //user data
 
   const user = useSelector((state) => state.user);
 
@@ -110,7 +108,7 @@ const Header = () => {
               data-count="4"
               data-title="İstifadəçi"
             >
-              {user.fullname ? (
+              {auth ? (
                 <>
                   <NavLink to="/profile" style={{ color: "black" }}>
                     <svg
@@ -131,13 +129,13 @@ const Header = () => {
                   </NavLink>
                   <div className="user_popup">
                     <p>{user.fullname}</p>
-                    <button onClick={() => dispatch(exitUser())}>çıxış</button>
+                    <button>çıxış</button>
                   </div>
                 </>
               ) : (
-                <NavLink to="/signup" className="signin-btn">
-                  Giriş
-                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                <NavLink to="/login" className="signin-btn">
+                  Daxil ol
+                  <i className="fa-solid fa-arrow-right-to-bracket"></i>
                 </NavLink>
               )}
             </div>

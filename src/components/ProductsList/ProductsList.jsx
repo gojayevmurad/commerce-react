@@ -7,7 +7,7 @@ const ProductsList = (props) => {
   return (
     <div className="productsList">
       {data.map((product) => {
-        return <Product key={product.id} product={product} />;
+        return <Product key={product["_id"]} product={product} />;
       })}
     </div>
   );

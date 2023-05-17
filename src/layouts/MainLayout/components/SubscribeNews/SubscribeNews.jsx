@@ -1,6 +1,6 @@
 import React from "react";
 import "./subscribeNews.scss";
-import bannerImg from "../../assets/subscribe_news.jpg";
+import bannerImg from "../../../../assets/subscribe_news.jpg";
 
 const SubscribeNews = () => {
   return (
@@ -14,8 +14,8 @@ const SubscribeNews = () => {
         <p>Yalnız Abunə Olmağınız Kifayətdir</p>
         <div className="subscribe_news--inputgroup">
           <label htmlFor="email">
-          <i className="fa-regular fa-envelope"></i>
-            <input  type="email" id="email" placeholder="EMAİL ÜNVANI"/>
+            <i className="fa-regular fa-envelope"></i>
+            <input type="email" id="email" placeholder="EMAİL ÜNVANI" />
           </label>
           <button type="submit">Kupon Al</button>
         </div>

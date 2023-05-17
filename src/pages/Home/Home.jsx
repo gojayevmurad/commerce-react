@@ -50,9 +50,9 @@ const Home = () => {
   useEffect(() => {
     getPopularSales();
     getGamerWorldPopularProducts();
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    // setTimeout(() => {
+    setIsLoading(false);
+    // }, 1000);
   }, []);
 
   return (
@@ -312,10 +312,10 @@ const Home = () => {
                   return (
                     <div className="popular_sales--products__item" key={index}>
                       <div className="popular_sales--products__item--image">
-                        <img src={item.img[0]} alt={index} />
+                        <img src={item.image[0]} alt={index} />
                       </div>
                       <div className="popular_sales--products__item--desc">
-                        <NavLink to={"/single-product/" + item.id}>
+                        <NavLink to={"/product-detail/" + item.id}>
                           {item.name}
                         </NavLink>
                         <div className="popular_sales--products__item--desc--prices">

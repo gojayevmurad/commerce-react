@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./cartview.scss";
 import { useDispatch, useSelector } from "react-redux";
-import FetchData from "../../api/api";
-import { deleteItem } from "../../features/cart/cartSlice";
+import FetchData from "../../../../../api/api";
+import { deleteItem } from "../../../../../features/cart/cartSlice";
 
 const CartView = ({ setVisibleCart }) => {
   let url = "products?";
@@ -71,7 +71,8 @@ const CartView = ({ setVisibleCart }) => {
               <div className="cart_view--products__product__description">
                 <p>{product.name}</p>
                 <span>
-                  ₼ {product.offer ? product.offer : product.price} x {itemQuantity}
+                  ₼ {product.offer ? product.offer : product.price} x{" "}
+                  {itemQuantity}
                 </span>
               </div>
               <button onClick={() => dispatch(deleteItem(product.id))}>

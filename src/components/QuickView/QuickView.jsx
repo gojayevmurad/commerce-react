@@ -10,14 +10,14 @@ const QuickView = (props) => {
   const {
     name,
     price,
-    img,
+    image: img,
     rating,
-    id,
+    _id: id,
     stock_count,
     brand,
     offer,
     order_count,
-    in_stock
+    in_stock,
   } = product;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -55,12 +55,12 @@ const QuickView = (props) => {
             {offer && <p className="new_price">₼ {offer}</p>}
           </div>
           <div className="quickview_actions">
-            <AddToCartBtn id={id} inStock={in_stock}/>
+            <AddToCartBtn id={id} inStock={in_stock} />
             <AddToWishListBtn id={id} />
           </div>
           <p>Sifariş Sayı: {order_count}</p>
           <div className="quickview_page">
-            <NavLink to={`/single-product/${id}`}>
+            <NavLink to={`/product-detail/${id}`}>
               Məhsul səhifəsinə keç
             </NavLink>
           </div>

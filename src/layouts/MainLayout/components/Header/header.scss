@@ -1,4 +1,4 @@
-@import "../../mixins";
+@import "../../../../mixins";
 .header {
   margin-top: 10px;
   &--content {
@@ -63,8 +63,8 @@
       &.header--actions__user {
         position: relative;
 
-        &:hover{
-          .user_popup{
+        &:hover {
+          .user_popup {
             opacity: 1;
             z-index: 99;
             pointer-events: all;
@@ -85,7 +85,7 @@
           padding: 10px;
           justify-content: center;
           align-items: center;
-          gap:15px;
+          gap: 15px;
           opacity: 0;
           z-index: -1;
           pointer-events: none;
@@ -170,4 +170,5 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  width: max-content;
 }

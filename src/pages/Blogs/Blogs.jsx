@@ -3,6 +3,7 @@ import "./blogs.scss";
 import FetchData from "../../api/api";
 import { NavLink } from "react-router-dom";
 
+
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
