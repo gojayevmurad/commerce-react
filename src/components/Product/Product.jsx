@@ -8,14 +8,13 @@ import { NavLink } from "react-router-dom";
 import AddToWishListBtn from "../AddToWishListBtn/AddToWishListBtn";
 import QuickView from "../QuickView/QuickView";
 
-const Product = (props) => {
+const Product = ({ product, loading }) => {
   const [maximize, setMaximize] = useState(false);
 
-  const { product } = props;
   const { name, price, offer: offerPrice, rating, image, _id } = product;
 
   return (
-    <div className="product">
+    <div className={loading ? "product product_loading" : "product"}>
       {maximize && <QuickView product={product} setMaximize={setMaximize} />}
       <div className="product--img">
         <img src={image[0]} alt={name} />
@@ -35,7 +34,7 @@ const Product = (props) => {
         <div
           className={
             offerPrice != 0
-              ? "discount product--price__item"
+              ? "discount product--price__item "
               : " product--price__item"
           }
         >

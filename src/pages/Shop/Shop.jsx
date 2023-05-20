@@ -13,35 +13,21 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Slider } from "@mui/material";
-import FetchData from "../../api/api";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-
-function convertObjectToUrlParams(obj) {
-  const params = new URLSearchParams();
-
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key) && obj[key] && !Array.isArray(obj[key])) {
-      params.append(key, obj[key]);
-    }
-    if (key == "price") {
-      params.append("min_price", obj[key][0]);
-      params.append("max_price", obj[key][1]);
-    }
-  }
-
-  return params.toString();
-}
+import toast from "react-hot-toast";
+import { getProductsAsync } from "../../redux/products/productsSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialState = {
-  _limit: 6,
-  _sort: "",
-  _order: "desc",
+  limit: 6,
+  sort: "",
+  order: "desc",
   price: [0, 18000],
   rating: 1.5,
   category: null,
-  _page: 1,
+  page: 1,
 };
 
 const categoryList = [
@@ -50,37 +36,64 @@ const categoryList = [
   "Şəkil və Video",
   "Məişət",
 ];
+
 const ratingList = [1.5, 2.5, 3.5, 4.5, 5];
 
 const Shop = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.products.data);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const productsCount = useSelector(
+    (state) => state.products.products.totalCount
+  );
+  const productLoading = useSelector(
+    (state) => state.products.products.loading
+  );
 
-  //! products states
-  const [products, setProducts] = useState([]);
-  const [productsCount, setProductsCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   //! pagination states
-  const [pages, setPages] = useState();
-  const [countItems, setcountItems] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pages, setPages] = useState(0);
 
-  //! params
-
+  //! search params
   const [searchParams, setSearchParams] = useState(initialState);
+  const [applayedParams, setApplayedParams] = useState({ ...searchParams });
 
   const paramsChange = (name, value) =>
     setSearchParams({ ...searchParams, [name]: value });
 
-  const getProducts = async () => {
-    let params =
-      convertObjectToUrlParams(searchParams) + `&_page=${currentPage}`;
-    await FetchData.getData("?" + params).then((res) => {
-      setProducts(res.data.products);
-      setProductsCount(res.data.totalCount);
-      setPages(Math.ceil(res.data.totalCount / countItems));
-    });
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setApplayedParams(searchParams);
+    dispatch(getProductsAsync(searchParams, toast));
+    setCurrentPage(1);
+    window.scrollTo(0, 0);
   };
+
+  const resetHandler = () => {
+    setSearchParams(initialState);
+    setApplayedParams(initialState);
+    currentPage == 1
+      ? dispatch(getProductsAsync(initialState, toast))
+      : setCurrentPage(1);
+  };
+
+  useEffect(() => {
+    dispatch(getProductsAsync(applayedParams, toast));
+  }, []);
+
+  useEffect(() => {
+    dispatch(getProductsAsync({ ...applayedParams, page: currentPage }, toast));
+  }, [currentPage]);
+
+  useEffect(() => {
+    setPages(Math.ceil(productsCount / applayedParams.limit));
+  }, [productsCount]);
+
+  useEffect(() => {
+    products ? setIsLoading(false) : setIsLoading(true);
+  }, [products]);
 
   return (
     <>
@@ -88,7 +101,7 @@ const Shop = () => {
       <div className="shop_products">
         <div className="container">
           <div className="shop_products--content">
-            <div className="shop_products--filter">
+            <form onSubmit={submitHandler} className="shop_products--filter">
               <div className="filter--categories">
                 <h4>Məhsul kateqoriyaları</h4>
                 <ul>
@@ -123,7 +136,6 @@ const Shop = () => {
                     paramsChange("price", event.target.value)
                   }
                   valueLabelDisplay="auto"
-                  // getAriaValueText={valuetext}
                   min={0}
                   max={18000}
                   step={10}
@@ -165,20 +177,27 @@ const Shop = () => {
                 </ul>
               </div>
               <button
+                type="reset"
                 className="reset_filter"
-                onClick={() => setSearchParams(initialState)}
+                onClick={resetHandler}
               >
                 Sıfırla
               </button>
-            </div>
+              <button type="submit" className="reset_filter">
+                Tətbiq et
+              </button>
+            </form>
             <div className="shop_products--list">
               <div className="shop_products--list--title">
                 <div className="left_side">
                   Göstərilir {productsCount} -dən{" "}
-                  {currentPage > 1 ? (currentPage - 1) * countItems + 1 : 1}-
-                  {currentPage * countItems > productsCount
+                  {currentPage > 1
+                    ? (currentPage - 1) * initialState.limit + 1
+                    : 1}
+                  -
+                  {currentPage * initialState.limit > productsCount
                     ? productsCount
-                    : currentPage * countItems}
+                    : currentPage * initialState.limit}
                 </div>
                 <div className="right_side">
                   <div className="sort_by">
@@ -190,11 +209,9 @@ const Shop = () => {
                         <Select
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
-                          value={searchParams._sort}
+                          value={searchParams.sort}
                           label="Age"
-                          onChange={(e) =>
-                            paramsChange("_sort", e.target.value)
-                          }
+                          onChange={(e) => paramsChange("sort", e.target.value)}
                         >
                           <MenuItem value="order_count">Sifariş Sayı</MenuItem>
                           <MenuItem value="rating">Reytinq</MenuItem>
@@ -205,10 +222,16 @@ const Shop = () => {
                   </div>
                 </div>
               </div>
-              {products.length ? (
+              {products ? (
                 <div className="shop_products--list--content">
                   {products.map((item, index) => {
-                    return <Product key={index} product={item} />;
+                    return (
+                      <Product
+                        loading={productLoading}
+                        key={index}
+                        product={item}
+                      />
+                    );
                   })}
                 </div>
               ) : (
@@ -216,7 +239,7 @@ const Shop = () => {
                   Təəssüf ki, məhsul tapılmadı :(
                 </p>
               )}
-              {countItems < productsCount && (
+              {initialState.limit < productsCount && (
                 <div className="shop_products--list--pagination">
                   <ul>
                     <li className="pagination_prev_btn">
@@ -231,7 +254,7 @@ const Shop = () => {
                         <i className="fas fa-angle-left"></i>
                       </button>
                     </li>
-                    {currentPage > 2 && (
+                    {currentPage > 2 && pages > 3 && (
                       <>
                         <li className="pagination_first_page">
                           <button
@@ -276,7 +299,7 @@ const Shop = () => {
                       </li>
                     )}
 
-                    {currentPage < pages - 1 && (
+                    {currentPage < pages - 1 && pages > 3 && (
                       <>
                         <p style={{ alignSelf: "end" }}>...</p>
                         <li className="pagination_last_page">

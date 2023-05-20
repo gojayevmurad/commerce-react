@@ -5,9 +5,8 @@ import {
   removeFromWishList,
 } from "../../features/wish/wishSlice";
 
-const AddToWishListBtn = (props) => {
+const AddToWishListBtn = ({ id }) => {
   const [isAdded, setIsAdded] = useState(false);
-  const { id } = props;
   const dispatch = useDispatch();
 
   const wishItem = useSelector((state) => {

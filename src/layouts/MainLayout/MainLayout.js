@@ -5,9 +5,12 @@ import Header from "./components/Header/Header";
 import Footer from "./components/footer/Footer";
 
 const MainLayout = () => {
+
+  const auth = localStorage.getItem("user");
+
   return (
     <>
-      <Header auth={true} />
+      <Header auth={auth} />
       <LocationHeader />
       <Outlet />
       <SubscribeNews />

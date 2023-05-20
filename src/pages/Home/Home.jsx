@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./home.scss";
-import FetchData from "../../api/api";
+import {
+  getGamerWorldProductsAsync,
+  getPopularSalesproductsAsync,
+} from "../../redux/products/productsSlice";
+import toast from "react-hot-toast";
 
 // import components
 
@@ -25,34 +29,31 @@ import brand12 from "../../assets/home_page/brand-12.png";
 import introImg from "../../assets/flash-sale-ads.png";
 import { NavLink } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
+import { useDispatch, useSelector } from "react-redux";
+import Product from "../../components/Product/Product";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-  const [popularSales, setPopularSales] = useState([]);
-  const [gamerWorldPopularProducts, setGamerWorldPopularProducts] = useState(
-    []
+  const popularSales = useSelector(
+    (state) => state.products.popularSalesProducts
+  );
+  const gamerWorldPopularProducts = useSelector(
+    (state) => state.products.gamerWorldProducts
   );
 
   async function getPopularSales() {
-    const response = await FetchData.getData(
-      "products?_sort=rating&_order=desc&_limit=3"
-    );
-    setPopularSales(response.data);
+    dispatch(getPopularSalesproductsAsync(toast));
   }
 
   async function getGamerWorldPopularProducts() {
-    const response = await FetchData.getData(
-      "products?_sort=rating&_order=desc&_limit=4&category=2"
-    );
-    setGamerWorldPopularProducts(response.data);
+    dispatch(getGamerWorldProductsAsync(toast));
   }
 
   useEffect(() => {
     getPopularSales();
     getGamerWorldPopularProducts();
-    // setTimeout(() => {
     setIsLoading(false);
-    // }, 1000);
   }, []);
 
   return (
@@ -288,7 +289,12 @@ const Home = () => {
             <p className="gamer_world--head">
               <span>Əyləncə</span> və <span>Hobbi</span> Dünyası
             </p>
-            <ProductsList data={gamerWorldPopularProducts} />
+            <div className="productsList">
+              {gamerWorldPopularProducts.data &&
+                gamerWorldPopularProducts.data.map((item) => {
+                  return <Product product={item} key={item["_id"]} />;
+                })}
+            </div>
           </div>
         </div>
       </div>
@@ -307,15 +313,15 @@ const Home = () => {
               </div>
             </div>
             <div className="popular_sales--products">
-              {popularSales &&
-                popularSales.map((item, index) => {
+              {popularSales.data &&
+                popularSales.data.map((item, index) => {
                   return (
                     <div className="popular_sales--products__item" key={index}>
                       <div className="popular_sales--products__item--image">
                         <img src={item.image[0]} alt={index} />
                       </div>
                       <div className="popular_sales--products__item--desc">
-                        <NavLink to={"/product-detail/" + item.id}>
+                        <NavLink to={"/product-detail/" + item._id}>
                           {item.name}
                         </NavLink>
                         <div className="popular_sales--products__item--desc--prices">

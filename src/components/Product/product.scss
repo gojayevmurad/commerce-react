@@ -1,4 +1,71 @@
 .product {
+  &.product_loading {
+    .product--img {
+      background: linear-gradient(
+        120deg,
+        #e5e5e5 30%,
+        #f2f2f2 38%,
+        #f2f2f2 40%,
+        #e5e5e5 48%
+      );
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      animation: load 2s infinite;
+      border-radius: 5px;
+      img {
+        display: none;
+      }
+    }
+    .product--rating {
+      background: linear-gradient(
+        120deg,
+        #e5e5e5 30%,
+        #f2f2f2 38%,
+        #f2f2f2 40%,
+        #e5e5e5 48%
+      );
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      animation: load 2s infinite;
+      border-radius: 5px;
+      .product__rating__star {
+        opacity: 0;
+      }
+    }
+    .product--name {
+      background: linear-gradient(
+        120deg,
+        #e5e5e5 30%,
+        #f2f2f2 38%,
+        #f2f2f2 40%,
+        #e5e5e5 48%
+      );
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      animation: load 2s infinite;
+      border-radius: 5px;
+      a {
+        opacity: 0;
+      }
+    }
+    .product--price {
+      background: linear-gradient(
+        120deg,
+        #e5e5e5 30%,
+        #f2f2f2 38%,
+        #f2f2f2 40%,
+        #e5e5e5 48%
+      );
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      animation: load 2s infinite;
+      border-radius: 5px;
+      div {
+        opacity: 0;
+      }
+    }
+  }
+
   margin-top: 40px;
   border: 1px solid var(--line-color);
   width: min-content;
@@ -9,12 +76,13 @@
   overflow: hidden;
   &--img {
     width: 260px;
+    height: 264px;
     overflow: hidden;
     position: relative;
+    margin-bottom: 3px;
     img {
       width: 260px;
-      transition: .5s;
-
+      transition: 0.5s;
 
       &:nth-child(2) {
         opacity: 0;
@@ -151,11 +219,11 @@
     .product--addToCart {
       bottom: 11px;
     }
-    .product--img{
-      img:nth-child(1){
+    .product--img {
+      img:nth-child(1) {
         opacity: 0;
       }
-      img:nth-child(2){
+      img:nth-child(2) {
         z-index: 1;
         opacity: 1;
       }
@@ -168,4 +236,10 @@
 
 body {
   background-color: var(--line-color);
+}
+
+@keyframes load {
+  100% {
+    background-position: -100% 0;
+  }
 }

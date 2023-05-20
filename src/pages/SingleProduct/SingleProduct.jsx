@@ -32,9 +32,9 @@ const SingleProduct = () => {
     });
 
     window.scrollTo(0, 0);
-    // setTimeout(() => {
-    setIsLoading(false);
-    // }, 1500);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
   }, []);
 
   const changeImage = (item) => {
