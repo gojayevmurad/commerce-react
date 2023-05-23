@@ -1,17 +1,55 @@
 import { Outlet } from "react-router-dom";
-import LocationHeader from "./components/LocationHeader/LocationHeader";
 import SubscribeNews from "./components/SubscribeNews/SubscribeNews";
-import Header from "./components/Header/Header";
+import Header from "./components/Header1/Header";
 import Footer from "./components/footer/Footer";
+import WelcomePopup from "./components/WelcomePopup/WelcomePopup";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { toast } from 'react-hot-toast'
+import { getBasketItemsAsync } from "../../redux/basket/basketSlice";
 
 const MainLayout = () => {
+  const dispatch = useDispatch()
+  const [showWelcomePopup, setShowWelcomePopup] = useState(false);
 
   const auth = localStorage.getItem("user");
 
+  useEffect(() => {
+    if (auth) {
+      dispatch(getBasketItemsAsync(toast));
+    }
+    //#region welcome popup
+    const welcomePopup = JSON.parse(localStorage.getItem("welcomePopup"));
+    if (!welcomePopup) {
+      localStorage.setItem(
+        "welcomePopup",
+        JSON.stringify({
+          show: true,
+          date: new Date(),
+        })
+      );
+      setShowWelcomePopup(true);
+    } else {
+      const date = new Date();
+      const diffTime = Math.abs(date - new Date(welcomePopup.date));
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays > 1) {
+        localStorage.setItem(
+          "welcomePopup",
+          JSON.stringify({
+            show: true,
+            date: new Date(),
+          })
+        );
+        setShowWelcomePopup(true);
+      }
+    }
+    //#endregion
+  }, [])
   return (
     <>
+      {showWelcomePopup && <WelcomePopup closePopup={setShowWelcomePopup} />}
       <Header auth={auth} />
-      <LocationHeader />
       <Outlet />
       <SubscribeNews />
       <Footer />

@@ -11,6 +11,12 @@ import MainLayout from "../layouts/MainLayout/MainLayout";
 import PrivateRoute from "./PrivateRoute";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import Profile from "../pages/Profile/Profile";
+import Orders from "../pages/Profile/components/Orders";
+import Favorites from "../pages/Profile/components/Favorites";
+import PersonalData from "../pages/Profile/components/PersonalData";
+import ChangePassword from "../pages/Profile/components/ChangePassword";
+import Addresses from "../pages/Profile/components/Addresses";
 
 const routes = [
   {
@@ -51,7 +57,33 @@ const routes = [
         path: "compare",
         element: <Compare />,
       },
-      // not found
+      {
+        path: "profile",
+        element: <Profile />,
+        auth: true,
+        children: [
+          {
+            index: true,
+            element: <Orders />,
+          },
+          {
+            path: "favorites",
+            element: <Favorites />,
+          },
+          {
+            path: "personal-data",
+            element: <PersonalData />,
+          },
+          {
+            path: "change-password",
+            element: <ChangePassword />,
+          },
+          {
+            path: "addresses",
+            element: <Addresses />,
+          },
+        ],
+      },
       {
         path: "*",
         element: <NotFound />,

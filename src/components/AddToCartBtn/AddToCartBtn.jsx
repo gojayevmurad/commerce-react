@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, decreaseQuanity } from "../../features/cart/cartSlice";
+import {
+  addToBasketAsync,
+  getBasketItemsAsync,
+  removeBasketItemsAsync,
+} from "../../redux/basket/basketSlice";
+import { toast } from "react-hot-toast";
 
 const AddToCartBtn = (props) => {
-  const { id , inStock} = props;
+  const { id, inStock } = props;
   const [added, setAdded] = useState(false);
   const dispatch = useDispatch();
-  
-  
-
+  const loading = useSelector((state) => state.basket.basketItems.loading);
   const cartItem = useSelector((state) =>
-    state.cart.find((item) => {
-      return item.id == id;
+    state.basket.basketItems.data.find((item) => {
+      return item.product == id;
     })
   );
 
@@ -24,23 +27,29 @@ const AddToCartBtn = (props) => {
   }, [cartItem]);
 
   const addToCartReducer = () => {
-    dispatch(addToCart({ id: +id }));
-    !added && setAdded(true);
+    dispatch(addToBasketAsync({ productId: id }, toast));
   };
 
   const decreaseQuanityReducer = () => {
-    cartItem.quantity == 1 && setAdded(false);
-    dispatch(decreaseQuanity({ id: +id }));
+    dispatch(
+      removeBasketItemsAsync({ productId: id, count: cartItem.count - 1 })
+    );
   };
 
-  if(!inStock) return <button className="add_to_cart_btn_out_stock" disabled>Stokda Yoxdur</button>
+  if (!inStock)
+    return (
+      <button className="add_to_cart_btn_out_stock" disabled>
+        Stokda Yoxdur
+      </button>
+    );
 
   if (added)
     return (
       <>
         <button
+          disabled={loading}
           className="decrease_quantity_btn"
-          onClick={() => decreaseQuanityReducer()}
+          onClick={decreaseQuanityReducer}
         >
           -
         </button>
@@ -48,21 +57,29 @@ const AddToCartBtn = (props) => {
           className={id}
           readOnly
           type="text"
-          value={cartItem && cartItem.quantity ? cartItem.quantity : ""}
+          value={cartItem && cartItem.count ? cartItem.count : ""}
         />
+        {loading && (
+          <div className="add_loading">
+            <div className="circle"></div>
+          </div>
+        )}
         <button
+          disabled={loading}
           className="increase_quantity_btn"
-          onClick={() => addToCartReducer()}
+          onClick={addToCartReducer}
         >
           +
         </button>
       </>
     );
 
-  
-
   return (
-    <button className="add_to_cart_btn" onClick={() => addToCartReducer()}>
+    <button
+      disabled={loading}
+      className="add_to_cart_btn"
+      onClick={addToCartReducer}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

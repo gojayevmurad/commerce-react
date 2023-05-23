@@ -12,7 +12,7 @@ import fbSvg from "../../assets/fb.svg";
 import googleSvg from "../../assets/google.svg";
 
 import { showInvalidMessage } from "../../utils";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { registerAsync } from "../../redux/auth/authSlice";
 
 const Register = () => {
@@ -99,7 +99,7 @@ const Register = () => {
             <Button
               type="submit"
               loading={registerState.loading}
-              label="Daxil ol"
+              label="Qeydiyyat"
               className="submit_btn"
             />
             <p>Və ya</p>

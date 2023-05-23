@@ -96,7 +96,7 @@ const SingleProduct = () => {
                 )}
               </div>
               <div className="single_product_main--info__add_to_cart">
-                <AddToCartBtn id={id} inStock={product.in_stock} />
+                <AddToCartBtn id={id} inStock={product.stock_count > 0} />
               </div>
               <div className="single_product_main--info__description">
                 <p>Category : {category}</p>

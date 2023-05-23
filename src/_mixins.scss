@@ -1,9 +1,25 @@
 :root {
-  --primary-color: #ffbb38;
-  --line-color: #EFEFEF;
-  --color--light: #fff;
-  --color--dark: #000;
-  
+  --primary-color: #336699;
+  --text-color: #333;
+  --text-color-secondary: #f77c29;
+  --text-color-light: #666;
+  --text-color-white: #fff;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--text-color);
+}
+
+.text-orange {
+  color: var(--text-color-secondary);
+}
+
+.text-light {
+  color: var(--text-color-light);
 }
 
 @mixin desktop {

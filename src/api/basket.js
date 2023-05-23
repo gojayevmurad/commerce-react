@@ -1,11 +1,15 @@
 import { axiosClient } from "./index";
 
 const addToBasket = (data) => {
-    return axiosClient.post("/order-ms/v1/order-item", data);
+    return axiosClient.post("/basket/set-item", data);
 };
 
 const getBasketItems = (data) => {
-    return axiosClient.get("/order-ms/v1/order-item", data);
+    return axiosClient.get("/basket/get-items", data);
 };
 
-export { addToBasket, getBasketItems };
+const removeBasketItems = (data) => {
+    return axiosClient.post("/basket/remove-item", data)
+}
+
+export { addToBasket, getBasketItems, removeBasketItems };

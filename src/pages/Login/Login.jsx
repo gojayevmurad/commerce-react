@@ -15,12 +15,11 @@ import "./login.scss";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.getItem("user") && navigate("/");
   }, []);
-
-  const dispatch = useDispatch();
 
   const loginState = useSelector((state) => state.auth.login);
 
@@ -52,8 +51,6 @@ const Login = () => {
     }
   );
 
-  const [loading, setLoading] = useState(true);
-
   return (
     <div className="login_page">
       <div className="container">
@@ -76,6 +73,7 @@ const Login = () => {
               placeholder="Şifrə"
               className="cover_input"
               inputClassName="input"
+              autoComplete="on"
               toggleMask
             />
             {showInvalidMessage(errors.password, touched.password)}

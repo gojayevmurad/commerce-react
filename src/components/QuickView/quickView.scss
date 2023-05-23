@@ -87,6 +87,11 @@
       display: flex;
       gap: 15px;
       padding: 5px 0;
+      & > div {
+        display: flex;
+        position: relative;
+
+      }
       .add_to_cart_btn_out_stock {
         border: 1px solid #000;
         outline: none;
@@ -116,6 +121,18 @@
         outline: none;
         text-align: center;
         transition: 0.4s;
+      }
+      .increase_quantity_btn,
+      .decrease_quantity_btn {
+        &:disabled {
+          background-color: #555;
+          color: #fff;
+          cursor: not-allowed;
+          &:hover {
+            background-color: #555;
+            color: #fff;
+          }
+        }
       }
 
       .decrease_quantity_btn {
@@ -150,6 +167,7 @@
         border: 1px solid transparent;
         outline: none;
         cursor: pointer;
+        color: #fff;
         &:hover {
           border: 1px solid var(--primary-color);
           background-color: #fff;
@@ -174,6 +192,10 @@
       a {
         color: #fff;
         transition: 0.3s linear;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
       }
 
       &:hover {

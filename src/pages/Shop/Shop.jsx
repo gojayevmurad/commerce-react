@@ -16,13 +16,13 @@ import { Slider } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { getProductsAsync } from "../../redux/products/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const initialState = {
   limit: 6,
-  sort: "",
+  sort: "order_count",
   order: "desc",
   price: [0, 18000],
   rating: 1.5,

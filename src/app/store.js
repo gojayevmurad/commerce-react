@@ -4,6 +4,7 @@ import wishSlice from "../features/wish/wishSlice";
 import userSlice from "../features/user/userSlice";
 import authSlice from "../redux/auth/authSlice";
 import productsSlice from "../redux/products/productsSlice";
+import basketSlice from "../redux/basket/basketSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     user: userSlice,
     auth: authSlice,
     products: productsSlice,
+    basket: basketSlice
   },
 });

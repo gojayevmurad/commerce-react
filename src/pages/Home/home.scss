@@ -1,3 +1,6 @@
+@import "swiper/css";
+@import "swiper/css/free-mode";
+@import "swiper/css/pagination";
 .intro {
   margin-top: 20px;
   &--content {
@@ -7,50 +10,73 @@
   }
 }
 
-.services {
-  margin-top: 40px;
-  &--content {
-    background-color: #fff;
-    padding: 20px 10px;
+.our--diff {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+  border: 1px solid #eee;
+  &__el {
+    width: 25%;
     display: flex;
-    justify-content: space-between;
-    & > div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      h3 {
-        font-weight: 500;
-      }
-      p {
-        font-weight: 300;
-      }
+    justify-content: center;
+    align-items: center;
+    padding: 2.3rem 0;
+    i {
+      font-size: 32px;
+      margin-right: 12px;
+      color: var(--primary-color);
+    }
+    h4 {
+      font-size: 14px;
+      color: var(--text-color);
+    }
+    p {
+      font-size: 13px;
+      color: var(--text-color-light);
     }
   }
 }
 
-.our_brands {
-  margin: 30px 0;
-  &--content {
-    width: 100%;
-    & > p {
-      margin-bottom: 20px;
-      font-weight: 500;
-      font-size: 1.2rem;
+.promotions--section {
+  margin: 20px 0 150px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  &__promo {
+    background-size: cover;
+    height: 200px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+    padding: 0 30px;
+
+    p:first-child {
+      font-size: 16.2px;
     }
-  }
-  &--images {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    row-gap: 30px;
-    column-gap: 10px;
-    &__item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid var(--line-color);
-      padding: 30px 0;
-      background-color: var(--color--light);
+    h5 {
+      font-size: 23.4px;
+      font-weight: 800;
+    }
+    p:nth-of-type(2) {
+      font-size: 23.4px;
+      margin-bottom: 30px;
+    }
+    p:last-child {
+      font-size: 12.6px;
+    }
+
+    &.dark {
+      p:first-child {
+        color: #c4c4c5;
+      }
+      h5,
+      p:nth-of-type(2),
+      p:last-child {
+        color: #fff;
+      }
     }
   }
 }
@@ -77,13 +103,19 @@
     justify-content: space-between;
     button {
       height: 50px;
-      width: 100px;
-      border: none;
+      width: 150px;
+      border: 1px solid var(--primary-color);
       outline: none;
       font-size: 16px;
       background-color: var(--primary-color);
-      color: #fff;
       cursor: pointer;
+      transition: 0.2s linear;
+      font-size: 1rem;
+      color: var(--text-color-white);
+      &:hover {
+        background-color: var(--text-color-white);
+        color: var(--primary-color);
+      }
     }
     span {
       color: var(--primary-color);
@@ -141,6 +173,104 @@
           }
           .new_price {
             color: green;
+          }
+        }
+      }
+    }
+  }
+}
+
+.header_swiper {
+  margin: 30px 0;
+
+  .swiper-pagination {
+    position: absolute;
+    bottom: 0;
+    &-bullet {
+      background-color: var(--primary-color);
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+
+    &-bullet-active {
+      width: 25px;
+    }
+  }
+
+  .swiper-next-btn,
+  .swiper-prev-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 8;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 2rem;
+
+    &.hide {
+      pointer-events: none !important;
+      color: #c4c4c5;
+    }
+  }
+
+  .swiper-next-btn {
+    right: 150px;
+  }
+
+  .swiper-prev-btn {
+    left: 150px;
+  }
+
+  &--slide {
+    & > div {
+      &.reverse_slide {
+        flex-direction: row-reverse;
+      }
+      height: 520px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 150px;
+      display: flex;
+      & > div {
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+        img {
+          object-fit: contain;
+        }
+        p {
+          font-size: 3rem;
+          line-height: 1;
+        }
+        h3 {
+          font-weight: 700;
+          font-size: 50px;
+          line-height: 1.1;
+        }
+        & > span {
+          font-weight: 400;
+          font-size: 24px;
+        }
+        button {
+          color: var(--text-color);
+          border-radius: 3px;
+          border: 2px solid var(--text-color);
+          font-size: 14px;
+          padding: 18px 35px;
+          background-color: transparent;
+          text-transform: uppercase;
+          font-weight: 600;
+          cursor: pointer;
+          transition: 0.3s;
+          &:hover {
+            background-color: var(--text-color);
+            color: #fff;
           }
         }
       }

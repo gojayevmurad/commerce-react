@@ -24,6 +24,7 @@ body {
 .container {
   max-width: 1350px;
   margin: 0 auto;
+  height: 100%;
 
   @include desktop {
     max-width: 1000px;
@@ -47,4 +48,10 @@ body {
 
 .product__rating__star {
   color: #ffa800;
+}
+
+.productsList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
 }

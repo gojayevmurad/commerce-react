@@ -19,7 +19,6 @@ axiosClient.interceptors.request.use(
         config.headers = {
             Authorization: JSON.parse(localStorage.getItem("user"))?.accessToken,
         };
-
         return config;
     },
     function (error) {
@@ -35,12 +34,11 @@ axiosClient.interceptors.response.use(
         if (error.response.status === 401) {
             try {
                 const { data } = await refreshTokenInstance.post(
-                    "/security/auth/refresh",
+                    "/auth/user/refresh-token",
                     null,
                     {
                         headers: {
-                            Authorization: `Bearer ${JSON.parse(localStorage.getItem("user"))?.refreshToken
-                                }`,
+                            Authorization: `Bearer ${JSON.parse(localStorage.getItem("user"))?.refreshToken}`,
                         },
                     }
                 );
@@ -48,8 +46,10 @@ axiosClient.interceptors.response.use(
                     ...JSON.parse(localStorage.getItem("user")),
                     accessToken: data.data.accessToken,
                 };
-                localStorage.setItem("user", JSON.stringify(newStorage));
-                axiosClient(error.config);
+                localStorage.setItem('user', JSON.stringify(newStorage))
+                let newConfig = error.config;
+                newConfig.headers['Authorization'] = data.data.accessToken;
+                await axiosClient(newConfig);
             } catch (error) {
                 localStorage.removeItem("user");
                 window.location.replace("/login");

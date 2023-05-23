@@ -137,6 +137,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     input {
       width: 40%;
       height: 26px;
@@ -159,12 +160,22 @@
       gap: 10px;
       font-weight: 400;
       left: 5%;
+      color: #fff;
       &.decrease_quantity_btn,
       &.increase_quantity_btn {
         width: 30%;
         transition: 0.3s;
         &:hover {
           background-color: #eaeaea;
+          color: #000;
+        }
+      }
+      &:disabled {
+        background-color: #555;
+        color: #fff;
+        cursor: not-allowed;
+        &:hover {
+          background-color: #555;
         }
       }
     }
@@ -194,7 +205,7 @@
         background-color: var(--primary-color);
         width: max-content;
         height: 15px;
-        color: #000;
+        color: #fff;
         position: absolute;
         right: 160%;
         top: 50%;
@@ -242,4 +253,27 @@ body {
   100% {
     background-position: -100% 0;
   }
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+.add_loading {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 3px solid #ddd;
+  border-bottom: 3px solid #555;
+  animation: rotate 1s both infinite;
 }

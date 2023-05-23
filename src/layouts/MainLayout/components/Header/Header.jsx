@@ -8,7 +8,9 @@ import { exitUser } from "../../../../features/user/userSlice";
 const Header = ({ auth }) => {
   const dispatch = useDispatch();
   const [visibleCart, setVisibleCart] = useState(false);
-  const cartLength = useSelector((state) => state.cart.length);
+  const cartLength = useSelector(
+    (state) => state.basket.basketItems.data.length
+  );
   const wishLength = useSelector((state) => state.wish.length);
 
   const user = useSelector((state) => state.user);
