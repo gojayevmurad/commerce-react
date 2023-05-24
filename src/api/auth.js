@@ -9,7 +9,7 @@ const login = (data) => {
 };
 
 const changePassword = (data) => {
-    return axiosClient.put("/security/v1/user/client/password/update", data);
+    return axiosClient.put("/auth/user/change-password", data);
 };
 
 export { register, login, changePassword };

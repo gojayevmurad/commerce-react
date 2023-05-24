@@ -38,13 +38,20 @@
         }
 
         & > form {
-          height: 330px;
+          height: 340px;
           transition: 0.3s linear;
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          gap: 10px;
-
+          gap: 6px;
+          .invalid_message {
+            margin-top: 0px;
+            margin-bottom: 5px;
+            height: 0;
+            overflow: hidden;
+            animation: heightAnimation 0.3s linear;
+            animation-fill-mode: forwards;
+          }
           input {
             padding: 5px 8px;
           }
@@ -79,5 +86,14 @@
         }
       }
     }
+  }
+}
+
+@keyframes heightAnimation {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 20px;
   }
 }

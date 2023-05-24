@@ -37,7 +37,11 @@ const Register = () => {
     password: yup
       .string()
       .min(8, "Şifrə ən az 8 simvoldan ibarət olmalıdır")
-      .required("Şifrə daxil edilməyib"),
+      .required("Şifrə daxil edilməyib")
+      .matches(/[0-9]/, "Şifrədə rəqəm olmalıdır")
+      .matches(/[a-z]/, "Şifrədə kiçik hərf olmalıdır")
+      .matches(/[A-Z]/, "Şifrədə böyük hərf olmalıdır")
+      .matches(/[^\w]/, "Şifrədə simvol olmalıdır"),
   });
 
   const onSubmit = (values) => {

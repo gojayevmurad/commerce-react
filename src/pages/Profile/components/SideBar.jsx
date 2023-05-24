@@ -3,6 +3,11 @@ import { NavLink } from "react-router-dom";
 import "./styles/sidebar.scss";
 
 const SideBar = () => {
+  const logoutHandler = () => {
+    localStorage.removeItem("user");
+    window.location.replace("/");
+  };
+
   return (
     <div className="profile_sidebar">
       <h3>
@@ -13,54 +18,54 @@ const SideBar = () => {
         <li>
           <NavLink to="/profile" end>
             <div>
-              <i class="fa-solid fa-parachute-box"></i>
+              <i className="fa-solid fa-parachute-box"></i>
               Sifarişlər
             </div>
-            <i class="fa-solid fa-chevron-right"></i>
+            <i className="fa-solid fa-chevron-right"></i>
           </NavLink>
         </li>
         <li>
           <NavLink to="favorites">
             <div>
-              <i class="fa-regular fa-heart"></i>
+              <i className="fa-regular fa-heart"></i>
               Bəyənilənlər
             </div>
-            <i class="fa-solid fa-chevron-right"></i>
+            <i className="fa-solid fa-chevron-right"></i>
           </NavLink>
         </li>
         <li>
           <NavLink to="personal-data">
             <div>
-              <i class="fa-regular fa-user"></i>
+              <i className="fa-regular fa-user"></i>
               Şəxsi məlumatlar
             </div>
-            <i class="fa-solid fa-chevron-right"></i>
+            <i className="fa-solid fa-chevron-right"></i>
           </NavLink>
         </li>
         <li>
           <NavLink to="change-password">
             <div>
-              <i class="fa-solid fa-fingerprint"></i>
-              Şifrəni dəyiş
+              <i className="fa-solid fa-fingerprint"></i>
+              Şifrəni yenilə
             </div>
-            <i class="fa-solid fa-chevron-right"></i>
+            <i className="fa-solid fa-chevron-right"></i>
           </NavLink>
         </li>
         <li>
           <NavLink to="addresses">
             <div>
-              <i class="fa-regular fa-map"></i>
+              <i className="fa-regular fa-map"></i>
               Ünvanlar
             </div>
-            <i class="fa-solid fa-chevron-right"></i>
+            <i className="fa-solid fa-chevron-right"></i>
           </NavLink>
         </li>
         <li>
-          <div className="profile_sidebar-logout">
+          <button onClick={logoutHandler} className="profile_sidebar-logout">
             <div>
-              <i class="fa-solid fa-arrow-right-to-bracket"></i>Hesabdan çıx
+              <i className="fa-solid fa-arrow-right-to-bracket"></i>Hesabdan çıx
             </div>
-          </div>
+          </button>
         </li>
       </ul>
     </div>

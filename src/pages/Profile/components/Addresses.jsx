@@ -11,7 +11,7 @@ const validationSchema = yup.object().shape({
   name: yup.string().required("Adınızı daxil edin"),
   city: yup.string().required("Şəhər daxil edilməyib"),
   street: yup.string().required("Küçə daxil edilməyib"),
-  street1: yup.string(),
+  postalCode: yup.string().required("Poçt indeksi daxil edilməyib"),
 });
 
 const Addresses = () => {
@@ -126,15 +126,15 @@ const Addresses = () => {
                   formikBillingAddress.touched.street
                 )}
                 <InputText
-                  name="street1"
+                  name="postalCode"
                   onChange={formikBillingAddress.handleChange}
                   onBlur={formikBillingAddress.handleBlur}
                   className="input"
-                  placeholder="Ünvan"
+                  placeholder="Poçt indeksi"
                 />
                 {showInvalidMessage(
-                  formikBillingAddress.errors.street1,
-                  formikBillingAddress.touched.street1
+                  formikBillingAddress.errors.postalCode,
+                  formikBillingAddress.touched.postalCode
                 )}
 
                 <Button
@@ -149,18 +149,18 @@ const Addresses = () => {
             <button onClick={billingAddressHandler}>
               {billingAddress ? (
                 <>
-                  İMTİNA ET <i class="fa-solid fa-xmark"></i>
+                  İMTİNA ET <i className="fa-solid fa-xmark"></i>
                 </>
               ) : (
                 <>
-                  ƏLAVƏ ET <i class="fa-solid fa-plus"></i>
+                  ƏLAVƏ ET <i className="fa-solid fa-plus"></i>
                 </>
               )}
             </button>
           )}
           {addressList.billingAddress && (
             <button>
-              REDAKTƏ ET <i class="fa-regular fa-pen-to-square"></i>
+              REDAKTƏ ET <i className="fa-regular fa-pen-to-square"></i>
             </button>
           )}
         </div>
@@ -223,15 +223,15 @@ const Addresses = () => {
                   formikShippingAddress.touched.street
                 )}
                 <InputText
-                  name="street1"
+                  name="postalCode"
                   onChange={formikShippingAddress.handleChange}
                   onBlur={formikShippingAddress.handleBlur}
                   className="input"
-                  placeholder="Ünvan"
+                  placeholder="Poçt indeksi"
                 />
                 {showInvalidMessage(
-                  formikShippingAddress.errors.street1,
-                  formikShippingAddress.touched.street1
+                  formikShippingAddress.errors.postalCode,
+                  formikShippingAddress.touched.postalCode
                 )}
 
                 <Button
@@ -247,18 +247,18 @@ const Addresses = () => {
             <button onClick={shippingAddressHandler}>
               {shippingAddress ? (
                 <>
-                  İMTİNA ET <i class="fa-solid fa-xmark"></i>
+                  İMTİNA ET <i className="fa-solid fa-xmark"></i>
                 </>
               ) : (
                 <>
-                  ƏLAVƏ ET <i class="fa-solid fa-plus"></i>
+                  ƏLAVƏ ET <i className="fa-solid fa-plus"></i>
                 </>
               )}
             </button>
           )}
           {addressList.shippingAddress && (
             <button>
-              REDAKTƏ ET<i class="fa-regular fa-pen-to-square"></i>
+              REDAKTƏ ET<i className="fa-regular fa-pen-to-square"></i>
             </button>
           )}
         </div>

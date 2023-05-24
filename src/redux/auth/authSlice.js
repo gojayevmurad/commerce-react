@@ -11,7 +11,6 @@ const initialState = {
     changePassword: {
         loading: false,
     },
-    loggedIn: false,
 };
 
 export const authSlice = createSlice({
@@ -27,9 +26,6 @@ export const authSlice = createSlice({
         setChangePasswordData: (state, action) => {
             state.changePassword.loading = action.payload.loading;
         },
-        setLoggedIn: (state, action) => {
-            state.loggedIn = action.payload;
-        }
     },
 });
 
@@ -51,7 +47,6 @@ export const loginAsync = (data, navigate, toast) => async (dispatch) => {
         const response = await login(data);
         if (response) {
             localStorage.setItem("user", JSON.stringify(response.data));
-            dispatch(setLoggedIn(true));
             toast.success(response.message);
         }
         navigate("/");
