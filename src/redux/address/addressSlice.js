@@ -4,7 +4,10 @@ import { addAddress, deleteAddress, editAddress, getAddressList } from "../../ap
 const initialState = {
     addressList: {
         loading: false,
-        data: []
+        data: {
+            billingAddress: [],
+            shippingAddress: []
+        }
     }
 }
 
@@ -32,7 +35,18 @@ export const addAddressAsync = (data, toast) => async (dispatch) => {
     dispatch(setAddressList({ loading: false }))
 }
 
+export const getAddressListAsync = (toast) => async (dispatch) => {
+    dispatch(setAddressList({ loading: true }))
+    try {
+        const response = await getAddressList();
+        response && dispatch(setAddressList({ data: response.data }))
+    } catch (error) {
+        error && toast.error(error.message);
+    }
+    dispatch(setAddressList({ loading: false }))
+}
+
 
 export const { setAddressList } = addressSlice.actions
 
-export default addressSlice
+export default addressSlice.reducer;

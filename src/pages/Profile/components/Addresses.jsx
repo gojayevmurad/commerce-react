@@ -1,46 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/addresses.scss";
+import { useDispatch, useSelector } from "react-redux";
 
 import { InputText } from "primereact/inputtext";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { showInvalidMessage } from "../../../utils";
 import { Button } from "primereact/button";
+import {
+  addAddressAsync,
+  getAddressListAsync,
+} from "../../../redux/address/addressSlice";
+import { toast } from "react-hot-toast";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required("Adınızı daxil edin"),
   city: yup.string().required("Şəhər daxil edilməyib"),
-  street: yup.string().required("Küçə daxil edilməyib"),
+  address: yup.string().required("Küçə daxil edilməyib"),
   postalCode: yup.string().required("Poçt indeksi daxil edilməyib"),
 });
 
 const Addresses = () => {
+  const dispatch = useDispatch();
+
   const [billingAddress, setBillingAddress] = useState(false);
   const [shippingAddress, setShippingAddress] = useState(false);
 
-  const addressList = {
-    // billingAddress: [
-    //   {
-    //     name: "Billing address",
-    //     address: "address",
-    //     city: "Baku",
-    //   },
-    // ],
-    // shippingAddress: [
-    //   {
-    //     name: "Shipping address",
-    //     address: "address",
-    //     city: "Surakani",
-    //   },
-    // ],
-  };
+  const addressList = useSelector((state) => state.address.addressList.data);
+  const isLoading = useSelector((state) => state.address.addressList.loading);
+
+  useEffect(() => {
+    dispatch(getAddressListAsync(toast));
+  }, []);
 
   const onSubmitBilling = (body) => {
-    console.log(body);
+    dispatch(
+      addAddressAsync({ ...body, typeAddress: "billingAddress" }, toast)
+    );
   };
 
   const onSubmitShipping = (body) => {
-    console.log(body);
+    dispatch(
+      addAddressAsync({ ...body, typeAddress: "shippingAddress" }, toast)
+    );
   };
 
   const formikBillingAddress = useFormik({
@@ -83,11 +85,13 @@ const Addresses = () => {
                     <p>
                       City : <span>{item.city}</span>
                     </p>
+                    <p>
+                      Postal code : <span>{item.postalCode}</span>
+                    </p>
                   </div>
                 );
               })}
-
-            {!addressList.billingAddress && (
+            {addressList.billingAddress.length < 1 && (
               <form
                 onSubmit={formikBillingAddress.handleSubmit}
                 className={!billingAddress && "hide"}
@@ -115,15 +119,15 @@ const Addresses = () => {
                   formikBillingAddress.touched.city
                 )}
                 <InputText
-                  name="street"
+                  name="address"
                   onChange={formikBillingAddress.handleChange}
                   onBlur={formikBillingAddress.handleBlur}
                   className="input"
                   placeholder="Ünvan"
                 />
                 {showInvalidMessage(
-                  formikBillingAddress.errors.street,
-                  formikBillingAddress.touched.street
+                  formikBillingAddress.errors.address,
+                  formikBillingAddress.touched.address
                 )}
                 <InputText
                   name="postalCode"
@@ -137,15 +141,11 @@ const Addresses = () => {
                   formikBillingAddress.touched.postalCode
                 )}
 
-                <Button
-                  type="submit"
-                  // loading={loginState.loading}
-                  label="Saxla"
-                />
+                <Button type="submit" loading={isLoading} label="Saxla" />
               </form>
             )}
           </div>
-          {!addressList.billingAddress && (
+          {addressList.billingAddress.length < 1 && (
             <button onClick={billingAddressHandler}>
               {billingAddress ? (
                 <>
@@ -156,11 +156,6 @@ const Addresses = () => {
                   ƏLAVƏ ET <i className="fa-solid fa-plus"></i>
                 </>
               )}
-            </button>
-          )}
-          {addressList.billingAddress && (
-            <button>
-              REDAKTƏ ET <i className="fa-regular fa-pen-to-square"></i>
             </button>
           )}
         </div>
@@ -184,7 +179,7 @@ const Addresses = () => {
                 );
               })}
 
-            {!addressList.shippingAddress && (
+            {addressList.shippingAddress.length < 3 && (
               <form
                 onSubmit={formikShippingAddress.handleSubmit}
                 className={!shippingAddress && "hide"}
@@ -212,15 +207,15 @@ const Addresses = () => {
                   formikShippingAddress.touched.city
                 )}
                 <InputText
-                  name="street"
+                  name="address"
                   onChange={formikShippingAddress.handleChange}
                   onBlur={formikShippingAddress.handleBlur}
                   className="input"
                   placeholder="Ünvan"
                 />
                 {showInvalidMessage(
-                  formikShippingAddress.errors.street,
-                  formikShippingAddress.touched.street
+                  formikShippingAddress.errors.address,
+                  formikShippingAddress.touched.address
                 )}
                 <InputText
                   name="postalCode"
@@ -236,14 +231,14 @@ const Addresses = () => {
 
                 <Button
                   type="submit"
-                  // loading={loginState.loading}
+                  loading={isLoading}
                   label="Daxil ol"
                   className="submit_btn"
                 />
               </form>
             )}
           </div>
-          {!addressList.shippingAddress && (
+          {addressList.shippingAddress.length < 3 && (
             <button onClick={shippingAddressHandler}>
               {shippingAddress ? (
                 <>
@@ -254,11 +249,6 @@ const Addresses = () => {
                   ƏLAVƏ ET <i className="fa-solid fa-plus"></i>
                 </>
               )}
-            </button>
-          )}
-          {addressList.shippingAddress && (
-            <button>
-              REDAKTƏ ET<i className="fa-regular fa-pen-to-square"></i>
             </button>
           )}
         </div>

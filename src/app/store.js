@@ -5,6 +5,7 @@ import userSlice from "../features/user/userSlice";
 import authSlice from "../redux/auth/authSlice";
 import productsSlice from "../redux/products/productsSlice";
 import basketSlice from "../redux/basket/basketSlice";
+import addressSlice from "../redux/address/addressSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     user: userSlice,
     auth: authSlice,
     products: productsSlice,
-    basket: basketSlice
+    basket: basketSlice,
+    address: addressSlice
   },
 });
