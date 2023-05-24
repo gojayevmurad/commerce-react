@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let baseUrl = "http://localhost:5000/";
+let baseUrl = "https://commerce-react-bak.onrender.com/";
 
 export default class FetchData {
   // get products
