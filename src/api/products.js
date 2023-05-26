@@ -1,4 +1,4 @@
-import { axiosClient, axiosClientFree } from ".";
+import { axiosClientFree } from ".";
 
 const getProducts = (params) => {
     return axiosClientFree.get("/products/", {

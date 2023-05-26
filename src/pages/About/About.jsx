@@ -4,7 +4,6 @@ import banner from "../../assets/about_banner.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay, Navigation } from "swiper";
 
 const About = () => {
   const comment = {

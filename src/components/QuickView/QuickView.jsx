@@ -3,10 +3,40 @@ import StarRating from "../StarRating/StarRating";
 import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
 import "./quickView.scss";
 import AddToWishListBtn from "../AddToWishListBtn/AddToWishListBtn";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Controller } from "swiper";
 import { NavLink } from "react-router-dom";
 
+const ChangeSwiper = (index) => {
+  const swiper = useSwiper();
+  swiper.slideTo(index);
+};
+
+// const slideChangeHandler = (swiper) => {
+//   const elements = swiper.pagination.bullets;
+//   const nextBtn = document.querySelector(".swiper-next-btn");
+//   const prevBtn = document.querySelector(".swiper-prev-btn");
+
+//   if (elements[elements.length - 1].classList.contains("active")) {
+//     nextBtn.classList.add("hide");
+//   } else {
+//     nextBtn.classList.remove("hide");
+//   }
+
+//   if (elements[0].classList.contains("active")) {
+//     prevBtn.classList.add("hide");
+//   } else {
+//     prevBtn.classList.remove("hide");
+//   }
+// };
+
 const QuickView = (props) => {
+
   const { product, setMaximize } = props;
+  const [controllerSwiper, setControllerSwiper] = useState(null);
+
+  const slideTo = (index) => controllerSwiper.slideTo(index);
+
   const {
     name,
     price,
@@ -18,8 +48,7 @@ const QuickView = (props) => {
     offer,
     order_count,
   } = product;
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  
   return (
     <>
       <div
@@ -29,7 +58,20 @@ const QuickView = (props) => {
       <div className="quickview">
         <div className="quickview--left">
           <div className="quickview--left__img">
-            <img src={img[currentImageIndex]} alt="image" />
+            <Swiper
+              className="about_slider"
+              spaceBetween={50}
+              slidesPerView={1}
+              onSwiper={setControllerSwiper}
+            >
+              {img.map((item, index) => {
+                return (
+                  <SwiperSlide key={index} className="slide_quick">
+                    <img src={item} alt="" />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
           </div>
           <div className="quickview--left__images">
             {img.map((image, index) => {
@@ -38,7 +80,7 @@ const QuickView = (props) => {
                   src={image}
                   alt="image"
                   key={index}
-                  onMouseDown={() => setCurrentImageIndex(index)}
+                  onMouseDown={() => slideTo(index)}
                 />
               );
             })}

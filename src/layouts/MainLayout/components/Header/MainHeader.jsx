@@ -1,6 +1,4 @@
 import React from "react";
-import logo from "../../../../assets/header/logo.png";
-import compare from "../../../../assets/header/compare.png";
 import wish from "../../../../assets/header/wish.png";
 import cart from "../../../../assets/header/cart.png";
 import { Link, NavLink } from "react-router-dom";
@@ -52,7 +50,7 @@ const MainHeader = () => {
             </div>
             <ul>
               <li
-                className={wishCount > 0 && "header_count"}
+                className={wishCount > 0 ? "header_count" : ""}
                 data-count={wishCount}
               >
                 <NavLink to="profile/favorites">

@@ -79,14 +79,14 @@ const BottomHeader = () => {
             </ul>
           </div>
           <div>
-            <div className="header--bottom__track_order">
+            <NavLink to="/profile" className="header--bottom__track_order">
               <i className="fa-solid fa-location-dot"></i>
               Sifarişi İzlə
-            </div>
-            <div className="header--bottom__daily_deals">
+            </NavLink>
+            <NavLink to="/cooming-soon" className="header--bottom__daily_deals">
               <i className="fa-solid fa-percent"></i>
               Günlük Fürsətlər
-            </div>
+            </NavLink>
           </div>
         </div>
       </div>

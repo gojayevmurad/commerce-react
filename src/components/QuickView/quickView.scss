@@ -15,6 +15,9 @@
   color: #000;
   font-weight: 500;
   background-color: #fff;
+  .swiper-wrapper {
+    align-items: center;
+  }
   &_overlay {
     position: fixed;
     top: 0;

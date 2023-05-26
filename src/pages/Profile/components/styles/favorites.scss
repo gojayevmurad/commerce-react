@@ -62,4 +62,13 @@
       }
     }
   }
+  .empty_favorite_text {
+    font-size: 1.1rem;
+    font-weight: 400;
+    a {
+      text-decoration: underline;
+      font-weight: 500;
+      color: var(--primary-color);
+    }
+  }
 }

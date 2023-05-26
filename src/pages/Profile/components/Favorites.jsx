@@ -3,6 +3,7 @@ import "./styles/favorites.scss";
 import Product from "../../../components/Product/Product";
 import { useSelector } from "react-redux";
 import AddToWishListBtn from "../../../components/AddToWishListBtn/AddToWishListBtn";
+import { NavLink } from "react-router-dom";
 
 const Item = ({ item }) => {
   const [mouseOver, setMouseOver] = useState(false);
@@ -40,6 +41,11 @@ const Favorites = () => {
         {products.map((item, index) => {
           return <Item key={index} item={item} />;
         })}
+        {!products.length && (
+          <p className="empty_favorite_text">
+            İstək siyahınız boşdur. <NavLink to="/shop">Mağazaya get</NavLink>
+          </p>
+        )}
       </div>
     </div>
   );

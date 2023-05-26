@@ -96,9 +96,9 @@ const MainSwiper = () => {
               </p>
               <h3 className="text-secondary">Yeni & Keyfiyyətli</h3>
               <span className="text-light">Yalnız bu həftə sonunadək.</span>
-              <button>
+              {/* <button>
                 İNDİ AL <i className="fa-solid fa-arrow-right-long"></i>
-              </button>
+              </button> */}
             </div>
           </div>
         </SwiperSlide>

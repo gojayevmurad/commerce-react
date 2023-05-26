@@ -16,6 +16,7 @@ import Orders from "../pages/Profile/components/Orders";
 import Favorites from "../pages/Profile/components/Favorites";
 import ChangePassword from "../pages/Profile/components/ChangePassword";
 import Addresses from "../pages/Profile/components/Addresses";
+import CoomingSoon from "../pages/CoomingSoon/CoomingSoon";
 
 const routes = [
   {
@@ -92,6 +93,10 @@ const routes = [
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/cooming-soon",
+    element: <CoomingSoon />,
   },
 ];
 
