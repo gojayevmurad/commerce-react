@@ -50,8 +50,8 @@ const QuickView = (props) => {
           <p>Stokdakı məhsul sayı : {stock_count}</p>
           <StarRating rating={rating} />
           <div className="quickview--right__price">
-            <p className={offer ? "old_price" : "price"}>₼ {price}</p>
-            {offer && <p className="new_price">₼ {offer}</p>}
+            <p className={offer > 0 ? "old_price" : "price"}>₼ {price}</p>
+            {offer > 0 && <p className="new_price">₼ {offer}</p>}
           </div>
           <div className="quickview_actions">
             <div>

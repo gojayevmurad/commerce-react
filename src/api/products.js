@@ -14,15 +14,4 @@ const getPopularSalesProducts = () => {
     return axiosClientFree.get("/products/popular-sales")
 }
 
-
-const getFavoriteProducts = () => {
-    return axiosClient.get("/product-ms/v1/product/client/view/favorite");
-};
-
-const deleteFavoriteProduct = (id) => {
-    return axiosClient.delete(
-        `/product-ms/v1/product/client/view/favorite/${id}`
-    );
-};
-
-export { getProducts, getFavoriteProducts, deleteFavoriteProduct, getGamerWorldProducts, getPopularSalesProducts };
+export { getProducts, getGamerWorldProducts, getPopularSalesProducts };

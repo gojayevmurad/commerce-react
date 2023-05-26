@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProducts, getFavoriteProducts, deleteFavoriteProduct, getGamerWorldProducts, getPopularSalesProducts } from "../../api/products";
+import { getProducts, getGamerWorldProducts, getPopularSalesProducts } from "../../api/products";
 
 const initialState = {
     products: {
-        loading: false,
+        loading: {},
         totalCount: 0,
         data: null
     },
@@ -85,31 +85,6 @@ export const getPopularSalesproductsAsync = (toast) => async (dispatch) => {
     }
     dispatch(setGamerWorldProducts({ loading: false }));
 }
-
-
-export const getFavoriteProductsAsync = (toast) => async (dispatch) => {
-    dispatch(setFavoriteProducts({ loading: true }));
-    try {
-        const response = await getFavoriteProducts();
-        response && dispatch(setFavoriteProducts({ data: response.data }));
-    } catch (error) {
-        error && toast.error(error.message);
-    }
-    dispatch(setFavoriteProducts({ loading: false }));
-};
-
-export const deleteFavoriteProductAsync = (id, toast) => async (dispatch) => {
-    try {
-        await deleteFavoriteProduct(id);
-        dispatch(getFavoriteProductsAsync());
-    } catch (error) {
-        error && toast.error(error.message);
-    }
-};
-
-//deleteFavoriteProduct, getFavoriteProducts, getProducts
-
-
 
 export const { setProducts, setFavoriteProducts, setGamerWorldProducts, setPopularSalesProducts } = productsSlice.actions;
 

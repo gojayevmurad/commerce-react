@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./styles/addresses.scss";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,6 +9,7 @@ import { showInvalidMessage } from "../../../utils";
 import { Button } from "primereact/button";
 import {
   addAddressAsync,
+  deleteAddressAsync,
   getAddressListAsync,
 } from "../../../redux/address/addressSlice";
 import { toast } from "react-hot-toast";
@@ -20,7 +21,16 @@ const validationSchema = yup.object().shape({
   postalCode: yup.string().required("Poçt indeksi daxil edilməyib"),
 });
 
+const initialValues = {
+  name: "",
+  city: "",
+  address: "",
+  postalCode: "",
+};
+
 const Addresses = () => {
+  const shippingFormRef = useRef();
+  const billingFormRef = useRef();
   const dispatch = useDispatch();
 
   const [billingAddress, setBillingAddress] = useState(false);
@@ -37,23 +47,27 @@ const Addresses = () => {
     dispatch(
       addAddressAsync({ ...body, typeAddress: "billingAddress" }, toast)
     );
+    billingFormRef.current.reset();
+    setBillingAddress(false);
   };
 
   const onSubmitShipping = (body) => {
     dispatch(
       addAddressAsync({ ...body, typeAddress: "shippingAddress" }, toast)
     );
+    setShippingAddress(false);
+    shippingFormRef.current.reset();
   };
 
   const formikBillingAddress = useFormik({
-    initialValues: {},
-    onSubmit: onSubmitBilling,
+    initialValues,
+    onSubmit: async (body) => onSubmitBilling(body),
     validationSchema,
   });
 
   const formikShippingAddress = useFormik({
-    initialValues: {},
-    onSubmit: onSubmitShipping,
+    initialValues,
+    onSubmit: (body) => onSubmitShipping(body),
     validationSchema,
   });
 
@@ -63,6 +77,10 @@ const Addresses = () => {
 
   const shippingAddressHandler = () => {
     setShippingAddress(!shippingAddress);
+  };
+
+  const deleteAddressHandler = (id, type) => {
+    dispatch(deleteAddressAsync(id, type, toast));
   };
 
   return (
@@ -76,6 +94,19 @@ const Addresses = () => {
               addressList.billingAddress.map((item, index) => {
                 return (
                   <div key={index}>
+                    <div className="actions_address">
+                      {/* <div className="edit_address">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </div> */}
+                      <div
+                        className="delete_address"
+                        onClick={() =>
+                          deleteAddressHandler(item._id, "billingAddress")
+                        }
+                      >
+                        <i class="fa-solid fa-trash"></i>
+                      </div>
+                    </div>
                     <p>
                       Name : <span>{item.name}</span>
                     </p>
@@ -94,6 +125,7 @@ const Addresses = () => {
             {addressList.billingAddress.length < 1 && (
               <form
                 onSubmit={formikBillingAddress.handleSubmit}
+                ref={billingFormRef}
                 className={!billingAddress && "hide"}
               >
                 <InputText
@@ -166,6 +198,19 @@ const Addresses = () => {
               addressList.shippingAddress.map((item, index) => {
                 return (
                   <div key={index}>
+                    <div className="actions_address">
+                      {/* <button className="edit_address">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </button> */}
+                      <button
+                        className="delete_address"
+                        onClick={() =>
+                          deleteAddressHandler(item._id, "shippingAddress")
+                        }
+                      >
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
                     <p>
                       Name : <span>{item.name}</span>
                     </p>
@@ -182,6 +227,7 @@ const Addresses = () => {
             {addressList.shippingAddress.length < 3 && (
               <form
                 onSubmit={formikShippingAddress.handleSubmit}
+                ref={shippingFormRef}
                 className={!shippingAddress && "hide"}
               >
                 <InputText

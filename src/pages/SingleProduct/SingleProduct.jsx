@@ -86,12 +86,12 @@ const SingleProduct = () => {
               <div className="single_product_main--info__pricing">
                 <p
                   className={
-                    product.offer ? "single_old_price" : "single_price"
+                    product.offer > 0 ? "single_old_price" : "single_price"
                   }
                 >
                   ₼ {product.price}
                 </p>
-                {product.offer && (
+                {product.offer > 0 && (
                   <p className="single_new_price"> ₼ {product.offer}</p>
                 )}
               </div>

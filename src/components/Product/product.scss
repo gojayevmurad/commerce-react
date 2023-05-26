@@ -200,6 +200,27 @@
       justify-content: center;
       align-items: center;
       position: relative;
+      height: 34px;
+      width: 34px;
+      &.wish_loading {
+        background-color: #fff;
+        div {
+          height: 100%;
+          width: 100%;
+          border: 3px solid var(--primary-color);
+          border-bottom-color: #fff;
+          margin: 5px 0;
+          border-radius: 50%;
+          animation: rotate1 1s both infinite;
+        }
+        &::after {
+          display: none !important;
+        }
+        svg {
+          display: none;
+        }
+      }
+
       &::after {
         content: attr(data-title);
         background-color: var(--primary-color);
@@ -262,6 +283,15 @@ body {
 
   100% {
     transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@keyframes rotate1 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
 .add_loading {

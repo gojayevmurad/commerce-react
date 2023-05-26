@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 import SubscribeNews from "./components/SubscribeNews/SubscribeNews";
-import Header from "./components/Header1/Header";
+import Header from "./components/Header/Header";
 import Footer from "./components/footer/Footer";
 import WelcomePopup from "./components/WelcomePopup/WelcomePopup";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-hot-toast'
 import { getBasketItemsAsync } from "../../redux/basket/basketSlice";
+import { getFavoritesProductsAsync } from "../../redux/favorites/favoritesSlice";
 
 const MainLayout = () => {
   const dispatch = useDispatch()
@@ -17,6 +18,7 @@ const MainLayout = () => {
   useEffect(() => {
     if (auth) {
       dispatch(getBasketItemsAsync(toast));
+      dispatch(getFavoritesProductsAsync(toast))
     }
     //#region welcome popup
     const welcomePopup = JSON.parse(localStorage.getItem("welcomePopup"));

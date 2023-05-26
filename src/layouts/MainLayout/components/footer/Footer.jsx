@@ -12,29 +12,26 @@ const Footer = () => {
           <div className="footer--main">
             <ul>
               <li>
-                <h3>About Us</h3>
-                <p>
-                  We know there are a lot of threa developers our but we pride
-                  into a firm in the industry.
-                </p>
+                <h3>Haqqımızda</h3>
+                <p>Biz e-ticarət şirkətiyik)</p>
               </li>
               <li>
-                <h3>Feature</h3>
-                <a href="#">About Us</a>
-                <a href="#">Terms Condition</a>
-                <a href="#">Best Products</a>
+                <h3>Əsas</h3>
+                <a href="#">Haqqımızda</a>
+                <a href="#">Məxfilik siyasəti</a>
+                <a href="#">Ən yaxşı məhsullar</a>
               </li>
               <li>
-                <h3>General Links</h3>
-                <a href="#">Blog</a>
-                <a href="#">Tracking Order</a>
-                <a href="#">Become Seller</a>
+                <h3>Əsas Keçidlər</h3>
+                <a href="#">Bloq</a>
+                <a href="#">Sifariş İzləmə</a>
+                <a href="#">Satıcı ol</a>
               </li>
               <li>
-                <h3>Helpful</h3>
-                <a href="#">Flash Sale</a>
+                <h3>Kömək</h3>
+                <a href="#">Geri ödəmə</a>
                 <a href="#">FAQ</a>
-                <a href="#">Support</a>
+                <a href="#">Dəstək</a>
               </li>
             </ul>
           </div>

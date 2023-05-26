@@ -48,10 +48,10 @@ const PopularSales = () => {
                         {item.name}
                       </NavLink>
                       <div className="popular_sales--products__item--desc--prices">
-                        <span className={item.offer && "old_price"}>
+                        <span className={item.offer > 0 && "old_price"}>
                           ₼ {item.price}
                         </span>
-                        {item.offer && (
+                        {item.offer > 0 && (
                           <span className="new_price">₼ {item.offer}</span>
                         )}
                       </div>

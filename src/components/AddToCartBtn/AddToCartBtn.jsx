@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToBasketAsync,
-  getBasketItemsAsync,
   removeBasketItemsAsync,
 } from "../../redux/basket/basketSlice";
 import { toast } from "react-hot-toast";

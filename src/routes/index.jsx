@@ -14,7 +14,6 @@ import Register from "../pages/Register/Register";
 import Profile from "../pages/Profile/Profile";
 import Orders from "../pages/Profile/components/Orders";
 import Favorites from "../pages/Profile/components/Favorites";
-import PersonalData from "../pages/Profile/components/PersonalData";
 import ChangePassword from "../pages/Profile/components/ChangePassword";
 import Addresses from "../pages/Profile/components/Addresses";
 
@@ -69,10 +68,6 @@ const routes = [
           {
             path: "favorites",
             element: <Favorites />,
-          },
-          {
-            path: "personal-data",
-            element: <PersonalData />,
           },
           {
             path: "change-password",

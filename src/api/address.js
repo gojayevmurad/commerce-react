@@ -8,8 +8,8 @@ const addAddress = (data) => {
     return axiosClient.post('/address', data)
 }
 
-const deleteAddress = (id) => {
-    return axiosClient.delete(`address${id}`, id)
+const deleteAddress = (id, type) => {
+    return axiosClient.delete(`address/${id}/${type}`)
 }
 
 const editAddress = (id, data) => {

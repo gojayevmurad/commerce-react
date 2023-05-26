@@ -1,42 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 import {
-  addToWishList,
-  removeFromWishList,
-} from "../../features/wish/wishSlice";
+  addFavoriteProductAsync,
+  deleteFavoriteProductAsync,
+} from "../../redux/favorites/favoritesSlice";
 
 const AddToWishListBtn = ({ id }) => {
-  const [isAdded, setIsAdded] = useState(false);
   const dispatch = useDispatch();
 
-  const wishItem = useSelector((state) => {
-    return state.wish.find((item) => {
-      return item.id == id;
-    });
-  });
+  const isAdded = useSelector((state) =>
+    state.favorites.data.find((item) => {
+      return item._id == id;
+    })
+  );
+  const loading = useSelector((state) => state.favorites.loading[id]);
 
-  const WishListReducer = () => {
+  const wishListReducer = () => {
     if (isAdded) {
-      dispatch(removeFromWishList({ id: id }));
-      setIsAdded(false);
+      dispatch(deleteFavoriteProductAsync(id, toast));
     } else {
-      dispatch(addToWishList({ id: id }));
-      setIsAdded(true);
+      dispatch(addFavoriteProductAsync({ productId: id }));
     }
   };
-
-  useEffect(() => {
-    wishItem && setIsAdded(true);
-  }, []);
-
   return (
     <div
-      onClick={() => WishListReducer()}
+      onClick={() => {
+        wishListReducer();
+      }}
       className={
-        isAdded ? "product--actions__wish added" : "product--actions__wish"
+        loading
+          ? "product--actions__wish wish_loading"
+          : isAdded
+          ? "product--actions__wish added"
+          : "product--actions__wish"
       }
       data-title="İstək Siyahısı"
     >
+      <div></div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

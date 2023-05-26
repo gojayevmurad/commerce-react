@@ -28,16 +28,7 @@ const SideBar = () => {
           <NavLink to="favorites">
             <div>
               <i className="fa-regular fa-heart"></i>
-              Bəyənilənlər
-            </div>
-            <i className="fa-solid fa-chevron-right"></i>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="personal-data">
-            <div>
-              <i className="fa-regular fa-user"></i>
-              Şəxsi məlumatlar
+              İstəklər
             </div>
             <i className="fa-solid fa-chevron-right"></i>
           </NavLink>
@@ -62,9 +53,7 @@ const SideBar = () => {
         </li>
         <li>
           <button onClick={logoutHandler} className="profile_sidebar-logout">
-            <div>
-              <i className="fa-solid fa-arrow-right-to-bracket"></i>Hesabdan çıx
-            </div>
+            <i className="fa-solid fa-arrow-right-to-bracket"></i>Hesabdan çıx
           </button>
         </li>
       </ul>

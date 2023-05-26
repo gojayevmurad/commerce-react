@@ -91,13 +91,13 @@ const MainSwiper = () => {
             <img className="parallax-image" src={item.img} alt="" />
             <div className="header_swiper--slide__content">
               <p className="text-light">
-                Mountain-
-                <span className="text-orange">Climbing</span>
+                İdman-
+                <span className="text-orange">Əyləncə</span>
               </p>
-              <h3 className="text-secondary">Hot & Packback</h3>
-              <span className="text-light">Only until the end this week.</span>
+              <h3 className="text-secondary">Yeni & Keyfiyyətli</h3>
+              <span className="text-light">Yalnız bu həftə sonunadək.</span>
               <button>
-                Shop Now <i className="fa-solid fa-arrow-right-long"></i>
+                İNDİ AL <i className="fa-solid fa-arrow-right-long"></i>
               </button>
             </div>
           </div>

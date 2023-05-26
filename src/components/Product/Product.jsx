@@ -33,14 +33,14 @@ const Product = ({ product, loading }) => {
       <div className="product--price">
         <div
           className={
-            offerPrice != 0
+            offerPrice > 0
               ? "discount product--price__item "
               : " product--price__item"
           }
         >
           ₼<p>{price}</p>
         </div>
-        {offerPrice != 0 && (
+        {offerPrice > 0 && (
           <div className="product--price__item new--price">
             ₼ <p>{offerPrice}</p>
           </div>

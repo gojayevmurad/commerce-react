@@ -225,6 +225,9 @@ const Shop = () => {
               {products ? (
                 <div className="shop_products--list--content">
                   {products.map((item, index) => {
+
+                    
+                    
                     return (
                       <Product
                         loading={productLoading}

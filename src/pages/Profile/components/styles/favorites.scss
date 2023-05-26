@@ -1,0 +1,65 @@
+.profile_favorites {
+  border: 1px solid #f2f2f2;
+  flex-basis: 100%;
+  padding: 30px 20px;
+
+  h3 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.6;
+  }
+
+  & > div {
+    overflow-y: scroll;
+    max-height: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & > div {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .selected_item {
+        position: absolute;
+        background-color: #ddd;
+        width: 449px;
+        height: 100%;
+        top: 0;
+        left: 50px;
+        z-index: -1;
+        transition: 0.3s;
+      }
+      &.hide {
+        .selected_item {
+          width: 10px;
+          height: 100%;
+          right: 20px;
+          top: 0;
+          opacity: 0;
+        }
+      }
+      & > div {
+        &:nth-child(2) {
+          width: 400px;
+        }
+        &:last-child {
+          height: min-content;
+          div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+          }
+        }
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}

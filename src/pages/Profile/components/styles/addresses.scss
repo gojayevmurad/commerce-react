@@ -1,5 +1,4 @@
 .profile_addresses {
-  // background-color: #f2f2f2;
   border: 1px solid #f2f2f2;
   flex-basis: 100%;
   padding: 30px 20px;
@@ -33,6 +32,28 @@
           border: 1px solid transparent;
           gap: 10px;
           transition: 0.3s linear;
+          position: relative;
+          &:hover {
+            .actions_address {
+              opacity: 1;
+            }
+          }
+          .actions_address {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            gap: 8px;
+            transition: 0.2s linear;
+            div {
+              cursor: pointer;
+              transition: 0.3s linear;
+              &:hover {
+                color: var(--primary-color);
+              }
+            }
+          }
           p {
             font-weight: 400;
             color: #000;
