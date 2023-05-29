@@ -74,7 +74,6 @@ const MainSwiper = () => {
       modules={[Pagination]}
       slidesPerGroup={1}
       slidesPerView={1}
-      onMouseLeave={(e) => e.target.swiper.autoplay.start()}
     >
       <SwiperBtnPrev />
       <SwiperBtnNext />

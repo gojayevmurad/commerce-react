@@ -33,6 +33,21 @@
         height: 100%;
         object-fit: cover;
       }
+      .swiper-next-btn,
+      .swiper-prev-btn {
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        z-index: 1;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+      .swiper-next-btn {
+        right: 10px;
+      }
     }
 
     &--list {
@@ -92,25 +107,44 @@
       }
     }
     &__add_to_cart {
+      width: max-content;
+      display: flex;
+      position: relative;
       button {
         height: 60px;
-        width: 140px;
+        width: 120px;
         padding: 0 10px;
         border: 1px solid transparent;
         outline: none;
         background-color: var(--primary-color);
         transition: 0.4s;
         cursor: pointer;
-        font-size: 1.2rem;
+        font-size: 0.9rem;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        &:disabled {
+          background-color: #ddd !important;
+          cursor: not-allowed;
+          &:hover {
+            background-color: #ddd !important;
+          }
+        }
         &.decrease_quantity_btn,
         &.increase_quantity_btn {
-          width: 50px;
+          width: 100px;
+          font-size: 1.2rem;
           &:hover {
             background-color: #fff;
             color: var(--primary-color);
             border: 1px solid var(--primary-color);
             font-size: 1rem;
           }
+        }
+        &.add_to_cart_btn_out_stock {
+          width: max-content;
         }
       }
       input {

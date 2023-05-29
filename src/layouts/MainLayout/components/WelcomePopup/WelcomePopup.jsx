@@ -17,20 +17,22 @@ const WelcomePopup = ({ closePopup }) => {
             ×
           </div>
           <p className="popup_off text-secondary">
-            GET UP TO <span className="text-primary">25% OFF</span>
+            <span className="text-primary">25% ENDİRİM </span> ƏLDƏ EDİN
           </p>
-          <p className="popup_header text-secondary">Sign up to Wolmart</p>
+          <p className="popup_header text-secondary">
+            DNP-də Qeydiyyatdan Keçin
+          </p>
           <p className="popup_text">
-            Subscribe to the Wolmart market newsletter to receive updates on
-            special offers.
+            Mağazamızın xəbərlərinə abunə olaraq xüsusi təkliflərdən dərhal
+            xəbərdar ola bilərsiniz.
           </p>
           <form method="POST">
             <input type="email" placeholder="Your email address" />
             <button>Submit</button>
-          </form>
+          </form> 
           <label>
             <input type="checkbox" />
-            Don't show this popup again.
+            Bunu bir daha göstərmə.
           </label>
         </div>
       </div>

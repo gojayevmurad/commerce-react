@@ -1,3 +1,5 @@
+@import "../../../../mixins.scss";
+
 .subscribe_news {
   position: relative;
   margin: 20px 0;
@@ -7,6 +9,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    width: max-content;
     h3 {
       font-size: 3rem;
       font-weight: 500;
@@ -55,6 +58,36 @@
           background-color: #fff;
           color: var(--primary-color);
         }
+      }
+    }
+    @include extra-small {
+      h3 {
+        font-size: 2rem;
+        font-weight: 400;
+      }
+      p {
+        font-size: 1rem;
+        font-weight: 300;
+      }
+      .subscribe_news--inputgroup {
+        label {
+          input {
+            width: 200px;
+            font-size: 14px;
+          }
+        }
+        button {
+          width: auto;
+          padding: 0 10px;
+        }
+      }
+    }
+    @include extra-extra-small {
+      h3 {
+        font-size: 1.7rem;
+      }
+      p {
+        font-size: 0.9rem;
       }
     }
   }

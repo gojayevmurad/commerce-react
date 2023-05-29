@@ -6,6 +6,19 @@
     rgba(255, 187, 56, 1) 100%
   );
 
+  & > a {
+    position: absolute;
+    margin: 20px;
+    margin-top: 20px;
+    color: #000;
+    font-weight: 600;
+    transition: 0.2s linear;
+    &:hover {
+      background-color: #fff;
+      color: var(--primary-color);
+    }
+  }
+
   &--content {
     height: 100vh;
     display: flex;

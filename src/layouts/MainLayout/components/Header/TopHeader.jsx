@@ -1,5 +1,4 @@
 import React from "react";
-import "./header.scss";
 import { Link } from "react-router-dom";
 
 const TopHeader = ({ auth }) => {
@@ -7,7 +6,7 @@ const TopHeader = ({ auth }) => {
     <div className="header--top">
       <div className="container">
         <div className="header--top--content">
-          <div>MAĞAZAMIZA XOŞ GƏLMİŞSİNİZ!</div>
+          <p>MAĞAZAMIZA XOŞ GƏLMİŞSİNİZ!</p>
           <div className="header--top__actions">
             <ul>
               <Link to="/contact">Əlaqə</Link>

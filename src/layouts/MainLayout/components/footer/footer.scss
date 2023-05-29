@@ -1,45 +1,56 @@
-.footer{
+@import "../../../../mixins.scss";
 
-    margin: 100px 0;
-    
-    &--content{
-        &>p{
-            text-align: center  ;
-            font-size: 2rem;
-            font-weight: 600;
-            padding-bottom: 50px;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 50px;
-            .footer__diff{
-                color: var(--primary-color);
-            }
-        }
+.footer {
+  margin: 100px 0;
 
+  &--content {
+    & > p {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+      padding-bottom: 50px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 50px;
+      .footer__diff {
+        color: var(--primary-color);
+      }
     }
-    &--main{
-        ul{
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            li{
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                gap: 20px;
-                a{
-                    color: #555;
-                    border: none;
-                    border-bottom: 1px solid transparent;
-                    width: max-content;
-                    &:hover{
-                        color: #000;
-                        border-bottom: 1px solid black;
-                    }
-                }
-                &:first-child{
-                    width: 300px;
-                }
-            }
+  }
+  &--main {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      justify-content: space-between;
+      align-items: start;
+      flex-wrap: wrap;
+      li {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+        a {
+          color: #555;
+          border: none;
+          border-bottom: 1px solid transparent;
+          width: max-content;
+          &:hover {
+            color: #000;
+            border-bottom: 1px solid black;
+          }
         }
+        // &:first-child {
+        //   width: 300px;
+        // }
+      }
+      @include mobile {
+        padding: 0 10px;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+      }
+      @include extra-extra-small {
+        grid-template-columns: 1fr;
+        padding-left: 40px;
+      }
     }
+  }
 }

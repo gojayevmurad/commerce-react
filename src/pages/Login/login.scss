@@ -1,5 +1,17 @@
 .login_page {
   height: 100vh;
+  & > a {
+    position: absolute;
+    margin: 20px;
+    margin-top: 20px;
+    color: #000;
+    font-weight: 600;
+    transition: 0.2s linear;
+    &:hover {
+      background-color: #fff;
+      color: var(--primary-color);
+    }
+  }
   background: linear-gradient(
     150deg,
     rgba(255, 255, 255, 1) 0%,

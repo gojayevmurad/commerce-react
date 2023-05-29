@@ -1,40 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StarRating from "../StarRating/StarRating";
 import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
 import "./quickView.scss";
 import AddToWishListBtn from "../AddToWishListBtn/AddToWishListBtn";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import { Controller } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { NavLink } from "react-router-dom";
 
-const ChangeSwiper = (index) => {
-  const swiper = useSwiper();
-  swiper.slideTo(index);
-};
-
-// const slideChangeHandler = (swiper) => {
-//   const elements = swiper.pagination.bullets;
-//   const nextBtn = document.querySelector(".swiper-next-btn");
-//   const prevBtn = document.querySelector(".swiper-prev-btn");
-
-//   if (elements[elements.length - 1].classList.contains("active")) {
-//     nextBtn.classList.add("hide");
-//   } else {
-//     nextBtn.classList.remove("hide");
-//   }
-
-//   if (elements[0].classList.contains("active")) {
-//     prevBtn.classList.add("hide");
-//   } else {
-//     prevBtn.classList.remove("hide");
-//   }
-// };
-
 const QuickView = (props) => {
-
   const { product, setMaximize } = props;
   const [controllerSwiper, setControllerSwiper] = useState(null);
-
+  const [smooth, setSmooth] = useState(false);
+  const [leftSide, setLeftSide] = useState(true);
   const slideTo = (index) => controllerSwiper.slideTo(index);
 
   const {
@@ -48,14 +24,28 @@ const QuickView = (props) => {
     offer,
     order_count,
   } = product;
-  
+
+  useEffect(() => {
+    setSmooth(true);
+  }, []);
+
   return (
     <>
       <div
-        className="quickview_overlay"
-        onMouseDown={() => setMaximize(false)}
+        className={smooth ? "quickview_overlay" : "quickview_overlay hide"}
+        onMouseDown={() => {
+          setLeftSide(false);
+          setSmooth(!smooth);
+          setTimeout(() => {
+            setMaximize(false);
+          }, 300);
+        }}
       ></div>
-      <div className="quickview">
+
+      <div
+        data-side={leftSide}
+        className={smooth ? "quickview" : "quickview hide"}
+      >
         <div className="quickview--left">
           <div className="quickview--left__img">
             <Swiper

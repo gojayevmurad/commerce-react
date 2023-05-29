@@ -21,6 +21,10 @@ body {
   }
 }
 
+.quickview_overlay {
+  cursor: url("./assets/overlay--cursor.webp"), auto;
+}
+
 .container {
   max-width: 1350px;
   margin: 0 auto;
@@ -54,4 +58,8 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
+}
+
+#root {
+  overflow: hidden;
 }

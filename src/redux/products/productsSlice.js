@@ -19,6 +19,10 @@ const initialState = {
         loading: false,
         data: null,
     },
+    searchProducts: {
+        loading: false,
+        data: null
+    }
 };
 
 export const productsSlice = createSlice({

@@ -61,6 +61,9 @@ const Register = () => {
 
   return (
     <div className="register_page">
+      <NavLink to="/">
+        <i class="fa-solid fa-arrow-left-long"></i> Mağazaya qayıt
+      </NavLink>
       <div className="container">
         <div className="register_page--content">
           <form onSubmit={handleSubmit}>

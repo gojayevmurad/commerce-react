@@ -6,7 +6,12 @@ import { useSelector } from "react-redux";
 
 const MainHeader = () => {
   const wishCount = useSelector((state) => state.favorites.data.length);
-  const categories = ["All categories", "Fashion", "Sports", "Games"];
+  const categories = [
+    "Bütün kategoriyalar",
+    "Mobil və Laptoplar",
+    "Şəkil və Video",
+    "Məişət",
+  ];
 
   return (
     <div className="header--main">
@@ -15,7 +20,7 @@ const MainHeader = () => {
           <Link to="/" className="header--logo">
             D<span className="diff-text">NP</span>
           </Link>
-          <form className="header--search">
+          {/* <form className="header--search">
             <select name="category" id="category">
               {categories.map((category, index) => (
                 <option key={index} value={category}>
@@ -23,11 +28,14 @@ const MainHeader = () => {
                 </option>
               ))}
             </select>
-            <input type="text" name="query" placeholder="Search in..." />
+            <input type="text" name="query" placeholder="Axtarış..." />
             <button>
               <i className="fa-solid fa-magnifying-glass"></i>
             </button>
-          </form>
+            <div className="header--search__list">
+              
+            </div>
+          </form> */}
           <div className="header--main__right">
             <div className="header--phone">
               <svg

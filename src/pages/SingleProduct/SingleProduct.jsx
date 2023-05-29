@@ -7,11 +7,37 @@ import AddToCartBtn from "../../components/AddToCartBtn/AddToCartBtn";
 import Loading from "../../components/Loading/Loading";
 import FetchData from "../../api/api";
 
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Pagination } from "swiper";
+
+const SwiperBtnNext = () => {
+  const swiper = useSwiper();
+  return (
+    <button
+      className="swiper-next-btn"
+      onClick={() => {
+        swiper.slideNext();
+      }}
+    >
+      <i className="fa-solid fa-chevron-right"></i>
+    </button>
+  );
+};
+
+const SwiperBtnPrev = () => {
+  const swiper = useSwiper();
+  return (
+    <button className="swiper-prev-btn" onClick={() => swiper.slidePrev()}>
+      <i className="fa-solid fa-chevron-left"></i>
+    </button>
+  );
+};
+
 const SingleProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [currentImage, setCurrentImage] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   let category;
 
@@ -32,9 +58,6 @@ const SingleProduct = () => {
     });
 
     window.scrollTo(0, 0);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
   }, []);
 
   const changeImage = (item) => {
@@ -59,7 +82,23 @@ const SingleProduct = () => {
           <div className="single_product_main--content">
             <div className="single_product_main--images">
               <div className="single_product_main--images--slider">
-                <img src={currentImage} alt="" />
+                <Swiper
+                  className="about_slider"
+                  spaceBetween={50}
+                  slidesPerView={1}
+                  modules={[Pagination]}
+                >
+                  <SwiperBtnPrev />
+                  <SwiperBtnNext />
+                  {product.image &&
+                    product.image.map((item, index) => {
+                      return (
+                        <SwiperSlide key={index} className="slide_quick">
+                          <img src={item} alt="" />
+                        </SwiperSlide>
+                      );
+                    })}
+                </Swiper>
               </div>
               <div className="single_product_main--images--list">
                 <div className="slider_prev_btn"></div>

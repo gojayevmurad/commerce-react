@@ -1,6 +1,7 @@
 @import "swiper/css";
 @import "swiper/css/free-mode";
 @import "swiper/css/pagination";
+@import "../../mixins.scss";
 .intro {
   margin-top: 20px;
   &--content {
@@ -11,16 +12,15 @@
 }
 
 .our--diff {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
   margin: 30px 0;
   border: 1px solid #eee;
   &__el {
-    width: 25%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: start;
     padding: 2.3rem 0;
     i {
       font-size: 32px;
@@ -36,6 +36,26 @@
       color: var(--text-color-light);
     }
   }
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include mobile {
+    grid-template-columns: 1fr;
+    padding: 0;
+    &__el {
+      padding: 1rem 0;
+      width: 60%;
+      i {
+        font-size: 20px;
+      }
+      h4 {
+        font-size: 13px;
+      }
+      p {
+        font-size: 11px;
+      }
+    }
+  }
 }
 
 .promotions--section {
@@ -43,6 +63,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
+  padding: 0 10px;
+  padding: 0 10px;
+  @include desktop {
+    margin-bottom: 50px;
+  }
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
   &__promo {
     background-size: cover;
     height: 200px;
@@ -87,6 +115,20 @@
     span {
       color: var(--primary-color);
       font-weight: 500;
+    }
+    @include extra-small {
+      font-size: 1.5rem;
+    }
+    @include extra-extra-small {
+      font-size: 1.1rem;
+    }
+  }
+  .productsList {
+    @include desktop {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile {
+      grid-template-columns: 1fr;
     }
   }
 }
@@ -178,11 +220,52 @@
       }
     }
   }
+
+  @include desktop {
+    &--products {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @include mobile {
+    &--products {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @include extra-small {
+    &--products {
+      row-gap: 10px;
+      &__item {
+        font-size: 14px;
+        letter-spacing: -0.5px;
+        &--image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 60px;
+            height: 60px;
+          }
+        }
+      }
+    }
+    &--head {
+      font-size: 1.2rem;
+      button {
+        height: 100%;
+        width: auto;
+        padding: 5px;
+      }
+    }
+  }
 }
 
 .header_swiper {
   margin: 30px 0;
 
+  @include mobile {
+    display: none;
+  }
   .swiper-pagination {
     position: absolute;
     bottom: 0;
@@ -209,6 +292,10 @@
     background-color: transparent;
     font-size: 2rem;
 
+    @include desktop {
+      display: none;
+    }
+
     &.hide {
       pointer-events: none !important;
       color: #c4c4c5;
@@ -216,11 +303,11 @@
   }
 
   .swiper-next-btn {
-    right: 150px;
+    right: 3%;
   }
 
   .swiper-prev-btn {
-    left: 150px;
+    left: 3%;
   }
 
   &--slide {
@@ -235,6 +322,7 @@
       align-items: center;
       gap: 150px;
       display: flex;
+
       & > div {
         display: flex;
         align-items: end;
@@ -245,7 +333,7 @@
           object-fit: contain;
         }
         p {
-          font-size: 3rem;
+          font-size: 48px;
           line-height: 1;
         }
         h3 {
@@ -271,6 +359,44 @@
           &:hover {
             background-color: var(--text-color);
             color: #fff;
+          }
+        }
+      }
+
+      @include tablet {
+        height: 400px;
+        gap: 70px;
+        & > img {
+          height: 370px;
+        }
+        & > div {
+          .text-light {
+            font-size: 2rem;
+          }
+          h3 {
+            font-size: 2.2rem;
+          }
+          & > span {
+            font-size: 1rem !important;
+          }
+        }
+      }
+      @include mobile {
+        height: 350px;
+        gap: 35px;
+        & > img {
+          height: 350px;
+          object-fit: contain;
+        }
+        & > div {
+          .text-light {
+            font-size: 1.5rem;
+          }
+          h3 {
+            font-size: 1.7rem;
+          }
+          & > span {
+            font-size: 1rem !important;
           }
         }
       }

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import "./product.scss";
 import StarRating from "../StarRating/StarRating";
 import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import AddToWishListBtn from "../AddToWishListBtn/AddToWishListBtn";
 import QuickView from "../QuickView/QuickView";
@@ -15,7 +14,12 @@ const Product = ({ product, loading }) => {
 
   return (
     <div className={loading ? "product product_loading" : "product"}>
-      {maximize && <QuickView product={product} setMaximize={setMaximize} />}
+      {maximize && (
+        <QuickView
+          product={product}
+          setMaximize={setMaximize}
+        />
+      )}
       <div className="product--img">
         <img src={image[0]} alt={name} />
         <img src={image[1]} alt={name} />
