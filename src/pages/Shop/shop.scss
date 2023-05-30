@@ -1,24 +1,58 @@
+@import "../../mixins.scss";
+
+.shop_products--overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #5555555c;
+  z-index: 8;
+  transition: 0.3s linear;
+  &[data-show="false"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
 .shop_products {
   margin: 20px 0;
 
   &--content {
     display: grid;
     grid-template-columns: 3fr 11fr;
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
   }
 
   &--filter {
-    padding: 20px 25px 20px 25px;
+    min-width: 265px;
+    padding: 20px 25px;
     position: sticky;
     height: min-content;
     top: 20px;
     background-color: #fff;
     margin-right: 10px;
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 30px;
     justify-content: center;
     border: 1px solid #ddd;
+    transition: 0.5s linear;
+    button.show-filter {
+      display: none;
+      padding: 20px 25px;
+      position: absolute;
+      right: -19%;
+      top: 50%;
+      border: none;
+      outline: none;
+      transform: translate(0, -50%) rotate(90deg);
+      background-color: #000;
+      color: #fff;
+      font-size: 1.1rem;
+      transition: 0.5s;
+    }
     h4 {
       font-size: 17px;
       font-weight: 500;
@@ -57,6 +91,39 @@
         }
       }
     }
+    @include tablet {
+      position: fixed;
+      width: 370px;
+      top: 0;
+      left: 0;
+      height: 100%;
+      z-index: 9;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      padding: 20px 35px;
+      &[data-show="false"] {
+        left: -370px;
+      }
+      &[data-show="true"] {
+        button.show-filter {
+          opacity: 0;
+          pointer-events: none;
+        }
+      }
+      button.show-filter {
+        display: inline-block;
+      }
+    }
+    @include extra-extra-small {
+      padding: 20px 25px;
+
+      width: 265px;
+      &[data-show="false"] {
+        left: -265px;
+      }
+      button.show-filter {
+        right: -25%;
+      }
+    }
   }
 
   &--list {
@@ -66,12 +133,37 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
+      @include extra-small {
+        .left_side {
+          font-size: 14px;
+        }
+        .right_side {
+          width: 100px;
+        }
+      }
     }
 
     &--content {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       min-height: 470px;
+      .product {
+        width: 33.3%;
+        &--img {
+          max-width: 100%;
+          img {
+            width: 100%;
+            object-fit: contain;
+          }
+        }
+        @include mobile {
+          width: 50%;
+        }
+        @include extra-small {
+          width: 100%;
+        }
+      }
     }
 
     &--pagination {

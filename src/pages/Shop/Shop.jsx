@@ -60,6 +60,9 @@ const Shop = () => {
   const [searchParams, setSearchParams] = useState(initialState);
   const [applayedParams, setApplayedParams] = useState({ ...searchParams });
 
+  //! aside filter
+  const [showFilter, setShowFilter] = useState(false);
+
   const paramsChange = (name, value) =>
     setSearchParams({ ...searchParams, [name]: value });
 
@@ -69,6 +72,7 @@ const Shop = () => {
     dispatch(getProductsAsync(searchParams, toast));
     setCurrentPage(1);
     window.scrollTo(0, 0);
+    showFilter && setShowFilter(false);
   };
 
   const resetHandler = () => {
@@ -77,6 +81,7 @@ const Shop = () => {
     currentPage == 1
       ? dispatch(getProductsAsync(initialState, toast))
       : setCurrentPage(1);
+    showFilter && setShowFilter(false);
   };
 
   useEffect(() => {
@@ -95,18 +100,49 @@ const Shop = () => {
     products ? setIsLoading(false) : setIsLoading(true);
   }, [products]);
 
+  useEffect(() => {
+    if (showFilter) {
+      console.log("ok");
+      document.body.style.paddingRight = "7px";
+      document.body.style.overflow = "hidden";
+    } else {
+      console.log("ok");
+
+      document.body.style.paddingRight = 0;
+      document.body.style.overflow = "auto";
+    }
+  }, [showFilter]);
+
   return (
     <>
       {isLoading && <Loading isLoading={isLoading} />}
+      <div
+        data-show={showFilter}
+        onClick={() => setShowFilter(false)}
+        className="shop_products--overlay"
+      ></div>
       <div className="shop_products">
         <div className="container">
           <div className="shop_products--content">
-            <form onSubmit={submitHandler} className="shop_products--filter">
+            <form
+              onSubmit={submitHandler}
+              onReset={resetHandler}
+              className="shop_products--filter"
+              data-show={showFilter}
+            >
+              <button
+                type="button"
+                className="show-filter"
+                onClick={() => setShowFilter(true)}
+              >
+                Filter
+              </button>
               <div className="filter--categories">
-                <h4>Məhsul kateqoriyaları</h4>
                 <ul>
                   <FormControl>
-                    <h4 id="demo-controlled-radio-buttons-group">Reytinq</h4>
+                    <h4 id="demo-controlled-radio-buttons-group">
+                      Məhsul kateqoriyaları
+                    </h4>
                     <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
                       name="controlled-radio-buttons-group"
@@ -176,11 +212,7 @@ const Shop = () => {
                   </FormControl>
                 </ul>
               </div>
-              <button
-                type="reset"
-                className="reset_filter"
-                onClick={resetHandler}
-              >
+              <button type="reset" className="reset_filter">
                 Sıfırla
               </button>
               <button type="submit" className="reset_filter">
@@ -201,7 +233,7 @@ const Shop = () => {
                 </div>
                 <div className="right_side">
                   <div className="sort_by">
-                    <Box sx={{ width: 200 }}>
+                    <Box sx={{ width: 100 }}>
                       <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">
                           Sırala
@@ -225,9 +257,6 @@ const Shop = () => {
               {products ? (
                 <div className="shop_products--list--content">
                   {products.map((item, index) => {
-
-                    
-                    
                     return (
                       <Product
                         loading={productLoading}
