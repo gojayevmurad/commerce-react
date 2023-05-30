@@ -10,7 +10,7 @@ const About = () => {
     name: "Arzu",
     surname: "Huseyinova",
     comment:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries but also the on leap into electronic typesetting.",
+      "Lorem been the industry's standard dummy  It has survived not only five centuries but also the on leap into electronic typesetting.",
   };
 
   const comments = [
@@ -30,7 +30,7 @@ const About = () => {
         <div className="container">
           <div className="about_header--content">
             <div className="location">
-              <NavLink to="/">Home</NavLink> / <span>Haqqımızda</span>
+              <NavLink to="/">Əsas</NavLink> / <span>Haqqımızda</span>
             </div>
             <h2>Haqqımızda</h2>
           </div>
@@ -41,10 +41,13 @@ const About = () => {
         <div className="container">
           <div className="about_main--content">
             <div className="about_main--img">
-              <img src={banner} alt="about" />
+              <img
+                src="https://www.readycloud.com/wp-content/uploads/2018/08/bigstock-online-shopping-smartphone-tu-233109715-1.jpg"
+                alt="about"
+              />
             </div>
             <div className="about_main--aside">
-              <h3>E-commerce biznes nədir?</h3>
+              <h3>Lorem ipsum dolor sit.</h3>
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
@@ -54,13 +57,16 @@ const About = () => {
                 electronic typesetting.
               </p>
               <ul>
-                <li>slim body with metal cover</li>
+                <li>Lorem ipsum dolor sit amet.</li>
                 <li>
-                  latest Intel Core i5-1135G7 processor (4 cores / 8 threads)
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 </li>
-                <li>8GB DDR4 RAM and fast 512GB PCIe SSD</li>
                 <li>
-                  NVIDIA GeForce MX350 2GB GDDR5 graphics card backlit keyboard
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </li>
+                <li>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Aliquam!
                 </li>
               </ul>
               <NavLink to="/contact">Əlaqə</NavLink>
@@ -75,9 +81,17 @@ const About = () => {
           <Swiper
             className="about_slider"
             spaceBetween={50}
-            slidesPerView={3}
-            onSlideChange={() => {}}
-            onSwiper={(swiper) => {}}
+            breakpoints={{
+              992: {
+                slidesPerView: 3,
+                slidesPerGroup: 1,
+              },
+              768: {
+                slidesPerView: 2,
+                slidesPerGroup: 1,
+              },
+            }}
+            freeMode={true}
           >
             {comments.map((comment, index) => {
               return (

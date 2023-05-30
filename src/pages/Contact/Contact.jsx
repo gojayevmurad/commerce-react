@@ -10,7 +10,7 @@ const Contact = () => {
         <div className="container">
           <div className="about_header--content">
             <div className="location">
-              <NavLink to="/">Home</NavLink> / <span>Əlaqə</span>
+              <NavLink to="/">Əsas</NavLink> / <span>Əlaqə</span>
             </div>
             <h2>Haqqımızda</h2>
           </div>
