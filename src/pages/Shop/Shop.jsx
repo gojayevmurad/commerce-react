@@ -81,6 +81,7 @@ const Shop = () => {
     currentPage == 1
       ? dispatch(getProductsAsync(initialState, toast))
       : setCurrentPage(1);
+    window.scrollTo(0, 0);
     showFilter && setShowFilter(false);
   };
 

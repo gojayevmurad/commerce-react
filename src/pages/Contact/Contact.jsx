@@ -12,7 +12,7 @@ const Contact = () => {
             <div className="location">
               <NavLink to="/">Əsas</NavLink> / <span>Əlaqə</span>
             </div>
-            <h2>Haqqımızda</h2>
+            <h2>Əlaqə</h2>
           </div>
         </div>
       </div>

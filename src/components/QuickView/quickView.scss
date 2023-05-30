@@ -39,7 +39,6 @@
     background-color: #ffffff9c;
     z-index: 98;
     transition: 0.3s;
-    backdrop-filter: grayscale(10);
     &.hide {
       opacity: 0;
       pointer-events: none;
