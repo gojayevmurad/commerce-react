@@ -1,6 +1,7 @@
 .profile_order {
   flex-basis: 100%;
   padding: 30px 20px;
+  border: 1px solid #f2f2f2;
 
   h3 {
     margin-bottom: 20px;
@@ -60,6 +61,22 @@
           }
         }
       }
+    }
+  }
+  &--empty {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    p {
+      font-size: 1.3rem;
+      color: red;
+      font-weight: 500;
+    }
+    img {
+      max-width: 100%;
+      object-fit: contain;
     }
   }
 }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./styles/favorites.scss";
-import Product from "../../../components/Product/Product";
 import { useSelector } from "react-redux";
 import AddToWishListBtn from "../../../components/AddToWishListBtn/AddToWishListBtn";
 import { NavLink } from "react-router-dom";
@@ -11,11 +10,11 @@ const Item = ({ item }) => {
   const { name, offer, price, image } = item;
 
   return (
-    <div className={!mouseOver && "hide"}>
+    <div className={!mouseOver ? "hide" : ""}>
       <img src={image[0]} alt={name} />
       <div>
-        <h4>{name}</h4>
-        <p className={offer > 0 && "old_price"}>
+        <h4 className="profile_favorites--item__name">{name}</h4>
+        <p className={offer > 0 ? "old_price" : ""}>
           {price} {offer > 0 && <span>{offer}</span>}
         </p>
       </div>

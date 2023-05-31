@@ -11,8 +11,12 @@
 
   .location {
     align-self: flex-start;
+    a {
+      color: #000;
+    }
     span {
       cursor: default;
+      text-decoration: underline;
     }
   }
 

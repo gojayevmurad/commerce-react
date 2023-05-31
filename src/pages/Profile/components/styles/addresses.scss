@@ -1,3 +1,5 @@
+@import "../../../../mixins.scss";
+
 .profile_addresses {
   border: 1px solid #f2f2f2;
   flex-basis: 100%;
@@ -12,12 +14,18 @@
   & > div {
     display: flex;
     gap: 100px;
+    @include mobile {
+      flex-direction: column;
+      gap: 30px;
+    }
     & > div {
       width: 50%;
-      &:last-child {
-        overflow-y: scroll;
-        height: 533px;
-        padding-right: 8px;
+      height: 690px;
+      @include tablet {
+        height: auto;
+      }
+      @include mobile {
+        width: 100%;
       }
       h3 {
         border-bottom: 2px solid #e5e5e5;
@@ -64,12 +72,13 @@
         }
 
         & > form {
-          height: 340px;
-          transition: 0.3s linear;
+          max-height: 500px;
+          transition: max-height 0.3s ease-in;
           display: flex;
           flex-direction: column;
           overflow: hidden;
           gap: 6px;
+          margin-bottom: 10px;
           .invalid_message {
             margin-top: 0px;
             margin-bottom: 5px;
@@ -82,7 +91,8 @@
             padding: 5px 8px;
           }
           &.hide {
-            height: 0;
+            max-height: 0;
+            transition: max-height 0.3s ease-out;
           }
           button {
             padding: 10px 8px;

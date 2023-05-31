@@ -7,7 +7,7 @@ const Profile = () => {
   return (
     <>
       <div className="container">
-        <h2 className="profile_header">My account</h2>
+        <h2 className="profile_header">Mənim hesabım</h2>
       </div>
 
       <div className="container">

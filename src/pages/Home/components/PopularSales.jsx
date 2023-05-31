@@ -32,7 +32,7 @@ const PopularSales = () => {
               <span>Məhşur</span> Məhsullar
             </p>
             <div className="popular_sales--head__button">
-              <button onClick={navigateShop}>Hamısına bax</button>
+              <button onClick={navigateShop}>Daha çox</button>
             </div>
           </div>
           <div className="popular_sales--products">

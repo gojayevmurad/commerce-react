@@ -62,7 +62,7 @@ const Register = () => {
   return (
     <div className="register_page">
       <NavLink to="/">
-        <i class="fa-solid fa-arrow-left-long"></i> Mağazaya qayıt
+        <i className="fa-solid fa-arrow-left-long"></i> Mağazaya qayıt
       </NavLink>
       <div className="container">
         <div className="register_page--content">
@@ -118,7 +118,7 @@ const Register = () => {
                 <img src={googleSvg} alt="Google" />
               </Button>
             </div>
-            <p className="no_account">
+            <p className="have_account">
               Mövcud hesabınız var? <NavLink to="/login">Daxil ol</NavLink>
             </p>{" "}
           </form>

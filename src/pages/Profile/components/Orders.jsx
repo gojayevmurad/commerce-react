@@ -1,36 +1,38 @@
 import React from "react";
 import "./styles/order.scss";
 
+import emptyCart from "../../../assets/empty-cart.webp";
+
 const Orders = () => {
   const orders = [
-    {
-      items: [
-        "6462be07d2d7617c7773dd82",
-        "6462be3ad2d7617c7773dd84",
-        "6462becbd2d7617c7773dda5",
-      ],
-      orderNumber: 7531284,
-      shippedDate: "30 Mart 2023",
-      total: 78,
-      status: "delivered",
-      statusColor: "green",
-    },
-    {
-      items: ["6462be07d2d7617c7773dd82"],
-      orderNumber: 1235312,
-      shippedDate: "30 May 2023",
-      total: 42,
-      status: "Çatdırılma üçün çıxıb",
-      statusColor: "orange",
-    },
-    {
-      items: ["6462be07d2d7617c7773dd82", "6462becbd2d7617c7773dda5"],
-      orderNumber: 5345367,
-      shippedDate: "30 İyun 2023",
-      total: 1234,
-      status: "İmtina",
-      statusColor: "red",
-    },
+    // {
+    //   items: [
+    //     "6462be07d2d7617c7773dd82",
+    //     "6462be3ad2d7617c7773dd84",
+    //     "6462becbd2d7617c7773dda5",
+    //   ],
+    //   orderNumber: 7531284,
+    //   shippedDate: "30 Mart 2023",
+    //   total: 78,
+    //   status: "delivered",
+    //   statusColor: "green",
+    // },
+    // {
+    //   items: ["6462be07d2d7617c7773dd82"],
+    //   orderNumber: 1235312,
+    //   shippedDate: "30 May 2023",
+    //   total: 42,
+    //   status: "Çatdırılma üçün çıxıb",
+    //   statusColor: "orange",
+    // },
+    // {
+    //   items: ["6462be07d2d7617c7773dd82", "6462becbd2d7617c7773dda5"],
+    //   orderNumber: 5345367,
+    //   shippedDate: "30 İyun 2023",
+    //   total: 1234,
+    //   status: "İmtina",
+    //   statusColor: "red",
+    // },
   ];
 
   return (
@@ -71,6 +73,12 @@ const Orders = () => {
             </li>
           );
         })}
+        {orders.length == 0 && (
+          <div className="profile_order--empty">
+            <img src={emptyCart} alt="boş səbət" height={300} />
+            <p>Sifarişiniz yoxdur.</p>
+          </div>
+        )}
       </ul>
     </div>
   );

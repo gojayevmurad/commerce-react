@@ -54,7 +54,7 @@ const Login = () => {
   return (
     <div className="login_page">
       <NavLink to="/">
-        <i class="fa-solid fa-arrow-left-long"></i> Mağazaya qayıt
+        <i className="fa-solid fa-arrow-left-long"></i> Mağazaya qayıt
       </NavLink>
       <div className="container">
         <div className="login_page--content">

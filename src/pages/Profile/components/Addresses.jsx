@@ -96,7 +96,7 @@ const Addresses = () => {
                   <div key={index}>
                     <div className="actions_address">
                       {/* <div className="edit_address">
-                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i className="fa-solid fa-pen-to-square"></i>
                       </div> */}
                       <div
                         className="delete_address"
@@ -104,20 +104,20 @@ const Addresses = () => {
                           deleteAddressHandler(item._id, "billingAddress")
                         }
                       >
-                        <i class="fa-solid fa-trash"></i>
+                        <i className="fa-solid fa-trash"></i>
                       </div>
                     </div>
                     <p>
-                      Name : <span>{item.name}</span>
+                      Ad : <span>{item.name}</span>
                     </p>
                     <p>
-                      Address : <span>{item.address}</span>
+                      Ünvan : <span>{item.address}</span>
                     </p>
                     <p>
-                      City : <span>{item.city}</span>
+                      Şəhər : <span>{item.city}</span>
                     </p>
                     <p>
-                      Postal code : <span>{item.postalCode}</span>
+                      Poçt indeksi : <span>{item.postalCode}</span>
                     </p>
                   </div>
                 );
@@ -126,14 +126,14 @@ const Addresses = () => {
               <form
                 onSubmit={formikBillingAddress.handleSubmit}
                 ref={billingFormRef}
-                className={!billingAddress && "hide"}
+                className={!billingAddress ? "hide" : ""}
               >
                 <InputText
                   name="name"
                   onChange={formikBillingAddress.handleChange}
                   onBlur={formikBillingAddress.handleBlur}
                   className="input"
-                  placeholder="Name"
+                  placeholder="Ad"
                 />
                 {showInvalidMessage(
                   formikBillingAddress.errors.name,
@@ -193,14 +193,14 @@ const Addresses = () => {
         </div>
         <div className="profile_addresses--shipping">
           <h3>Çatdırılma Ünvanı</h3>
-          <div>
+          <div id="shipping__list">
             {addressList.shippingAddress &&
               addressList.shippingAddress.map((item, index) => {
                 return (
                   <div key={index}>
                     <div className="actions_address">
                       {/* <button className="edit_address">
-                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i className="fa-solid fa-pen-to-square"></i>
                       </button> */}
                       <button
                         className="delete_address"
@@ -208,17 +208,20 @@ const Addresses = () => {
                           deleteAddressHandler(item._id, "shippingAddress")
                         }
                       >
-                        <i class="fa-solid fa-trash"></i>
+                        <i className="fa-solid fa-trash"></i>
                       </button>
                     </div>
                     <p>
-                      Name : <span>{item.name}</span>
+                      Ad : <span>{item.name}</span>
                     </p>
                     <p>
-                      Address : <span>{item.address}</span>
+                      Ünvan : <span>{item.address}</span>
                     </p>
                     <p>
-                      City : <span>{item.city}</span>
+                      Şəhər : <span>{item.city}</span>
+                    </p>
+                    <p>
+                      Poçt indeksi : <span>{item.postalCode}</span>
                     </p>
                   </div>
                 );
@@ -228,14 +231,14 @@ const Addresses = () => {
               <form
                 onSubmit={formikShippingAddress.handleSubmit}
                 ref={shippingFormRef}
-                className={!shippingAddress && "hide"}
+                className={!shippingAddress ? "hide" : ""}
               >
                 <InputText
                   name="name"
                   onChange={formikShippingAddress.handleChange}
                   onBlur={formikShippingAddress.handleBlur}
                   className="input"
-                  placeholder="Name"
+                  placeholder="Ad"
                 />
                 {showInvalidMessage(
                   formikShippingAddress.errors.name,
@@ -278,7 +281,7 @@ const Addresses = () => {
                 <Button
                   type="submit"
                   loading={isLoading}
-                  label="Daxil ol"
+                  label="Saxla"
                   className="submit_btn"
                 />
               </form>

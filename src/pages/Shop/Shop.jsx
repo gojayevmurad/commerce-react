@@ -103,12 +103,9 @@ const Shop = () => {
 
   useEffect(() => {
     if (showFilter) {
-      console.log("ok");
       document.body.style.paddingRight = "7px";
       document.body.style.overflow = "hidden";
     } else {
-      console.log("ok");
-
       document.body.style.paddingRight = 0;
       document.body.style.overflow = "auto";
     }

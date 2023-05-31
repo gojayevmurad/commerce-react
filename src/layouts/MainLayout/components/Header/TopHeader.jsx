@@ -10,7 +10,7 @@ const TopHeader = ({ auth }) => {
           <div className="header--top__actions">
             <ul>
               <Link to="/contact">Əlaqə</Link>
-              <Link to="/profile">Hesabım</Link>
+              {auth && <Link to="/profile">Hesabım</Link>}
             </ul>
             {!auth && (
               <div className="header--top__actions--auth">

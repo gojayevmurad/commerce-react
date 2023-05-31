@@ -1,7 +1,11 @@
+@import '../../../../mixins.scss';
 .profile_sidebar {
   padding: 30px 20px;
   background-color: #f2f2f2;
   width: 500px;
+  @include tablet{
+    width: 100%;
+  }
   h3 {
     margin-bottom: 20px;
     font-weight: 500;
