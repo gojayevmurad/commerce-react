@@ -5,7 +5,7 @@ const getSingleProduct = (id) => {
 }
 
 const getProducts = (params) => {
-    return axiosClientFree.get("/products/", params);
+    return axiosClientFree.get("/products", { params });
 };
 
 const getGamerWorldProducts = () => {
