@@ -11,7 +11,7 @@ import { getFavoritesProductsAsync } from "../../redux/favorites/favoritesSlice"
 
 const MainLayout = () => {
   const dispatch = useDispatch()
-  const [showWelcomePopup, setShowWelcomePopup] = useState(false);
+  const [showWelcomePopup, setShowWelcomePopup] = useState(true);
 
   const auth = localStorage.getItem("user");
 

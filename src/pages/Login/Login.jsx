@@ -88,10 +88,10 @@ const Login = () => {
             />
             <p>Və ya</p>
             <div className="social_login">
-              <Button>
+              <Button type="button">
                 <img src={fbSvg} alt="Facebook" />
               </Button>
-              <Button>
+              <Button type="button">
                 <img src={googleSvg} alt="Google" />
               </Button>
             </div>

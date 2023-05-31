@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./popup.scss";
 
 const WelcomePopup = ({ closePopup }) => {
+  useEffect(() => {
+    const width = window.screen.width;
+    width <= 590 && closePopup(false);
+  }, []);
+
   return (
     <>
       <div
@@ -27,9 +32,9 @@ const WelcomePopup = ({ closePopup }) => {
             xəbərdar ola bilərsiniz.
           </p>
           <form method="POST">
-            <input type="email" placeholder="Your email address" />
-            <button>Submit</button>
-          </form> 
+            <input type="email" placeholder="Email addresiniz" />
+            <button>Göndər</button>
+          </form>
           <label>
             <input type="checkbox" />
             Bunu bir daha göstərmə.

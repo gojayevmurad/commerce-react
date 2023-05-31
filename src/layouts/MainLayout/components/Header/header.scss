@@ -93,6 +93,9 @@
         font-weight: 600;
         transition: 0.3s;
       }
+      @include mobile {
+        display: none;
+      }
       @include extra-extra-small {
         width: auto;
         svg {
@@ -169,6 +172,7 @@
     height: 100%;
     @include extra-small {
       flex-direction: column;
+      gap: 10px;
     }
     & > div {
       height: 100%;

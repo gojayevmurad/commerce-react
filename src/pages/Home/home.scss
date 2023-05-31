@@ -262,10 +262,6 @@
 
 .header_swiper {
   margin: 30px 0;
-
-  @include mobile {
-    display: none;
-  }
   .swiper-pagination {
     position: absolute;
     bottom: 0;
@@ -335,15 +331,19 @@
         p {
           font-size: 48px;
           line-height: 1;
+          width: 100%;
         }
         h3 {
           font-weight: 700;
           font-size: 50px;
           line-height: 1.1;
+          width: 100%;
         }
         & > span {
           font-weight: 400;
           font-size: 24px;
+          display: inline-block;
+          width: 100%;
         }
         button {
           color: var(--text-color);
@@ -397,6 +397,43 @@
           }
           & > span {
             font-size: 1rem !important;
+          }
+        }
+      }
+
+      @include extra-small {
+        height: 250px;
+        gap: 1px;
+        & > img {
+          height: 200px;
+        }
+        & > div {
+          .text-light {
+            font-size: 1rem;
+          }
+          h3 {
+            font-size: 1.2rem;
+          }
+          & > span {
+            font-size: 0.8rem !important;
+          }
+        }
+      }
+      @include extra-extra-small {
+        height: 225px;
+        gap: 1px;
+        & > img {
+          height: 225px;
+        }
+        & > div {
+          .text-light {
+            font-size: 0.9rem;
+          }
+          h3 {
+            font-size: 1rem;
+          }
+          & > span {
+            font-size: 0.7rem !important;
           }
         }
       }
