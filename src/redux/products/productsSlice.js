@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getProducts, getGamerWorldProducts, getPopularSalesProducts } from "../../api/products";
+import { getProducts, getGamerWorldProducts, getPopularSalesProducts, getSingleProduct } from "../../api/products";
 
 const initialState = {
     products: {
@@ -22,6 +22,10 @@ const initialState = {
     searchProducts: {
         loading: false,
         data: null
+    },
+    singleProduct: {
+        loading: false,
+        data: []
     }
 };
 
@@ -53,6 +57,12 @@ export const productsSlice = createSlice({
                 ...action.payload,
             };
         },
+        setSingleProduct: (state, action) => {
+            state.singleProduct = {
+                ...state.singleProduct,
+                ...action.payload
+            }
+        }
     },
 });
 
@@ -90,6 +100,18 @@ export const getPopularSalesproductsAsync = (toast) => async (dispatch) => {
     dispatch(setGamerWorldProducts({ loading: false }));
 }
 
-export const { setProducts, setFavoriteProducts, setGamerWorldProducts, setPopularSalesProducts } = productsSlice.actions;
+export const getSingleProductAsync = (id, toast) => async (dispatch) => {
+    dispatch(setSingleProduct({ loading: true }))
+    try {
+        const response = await getSingleProduct(id);
+        response && dispatch(setSingleProduct({ data: response.data }))
+    } catch (error) {
+        console.log(error)
+        error && toast.error(error.message)
+    }
+    dispatch(setSingleProduct({ loading: false }))
+}
+
+export const { setProducts, setFavoriteProducts, setGamerWorldProducts, setPopularSalesProducts, setSingleProduct } = productsSlice.actions;
 
 export default productsSlice.reducer;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./blogs.scss";
-import FetchData from "../../api/api";
 import { NavLink } from "react-router-dom";
 
 
@@ -8,8 +7,8 @@ const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
   async function getBlogs() {
-    const data = await FetchData.getData("blogs");
-    setBlogs(data.data);
+    // const data = await FetchData.getData("blogs");
+    // setBlogs(data.data);
   }
 
   useEffect(() => {

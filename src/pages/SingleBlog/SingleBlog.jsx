@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./singleBlog.scss";
 import { NavLink, useParams } from "react-router-dom";
-import FetchData from "../../api/api";
+// import FetchData from "../../api/api";
 import Product from "../../components/Product/Product";
 
 const SingleBlog = () => {
@@ -27,13 +27,13 @@ const SingleBlog = () => {
   }
 
   async function getBlog() {
-    const data = await FetchData.getData(`blogs/${id}`);
-    setBlog(data.data);
+    // const data = await FetchData.getData(`blogs/${id}`);
+    // setBlog(data.data);
   }
 
   async function getProducts() {
-    const data = await FetchData.getData(productsUrl);
-    setProducts(data.data);
+    // const data = await FetchData.getData(productsUrl);
+    // setProducts(data.data);
   }
 
 

@@ -1,20 +1,32 @@
 import { NavLink, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getSingleProductAsync,
+  setSingleProduct,
+} from "../../redux/products/productsSlice";
 
-import StarRating from "../../components/StarRating/StarRating";
 import "./singleproduct.scss";
+import StarRating from "../../components/StarRating/StarRating";
 import AddToCartBtn from "../../components/AddToCartBtn/AddToCartBtn";
 import Loading from "../../components/Loading/Loading";
-import FetchData from "../../api/api";
 
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import { Pagination } from "swiper";
+import { toast } from "react-hot-toast";
 
 const SwiperBtnNext = () => {
   const swiper = useSwiper();
+  const [isEnd, setIsEnd] = useState(false);
+
+  useEffect(() => {
+    swiper.on("slideChange", (swipe) => {
+      setIsEnd(swipe.isEnd);
+    });
+  }, [swiper]);
+
   return (
     <button
-      className="swiper-next-btn"
+      className={isEnd ? "swiper-next-btn disabled" : "swiper-next-btn"}
       onClick={() => {
         swiper.slideNext();
       }}
@@ -26,8 +38,19 @@ const SwiperBtnNext = () => {
 
 const SwiperBtnPrev = () => {
   const swiper = useSwiper();
+  const [isBeginning, setIsBeginning] = useState(false);
+
+  useEffect(() => {
+    swiper.on("slideChange", (swipe) => {
+      setIsBeginning(swipe.isBeginning);
+    });
+  }, [swiper]);
+
   return (
-    <button className="swiper-prev-btn" onClick={() => swiper.slidePrev()}>
+    <button
+      className={isBeginning ? "swiper-prev-btn disabled" : "swiper-prev-btn"}
+      onClick={() => swiper.slidePrev()}
+    >
       <i className="fa-solid fa-chevron-left"></i>
     </button>
   );
@@ -35,9 +58,13 @@ const SwiperBtnPrev = () => {
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState({});
-  const [currentImage, setCurrentImage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.products.singleProduct.data);
+  const isLoading = useSelector(
+    (state) => state.products.singleProduct.loading
+  );
+
+  const [controllerSwiper, setControllerSwiper] = useState(null);
 
   let category;
 
@@ -46,24 +73,23 @@ const SingleProduct = () => {
       category = "Smartfonlar";
       break;
     case 2:
-      category = "Laptoplar";
+      category = "Əyləncə";
       break;
+    case 3:
+      category = "Şəkil və Video";
     default:
       break;
   }
-  useEffect(() => {
-    FetchData.getSingleProduct(id).then((res) => {
-      setProduct(res.data);
-      setCurrentImage(res.data.image[0]);
-    });
 
+  useEffect(() => {
+    dispatch(getSingleProductAsync(id, toast));
     window.scrollTo(0, 0);
+    return () => {
+      dispatch(setSingleProduct({ data: [] }));
+    };
   }, []);
 
-  const changeImage = (item) => {
-    if (item === currentImage) return;
-    setCurrentImage(item);
-  };
+  const slideTo = (index) => controllerSwiper.slideTo(index);
 
   return (
     <>
@@ -86,7 +112,7 @@ const SingleProduct = () => {
                   className="about_slider"
                   spaceBetween={50}
                   slidesPerView={1}
-                  modules={[Pagination]}
+                  onSwiper={setControllerSwiper}
                 >
                   <SwiperBtnPrev />
                   <SwiperBtnNext />
@@ -101,16 +127,17 @@ const SingleProduct = () => {
                 </Swiper>
               </div>
               <div className="single_product_main--images--list">
-                <div className="slider_prev_btn"></div>
-                <div className="slider_next_btn"></div>
-                {product.img &&
-                  product.img.map((item, index) => {
+                {product.image &&
+                  product.image.map((item, index) => {
                     return (
                       <div
                         key={index}
                         className="single_product_main--images--list__item"
-                        style={{ cursor: "pointer" }}
-                        onMouseDown={() => changeImage(item)}
+                        style={{
+                          cursor: "pointer",
+                          width: [500 / product.image.length] - 16,
+                        }}
+                        onMouseDown={() => slideTo(index)}
                       >
                         <img src={item} alt="photo" />
                       </div>
@@ -138,8 +165,8 @@ const SingleProduct = () => {
                 <AddToCartBtn id={id} inStock={product.stock_count > 0} />
               </div>
               <div className="single_product_main--info__description">
-                <p>Category : {category}</p>
-                <p>Brand : {product.brand}</p>
+                <p>Kateqoriya : {category}</p>
+                <p>Brend : {product.brand}</p>
               </div>
               <div className="single_product_main--info__report">
                 <svg
