@@ -1,0 +1,161 @@
+@import "../../../../mixins.scss";
+
+.profile_basket {
+  flex-basis: 100%;
+  padding: 30px 20px;
+  border: 1px solid #f2f2f2;
+  position: relative;
+  h3 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.6;
+  }
+
+  &--empty {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .loading_screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  & > ul {
+    & > li {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      height: min-content;
+      margin-bottom: 10px;
+      position: relative;
+      &:last-child {
+        margin-bottom: 30px;
+      }
+      & > div {
+        &:first-child {
+          display: flex;
+          & > div {
+            &:last-child {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              width: 330px;
+              h5 {
+                width: 330px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+              @include desktop {
+                width: 230px;
+                h5 {
+                  width: 230px;
+                }
+              }
+              @include extra-small {
+                width: 150px;
+                h5 {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+        &:nth-child(2) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 40px;
+          position: relative;
+          @include desktop {
+            margin-right: 20px;
+          }
+          @include extra-small {
+            margin-right: 5px;
+          }
+          input,
+          button {
+            border: 1px solid #ddd;
+            outline: none;
+          }
+          button {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+          }
+          input {
+            height: 30px;
+            cursor: default;
+            border-left: none;
+            border-right: none;
+            text-align: center;
+            width: 50px;
+          }
+        }
+        &.total {
+          width: 150px;
+          white-space: nowrap;
+          @include desktop {
+            width: 100px;
+          }
+          @include mobile {
+            display: none;
+          }
+        }
+      }
+      img {
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+        margin-right: 30px;
+        @include desktop {
+          height: 50px;
+          width: 50px;
+        }
+        @include extra-small {
+          height: 35px;
+          width: 35px;
+          margin-right: 10px;
+        }
+      }
+      .remove-basket-item {
+        border: 1px solid red;
+        outline: none;
+        background-color: red;
+        padding: 0 16px;
+        height: 30px;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.2s linear;
+        &:hover {
+          background-color: #fff;
+          color: red;
+        }
+        @include extra-small {
+          display: none;
+        }
+      }
+    }
+  }
+  .order_finally {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    height: 50px;
+    width: 165px;
+    border: 1px solid transparent;
+    outline: none;
+    font-size: 1.02rem;
+    transition: 0.3s linear;
+    cursor: not-allowed;
+    &:hover {
+      background-color: green;
+      color: #fff;
+    }
+  }
+}

@@ -13,6 +13,7 @@ import {
   getAddressListAsync,
 } from "../../../redux/address/addressSlice";
 import { toast } from "react-hot-toast";
+import MetaData from "../../../components/MetaData";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required("Adınızı daxil edin"),

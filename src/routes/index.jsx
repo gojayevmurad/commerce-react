@@ -16,6 +16,7 @@ import Orders from "../pages/Profile/components/Orders";
 import Favorites from "../pages/Profile/components/Favorites";
 import ChangePassword from "../pages/Profile/components/ChangePassword";
 import Addresses from "../pages/Profile/components/Addresses";
+import Basket from "../pages/Profile/components/Basket";
 import CoomingSoon from "../pages/CoomingSoon/CoomingSoon";
 
 const routes = [
@@ -77,6 +78,10 @@ const routes = [
           {
             path: "addresses",
             element: <Addresses />,
+          },
+          {
+            path: "basket",
+            element: <Basket />,
           },
         ],
       },

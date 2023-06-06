@@ -4,6 +4,7 @@ import banner from "../../assets/about_banner.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import MetaData from "../../components/MetaData";
 
 const About = () => {
   const comment = {
@@ -26,6 +27,7 @@ const About = () => {
 
   return (
     <>
+      <MetaData title="DNP || HAQQIMIZDA" />
       <div className="about_header">
         <div className="container">
           <div className="about_header--content">

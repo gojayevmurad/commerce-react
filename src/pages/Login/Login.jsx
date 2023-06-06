@@ -12,6 +12,7 @@ import { showInvalidMessage } from "../../utils/";
 import fbSvg from "../../assets/fb.svg";
 import googleSvg from "../../assets/google.svg";
 import "./login.scss";
+import MetaData from "../../components/MetaData";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ const Login = () => {
 
   return (
     <div className="login_page">
+      <MetaData title="DNP || GİRİŞ" />
       <NavLink to="/">
         <i className="fa-solid fa-arrow-left-long"></i> Mağazaya qayıt
       </NavLink>

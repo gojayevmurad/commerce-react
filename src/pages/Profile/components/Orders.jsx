@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/order.scss";
 
-import emptyCart from "../../../assets/empty-cart.webp";
+import emptyCart from "../../../assets/empty_orders.png";
 
 const Orders = () => {
   const orders = [

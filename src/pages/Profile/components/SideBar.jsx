@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./styles/sidebar.scss";
+import { useSelector } from "react-redux";
 
 const SideBar = () => {
+  const userData = useSelector((state) => state.profile.data);
+
   const logoutHandler = () => {
     localStorage.removeItem("user");
     window.location.replace("/");
@@ -11,7 +14,7 @@ const SideBar = () => {
   return (
     <div className="profile_sidebar">
       <h3>
-        Xoş Gəlmisən, <span>John Doe</span>
+        Xoş Gəlmisən, <span>{userData.name + " " + userData.surname}</span>
       </h3>
 
       <ul>
@@ -20,6 +23,15 @@ const SideBar = () => {
             <div>
               <i className="fa-solid fa-parachute-box"></i>
               Sifarişlər
+            </div>
+            <i className="fa-solid fa-chevron-right"></i>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="basket">
+            <div>
+              <i className="fa-solid fa-cart-shopping"></i>
+              Səbət
             </div>
             <i className="fa-solid fa-chevron-right"></i>
           </NavLink>

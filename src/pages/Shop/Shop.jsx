@@ -19,10 +19,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { toast } from "react-hot-toast";
 import { getProductsAsync } from "../../redux/products/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
+import MetaData from "../../components/MetaData";
 
 const initialState = {
   limit: 6,
-  sort: "order_count",
   order: "desc",
   price: [0, 18000],
   rating: 1.5,
@@ -59,6 +59,7 @@ const Shop = () => {
   //! search params
   const [searchParams, setSearchParams] = useState(initialState);
   const [applayedParams, setApplayedParams] = useState({ ...searchParams });
+  const [sort, setSort] = useState("order_count");
 
   //! aside filter
   const [showFilter, setShowFilter] = useState(false);
@@ -78,7 +79,7 @@ const Shop = () => {
   const resetHandler = () => {
     setSearchParams(initialState);
     setApplayedParams(initialState);
-    currentPage == 1
+    currentPage === 1
       ? dispatch(getProductsAsync(initialState, toast))
       : setCurrentPage(1);
     window.scrollTo(0, 0);
@@ -92,6 +93,10 @@ const Shop = () => {
   useEffect(() => {
     dispatch(getProductsAsync({ ...applayedParams, page: currentPage }, toast));
   }, [currentPage]);
+
+  useEffect(() => {
+    dispatch(getProductsAsync({ ...applayedParams, sort }, toast));
+  }, [sort]);
 
   useEffect(() => {
     setPages(Math.ceil(productsCount / applayedParams.limit));
@@ -114,6 +119,7 @@ const Shop = () => {
   return (
     <>
       {isLoading && <Loading isLoading={isLoading} />}
+      <MetaData title="DNP || MAĞAZA" />
       <div
         data-show={showFilter}
         onClick={() => setShowFilter(false)}
@@ -239,9 +245,9 @@ const Shop = () => {
                         <Select
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
-                          value={searchParams.sort}
+                          value={sort}
                           label="Age"
-                          onChange={(e) => paramsChange("sort", e.target.value)}
+                          onChange={(e) => setSort(e.target.value)}
                         >
                           <MenuItem value="order_count">Sifariş Sayı</MenuItem>
                           <MenuItem value="rating">Reytinq</MenuItem>

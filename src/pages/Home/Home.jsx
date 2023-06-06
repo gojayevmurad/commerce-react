@@ -13,6 +13,7 @@ import MainSwiper from "./components/MainSwiper";
 import OurDiff from "./components/OurDiff";
 import Promotion from "./components/Promotion";
 import PopularSales from "./components/PopularSales";
+import MetaData from "../../components/MetaData";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const Home = () => {
 
   return (
     <>
+      <MetaData title='DNP || ƏSAS'/>
       <Loading isLoading={isLoading} />
       <MainSwiper />
       <OurDiff />

@@ -1,11 +1,14 @@
 import React from "react";
 import wish from "../../../../assets/header/wish.png";
-import cart from "../../../../assets/header/cart.png";
+import basketPhoto from "../../../../assets/header/cart.png";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const MainHeader = () => {
   const wishCount = useSelector((state) => state.favorites.data.length);
+  const basketCount = useSelector(
+    (state) => state.basket.basketItems.data.length
+  );
   const categories = [
     "Bütün kategoriyalar",
     "Mobil və Laptoplar",
@@ -66,9 +69,14 @@ const MainHeader = () => {
                   İstəklər
                 </NavLink>
               </li>
-              <li>
-                <img src={cart} alt="cart" className="header-icon" />
-                Səbət
+              <li
+                className={basketCount > 0 ? "header_basket" : ""}
+                data-count={basketCount}
+              >
+                <NavLink to="profile/basket">
+                  <img src={basketPhoto} alt="basket" className="header-icon" />
+                  Səbət
+                </NavLink>
               </li>
             </ul>
           </div>

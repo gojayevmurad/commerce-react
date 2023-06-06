@@ -2,15 +2,15 @@ import React from "react";
 import { ColorRing } from "react-loader-spinner";
 import "./loading.scss";
 
-const Loading = (props) => {
+const Loading = ({isLoading}) => {
   return (
     <div
       className={
-        !props.isLoading ? "loading_screen invisible" : "loading_screen"
+        !isLoading ? "loading_screen invisible" : "loading_screen"
       }
     >
       <ColorRing
-        visible={props.isLoading}
+        visible={isLoading}
         height="100"
         width="100"
         ariaLabel="dna-loading"

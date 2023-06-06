@@ -6,11 +6,10 @@ import {
 } from "../../redux/basket/basketSlice";
 import { toast } from "react-hot-toast";
 
-const AddToCartBtn = (props) => {
-  const { id, inStock } = props;
+const AddToCartBtn = ({ id, inStock, setQuantity }) => {
   const [added, setAdded] = useState(false);
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.basket.basketItems.loading);
+  const loading = useSelector((state) => state.basket.loading[id]);
   const cartItem = useSelector((state) =>
     state.basket.basketItems.data.find((item) => {
       return item.product == id;
@@ -23,6 +22,9 @@ const AddToCartBtn = (props) => {
 
   useEffect(() => {
     !cartItem ? setAdded(false) : setAdded(true);
+    if (cartItem) {
+      setQuantity && setQuantity(cartItem.count);
+    }
   }, [cartItem]);
 
   const addToCartReducer = () => {

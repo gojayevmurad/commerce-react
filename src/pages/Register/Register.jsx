@@ -14,6 +14,7 @@ import googleSvg from "../../assets/google.svg";
 import { showInvalidMessage } from "../../utils";
 import { toast } from "react-hot-toast";
 import { registerAsync } from "../../redux/auth/authSlice";
+import MetaData from "../../components/MetaData";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ const Register = () => {
 
   return (
     <div className="register_page">
+      <MetaData title="DNP || QEYDİYYAT" />
       <NavLink to="/">
         <i className="fa-solid fa-arrow-left-long"></i> Mağazaya qayıt
       </NavLink>

@@ -1,3 +1,9 @@
+.productsList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+}
+
 :root {
   --primary-color: #336699;
   --text-color: #333;
