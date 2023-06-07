@@ -258,7 +258,7 @@ const Shop = () => {
                   </div>
                 </div>
               </div>
-              {products ? (
+              {products && products.length ? (
                 <div className="shop_products--list--content">
                   {products.map((item, index) => {
                     return (
