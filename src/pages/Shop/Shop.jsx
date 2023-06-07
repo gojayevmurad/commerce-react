@@ -96,6 +96,7 @@ const Shop = () => {
 
   useEffect(() => {
     dispatch(getProductsAsync({ ...applayedParams, sort }, toast));
+    setCurrentPage(1);
   }, [sort]);
 
   useEffect(() => {
