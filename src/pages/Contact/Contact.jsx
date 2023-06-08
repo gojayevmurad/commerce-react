@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./contact.scss";
 
 import { NavLink } from "react-router-dom";
 import MetaData from "../../components/MetaData";
+import { toast } from "react-hot-toast";
 
 const Contact = () => {
+  const formRef = useRef();
+
+  const resetForm = () => {
+    formRef.current.reset();
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    resetForm();
+    toast.error("Bu formda funksionallıq yoxdur.");
+  };
+
   return (
     <>
       <MetaData title="DNP || ƏLAQƏ" />
@@ -63,7 +76,7 @@ const Contact = () => {
             </div>
             <div className="contact_main--form">
               <h4>Mesaj burax</h4>
-              <form>
+              <form ref={formRef} onSubmit={submitHandler}>
                 <label htmlFor="name">Adınız*</label>
                 <input placeholder="Akif" type="text" id="name" />
                 <label htmlFor="email">Emailiniz*</label>
