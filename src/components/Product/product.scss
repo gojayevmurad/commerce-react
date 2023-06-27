@@ -3,6 +3,7 @@
 .product {
   &.product_loading {
     .product--img {
+      display: inline-block;
       background: linear-gradient(
         120deg,
         #e5e5e5 30%,

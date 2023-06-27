@@ -15,10 +15,10 @@ const Product = ({ product, loading }) => {
   return (
     <div className={loading ? "product product_loading" : "product"}>
       {maximize && <QuickView product={product} setMaximize={setMaximize} />}
-      <div className="product--img">
+      <NavLink to={`/product-detail/${_id}`} className="product--img">
         <img src={image[0]} alt={name} width="260" height="264" />
         <img src={image[1]} alt={name} width="260" height="264" />
-      </div>
+      </NavLink>
       <div className="product--rating">
         <div className="product--rating__star">
           {<StarRating rating={rating} />}

@@ -37,15 +37,6 @@ const SideBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="favorites">
-            <div>
-              <i className="fa-regular fa-heart"></i>
-              İstəklər
-            </div>
-            <i className="fa-solid fa-chevron-right"></i>
-          </NavLink>
-        </li>
-        <li>
           <NavLink to="change-password">
             <div>
               <i className="fa-solid fa-fingerprint"></i>

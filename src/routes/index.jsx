@@ -85,10 +85,6 @@ const routes = [
           },
         ],
       },
-      {
-        path: "*",
-        element: <NotFound />,
-      },
     ],
   },
   {
@@ -102,6 +98,10 @@ const routes = [
   {
     path: "/cooming-soon",
     element: <CoomingSoon />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ];
 

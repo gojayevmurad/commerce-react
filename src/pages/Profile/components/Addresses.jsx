@@ -14,6 +14,7 @@ import {
 } from "../../../redux/address/addressSlice";
 import { toast } from "react-hot-toast";
 import MetaData from "../../../components/MetaData";
+import { confirmDialog } from "primereact/confirmdialog";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required("Adınızı daxil edin"),
@@ -81,7 +82,14 @@ const Addresses = () => {
   };
 
   const deleteAddressHandler = (id, type) => {
-    dispatch(deleteAddressAsync(id, type, toast));
+    confirmDialog({
+      message: "Ünvanı silməyə əminsiniz?",
+      rejectLabel: "Xeyr",
+      acceptLabel: "Bəli",
+      header: "Confirmation",
+      icon: "pi  pi-exclamation-triangle",
+      accept: () => dispatch(deleteAddressAsync(id, type, toast)),
+    });
   };
 
   return (

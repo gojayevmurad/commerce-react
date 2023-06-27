@@ -12,6 +12,7 @@ import { getFavoritesProductsAsync } from "../../redux/favorites/favoritesSlice"
 const MainLayout = () => {
   const dispatch = useDispatch()
   const [showWelcomePopup, setShowWelcomePopup] = useState(false);
+  const [progress, setProgress] = useState(0)
 
   const auth = localStorage.getItem("user");
 
@@ -48,8 +49,24 @@ const MainLayout = () => {
     }
     //#endregion
   }, [])
+
+  //! reading progress bar
+  window.addEventListener('scroll', updateProgressBar);
+
+  function updateProgressBar() {
+    const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollPosition / windowHeight) * 100;
+    setProgress((progress).toFixed(0));
+  }
+
   return (
     <>
+      <div onClick={() => window.scrollTo(0, 0)} className={progress > 10 ? 'progress-bar_container active' : 'progress-bar_container'} >
+        <div className="progress-bar" style={{ "--progress-percent": progress, color: 'white' }}>
+          <i class="fa-solid fa-chevron-up"></i>
+        </div>
+      </div>
       {showWelcomePopup && <WelcomePopup closePopup={setShowWelcomePopup} />}
       <Header auth={auth} />
       <Outlet />

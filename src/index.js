@@ -14,7 +14,7 @@ root.render(
 
   <Provider store={store}>
     <BrowserRouter>
-      <ConfirmDialog />
+      <ConfirmDialog className="red" rejectClassName="close" acceptClassName="accept" />
       <App />
       <Toaster />
     </BrowserRouter>

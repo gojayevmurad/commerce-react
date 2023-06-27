@@ -10,13 +10,21 @@ import {
 } from "../../../redux/basket/basketSlice";
 import Loading from "../../../components/Loading/Loading";
 import { toast } from "react-hot-toast";
+import { confirmDialog } from "primereact/confirmdialog";
 
 const BasketItem = ({ loading, item }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(0);
 
   const removeItemHandler = () => {
-    dispatch(removeBasketItemsAsync({ productId: item._id, count: 0 }));
+    confirmDialog({
+      message: "Məhsulu səbətdən silməyə əminsiniz ?",
+      icon: "pi  pi-exclamation-triangle",
+      accept: () =>
+        dispatch(removeBasketItemsAsync({ productId: item._id, count: 0 })),
+      acceptLabel: "Bəli",
+      rejectLabel: "Xeyr",
+    });
   };
 
   return (

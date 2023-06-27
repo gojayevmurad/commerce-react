@@ -63,3 +63,55 @@ body {
 #root {
   overflow: hidden;
 }
+
+.progress-bar_container {
+  position: fixed;
+  bottom: -50px;
+  right: 50px;
+  z-index: 99999;
+  border-radius: 50%;
+  transition: 0.1s linear;
+  cursor: pointer;
+
+  &.active {
+    bottom: 50px;
+  }
+
+  .progress-bar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #000;
+
+    background: radial-gradient(
+        closest-side,
+        var(--primary-color) 78%,
+        white 79% 90%,
+        transparent 80% 100%
+      ),
+      conic-gradient(
+        var(--primary-color) calc(var(--progress-value) * 1%),
+        transparent 0
+      );
+    animation: js-progress 2s 1 forwards;
+    &::before {
+      width: var(--progress-percent);
+    }
+  }
+}
+
+@keyframes js-progress {
+  to {
+    --progress-value: var(--progress-percent);
+  }
+}
+@property --progress-value {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}

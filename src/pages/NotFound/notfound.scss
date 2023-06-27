@@ -1,0 +1,43 @@
+.page_notfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 10px;
+  background-color: var(--primary-color);
+  .back_image {
+    background-image: url("https://www.jesion.pl/content/images/size/w1000/2022/07/NGC6188-TheCreationOfTheCosmos2-crop1-1.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 240px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "Steelfish Rg", "helvetica neue", helvetica, arial, sans-serif;
+    font-weight: 800;
+    -webkit-font-smoothing: antialiased;
+  }
+  span {
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-color-white);
+  }
+  p:last-of-type {
+    font-size: 1.4rem;
+    color: var(--text-color-white);
+  }
+  button {
+    cursor: pointer;
+    border-radius: 50px;
+    height: 70px;
+    width: 200px;
+    background-color: var(--text-color-white);
+    font-weight: 500;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+  }
+}
