@@ -67,15 +67,11 @@ const MainLayout = () => {
     //#endregion
   }, [])
   useEffect(() => {
-    if (sideBasket == true && basketItems.length > 0) {
+    if (sideBasket == true && basketItems.length > 0 && auth) {
       dispatch(getBasketItemsDatasAsync(toast));
       setTotalPrice(0);
     }
   }, [sideBasket])
-
-  useEffect(() => {
-
-  }, [products])
 
   //! reading progress bar
   window.addEventListener('scroll', updateProgressBar);
@@ -91,9 +87,11 @@ const MainLayout = () => {
   };
 
   useEffect(() => {
-    setTotalPrice(0)
-    dispatch(getBasketItemsDatasAsync(toast));
-    calculateTotalPrice();
+    if (auth) {
+      setTotalPrice(0)
+      dispatch(getBasketItemsDatasAsync(toast));
+      calculateTotalPrice();
+    }
   }, [basketItems])
 
   return (
