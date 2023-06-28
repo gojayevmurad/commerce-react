@@ -8,11 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-hot-toast'
 import { getBasketItemsAsync, getBasketItemsDatasAsync, removeBasketItemsAsync } from "../../redux/basket/basketSlice";
 import { getFavoritesProductsAsync } from "../../redux/favorites/favoritesSlice";
-import { confirmDialog } from "primereact/confirmdialog";
 
 const MainLayout = () => {
   const dispatch = useDispatch()
-  const [showWelcomePopup, setShowWelcomePopup] = useState(true);
+  const [showWelcomePopup, setShowWelcomePopup] = useState(false);
   const [progress, setProgress] = useState(0)
   const [sideBasket, setSideBasket] = useState(false);
   const products = useSelector((state) => state.basket.productsDetails);
@@ -67,7 +66,7 @@ const MainLayout = () => {
     //#endregion
   }, [])
   useEffect(() => {
-    if (sideBasket == true && basketItems.length > 0 && auth) {
+    if (sideBasket && basketItems.length > 0 && auth) {
       dispatch(getBasketItemsDatasAsync(toast));
       setTotalPrice(0);
     }
@@ -87,7 +86,7 @@ const MainLayout = () => {
   };
 
   useEffect(() => {
-    if (auth) {
+    if (auth && sideBasket) {
       setTotalPrice(0)
       dispatch(getBasketItemsDatasAsync(toast));
       calculateTotalPrice();

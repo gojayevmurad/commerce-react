@@ -106,7 +106,6 @@ export const getSingleProductAsync = (id, toast) => async (dispatch) => {
         const response = await getSingleProduct(id);
         response && dispatch(setSingleProduct({ data: response.data }))
     } catch (error) {
-        console.log(error)
         error && toast.error(error.message)
     }
     dispatch(setSingleProduct({ loading: false }))

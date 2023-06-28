@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const BASE_URL = "http://localhost:5000/";
+const BASE_URL = "https://cute-peplum-ox.cyclic.app/";
 
 const axiosClient = axios.create({
     baseURL: BASE_URL,
