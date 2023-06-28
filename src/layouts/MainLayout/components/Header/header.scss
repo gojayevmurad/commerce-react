@@ -113,6 +113,18 @@
     ul {
       display: flex;
       gap: 15px;
+      button {
+        border: none;
+        outline: none;
+        height: min-content;
+        width: min-content;
+        background-color: transparent;
+        cursor: pointer;
+        transition: 0.2s linear;
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
       a,
       li {
         position: relative;

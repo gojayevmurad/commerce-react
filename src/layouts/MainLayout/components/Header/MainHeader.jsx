@@ -1,20 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import wish from "../../../../assets/header/wish.png";
 import basketPhoto from "../../../../assets/header/cart.png";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const MainHeader = () => {
+const MainHeader = ({ setSideBasket }) => {
   const wishCount = useSelector((state) => state.favorites.data.length);
   const basketCount = useSelector(
     (state) => state.basket.basketItems.data.length
   );
-  const categories = [
-    "Bütün kategoriyalar",
-    "Mobil və Laptoplar",
-    "Şəkil və Video",
-    "Məişət",
-  ];
+
+  const toggleSideBasket = () => setSideBasket((value) => !value);
 
   return (
     <div className="header--main">
@@ -73,10 +69,10 @@ const MainHeader = () => {
                 className={basketCount > 0 ? "header_basket" : ""}
                 data-count={basketCount}
               >
-                <NavLink to="profile/basket">
+                <button onClick={toggleSideBasket}>
                   <img src={basketPhoto} alt="basket" className="header-icon" />
                   Səbət
-                </NavLink>
+                </button>
               </li>
             </ul>
           </div>

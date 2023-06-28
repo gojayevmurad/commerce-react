@@ -24,7 +24,6 @@ const SideBar = () => {
               <i className="fa-solid fa-parachute-box"></i>
               Sifarişlər
             </div>
-            <i className="fa-solid fa-chevron-right"></i>
           </NavLink>
         </li>
         <li>
@@ -33,7 +32,6 @@ const SideBar = () => {
               <i className="fa-solid fa-cart-shopping"></i>
               Səbət
             </div>
-            <i className="fa-solid fa-chevron-right"></i>
           </NavLink>
         </li>
         <li>
@@ -42,7 +40,6 @@ const SideBar = () => {
               <i className="fa-solid fa-fingerprint"></i>
               Şifrəni yenilə
             </div>
-            <i className="fa-solid fa-chevron-right"></i>
           </NavLink>
         </li>
         <li>
@@ -51,7 +48,6 @@ const SideBar = () => {
               <i className="fa-regular fa-map"></i>
               Ünvanlar
             </div>
-            <i className="fa-solid fa-chevron-right"></i>
           </NavLink>
         </li>
         <li>
